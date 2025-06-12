@@ -1,0 +1,473 @@
+id	Tournament	Sex	Year	Player1	Player2	Round	FNL.1	FNL.2	FSP.1	FSW.1	SSP.1	SSW.1	ACE.1	DBF.1	WNR.1	UFE.1	BPC.1	BPW.1	NPA.1	NPW.1	TPW.1	ST1.1	ST2.1	ST3.1	ST4.1	ST5.1	FSP.2	FSW.2	SSP.2	SSW.2	ACE.2	DBF.2	WNR.2	UFE.2	BPC.2	BPW.2	NPA.2	NPW.2	TPW.2	ST1.2	ST2.2	ST3.2	ST4.2	ST5.2
+1	Wimbledon	women	2013	A.Radwanska	M.Keys	3	2	1	71	55	29	18	2	1	23	10	18	3	31	20		7	4	6			61	53	39	16	15	1	67	51	10	2	34	22		5	6	3		
+2	AusOpen	men	2013	Nick Kyrgios	Benjamin Becker	1	3	1	54	60	46	25	34	13	71	52	6	8	5	8	133	6	6	6	7		53	45	47	31	12	5	38	36	3	7	6	6	114	3	7	2	6	
+5	Wimbledon	men	2013	V.Pospisil	M.Youzhny	2	2	3	63	83	37	25	26	2	66	27	7	2	61	39		2	7	6	6	4	64	76	36	39	8	2	53	20	7	4	46	32		6	6	7	3	6
+6	FrenchOpen	women	2013	Caroline Wozniacki	Bojana Jovanovski	2	0	2	70	29	30	10	1	3	13	18	2	3	5	7	62	6	3				68	34	32	8	3	1	33	32	3	7	2	5	72	7	6			
+8	Wimbledon	men	2013	N.Djokovic	J.Chardy	3	3	0	74	40	26	12	8	1	38	3	16	5	21	18		6	6	6			66	32	34	15	6	4	18	14	0	0	23	12		3	2	2		
+10	AusOpen	men	2013	Rafael Nadal	Thanasi Kokkinakis	2	3	0	74	45	26	11	7	1	39	19	5	10	11	14	91	6	6	6			67	33	33	10	4	3	21	24	0	3	8	10	61	2	4	2		
+12	USOpen	men	2013	Roger Federer	Tommy Robredo	1	0	3	60	38	40	16	5	0			2	16	32	52	101	6	3	4			70	61	30	17	6	4			4	7	11	17	110	7	6	6		
+14	Wimbledon	men	2013	F.Verdasco	K.De Schepper	4	3	0	64	42	36	18	9	4	42	13	14	4	21	13		6	6	6			67	43	33	15	9	3	26	12	2	1	51	31		4	4	4		
+15	FrenchOpen	men	2013	Milos Raonic	Kevin Anderson	3	0	3	57	49	43	29	16	1	50	38	1	4	13	27	102	5	6	3			69	54	31	19	8	2	31	15	3	12	10	12	126	7	7	6		
+17	FrenchOpen	women	2013	Sabine Lisicki	Sofia Arvidsson	1	2	0	52	27	48	15	4	3	37	30	3	6	13	19	73	6	6				70	29	30	10	1	0	7	14	1	6	4	4	60	3	4			
+18	USOpen	men	2013	Richard Gasquet	David Ferrer	1	3	2	59	57	41	31	6	3			6	14	30	45	142	6	6	4	2	6	63	53	37	29	5	3			4	15	38	53	137	3	1	6	6	3
+20	FrenchOpen	men	2013	Benjamin Becker	Jeremy Chardy	1	0	3	66	48	34	13	7	5	24	24	1	5	11	14	85	4	2	5			66	44	34	17	10	6	46	33	5	11	10	16	108	6	6	7		
+21	AusOpen	women	2013	Kurumi Nara	Magdalena Rybarikova	2	2	0	66	26	34	15	0	2	8	26	4	4	5	10	59	6	6				52	16	48	8	4	1	13	38	2	5	7	11	51	4	3			
+22	AusOpen	men	2013	Nikolay Davydenko	Lukasz Kubot	1	3	2	77	76	23	11	6	4	6	4	7	24			162	3	6	3	6	6	60	68	40	25	8	12	8	12	6	14			141	6	3	6	3	4
+27	USOpen	men	2013	John Isner	Filippo Volandri	1	3	0	73	42	27	11	16	3			6	7	12	17	87	6	6	6			56	18	44	10	1	5			0	2	5	10	45	0	2	3		
+30	AusOpen	men	2013	Nikolay Davydenko	Richard Gasquet	2	0	3	77	48	23	11	6	1	39	43	4	5	9	12	97	6	4	4			58	41	42	21	9	5	33	37	6	11	10	15	110	7	6	6		
+31	USOpen	women	2013	S Kuznetsova	F Pennetta	3	0	2	55	21	45	10	4	3	24	35	8	1	24	16		5	1				51	26	49	17	0	1	16	13	8	5	14	9		7	6			
+34	AusOpen	men	2013	Tommy Robredo	Richard Gasquet	3	3	1	65	70	35	21	16	3	51	38	3	7	18	25	140	2	7	6	7		62	61	38	28	4	5	62	34	3	9	44	57	137	6	5	4	6	
+35	AusOpen	women	2013	Christina McHale	Yung-Jan Chan	1	2	0	71	31	29	11	4	3	4	3	5	9			77	7	6				68	28	32	10	0	6	0	6	3	3			66	5	4			
+37	Wimbledon	women	2013	G.Muguruza	A.Keothavong	1	2	0	67	28	33	9	3	4	23	16	9	4	18	13		6	6				62	18	38	11	2	2	10	14	1	0	10	6		4	0			
+38	Wimbledon	women	2013	A.Radwanska	T.Pironkova	4	2	1	71	47	29	17	3	5	39	11	12	4	48	32		4	6	6			55	37	45	18	5	1	52	27	6	2	46	29		6	3	3		
+39	AusOpen	women	2013	Garbine Muguruza	Caroline Wozniacki	3	2	1	64	37	36	16	5	7	33	56	7	10	12	17	96	4	7	6			67	39	33	12	2	6	17	37	5	16	9	13	93	6	5	3		
+40	Wimbledon	women	2013	T.Pironkova	P.Martic	3	2	1	57	34	43	21	1	0	27	20	9	6	24	16		6	4	6			50	20	50	14	3	7	30	27	14	3	40	25		1	6	2		
+45	FrenchOpen	men	2013	Rafael Nadal	Daniel Brands	1	3	1	84	74	16	12	2	4	40	26	3	8	19	25	140	4	7	6	6		74	66	26	22	10	1	51	53	1	4	25	40	115	6	6	4	3	
+48	Wimbledon	men	2013	A.Mannarino	D.Brown	3	3	0	65	44	35	20	16	2	40	10	12	4	28	14		6	6	7			58	42	42	16	11	3	34	20	5	0	61	29		4	2	5		
+49	AusOpen	women	2013	Bethanie Mattek-Sands	Maria Sharapova	1	0	2	57	27	43	10	4	8	18	30	2	6	7	9	65	3	4				53	31	47	13	5	9	29	28	4	8	3	7	77	6	6			
+50	USOpen	men	2013	Aljaz Bedene	Dmitry Tursunov	1	1	3	52	41	48	19	13	8			2	9			97	5	6	3	0		55	52	45	27	16	3			6	9			121	7	4	6	6	
+51	USOpen	men	2013	Tommy Robredo	Frank Dancevic	1	3	0	64	39	36	12	9	3			7	11	9	15	92	6	6	6			65	34	35	10	4	3			2	10	23	43	65	4	4	1		
+52	USOpen	women	2013	E Bouchard	A Kerber	2	1	2	47	27	53	27	2	7	41	43	14	6	38	26		4	6	3			68	34	32	14	2	3	28	27	18	7	22	15		6	2	6		
+54	AusOpen	men	2013	Benoit Paire	Frank Dancevic	1	3	0	57	54	43	22	24	6	58	25	3	12	22	35	117	7	6	6			59	47	41	20	12	3	36	14	1	4	15	32	97	6	3	4		
+55	Wimbledon	men	2013	G.Dimitrov	S.Bolelli	1	3	0	73	43	27	10	15	2	26	9	11	5	16	12		6	6	6			59	34	41	13	4	2	20	28	0	0	12	5		1	4	3		
+60	Wimbledon	men	2013	K.Anderson	T.Berdych	3	1	3	60	53	40	25	19	3	45	12	14	3	29	16		6	3	4	5		53	54	47	27	11	5	50	19	18	5	34	24		3	6	6	7	
+62	FrenchOpen	women	2013	Marion Bartoli	Mariana Duque-Marino	2	2	0	62	34	38	14	0	5	15	24	5	11	16	28	89	7	7				57	32	43	14	2	5	42	44	4	14	13	25	82	6	5			
+64	Wimbledon	men	2013	L.Kubot	A.Mannarino	4	3	2	67	72	33	25	26	7	62	34	16	3	87	56		4	6	3	6	6	59	69	41	35	13	3	51	24	5	2	39	24		6	3	6	3	4
+65	AusOpen	men	2013	Martin Klizan	John Isner	1	2	0	54	25	46	21	9	2	27	10	2	5	1	3	71	6	7				78	36	22	6	10	0	23	23	0	3	5	10	52	2	6			
+66	USOpen	men	2013	Andy Murray	Florian Mayer	1	3	0	51	37	49	25	7	2			4	10	8	12	99	7	6	6			62	40	38	15	0	2			0	2	21	39	74	6	2	2		
+68	USOpen	women	2013	U Radwanska	S Stephens	2	0	2	67	10	33	7	0	1	5	15	0	0	10	6		1	1				67	20	33	8	2	0	24	11	10	5	16	14		6	6			
+71	Wimbledon	men	2013	J.Blake	T.De Bakker	1	3	0	52	30	48	20	7	1	31	7	17	6	31	22		6	6	6			64	30	36	14	7	3	23	17	1	0	23	10		1	3	2		
+74	AusOpen	women	2013	Simona Halep	Dominika Cibulkova	5	0	2	67	13	33	6	2	1	9	25	1	3	1	4	32	3	0				77	25	23	5	0	3	17	16	5	9	3	4	54	6	6			
+75	Wimbledon	women	2013	L.Safarova	K.Knapp	2	1	2	65	37	35	19	1	4	21	30	5	4	9	5		6	4	4			67	39	33	14	10	2	25	24	8	5	5	3		4	6	6		
+76	FrenchOpen	women	2013	Petra Martic	Ana Ivanovic	1	1	2	62	30	38	17	1	6	23	39	2	9	24	27	81	1	6	3			54	37	46	24	3	3	27	36	4	10	6	14	100	6	3	6		
+77	AusOpen	women	2013	Christina McHale	Caroline Wozniacki	2	1	2	53	22	47	12	3	3	17	37	3	6	2	2	61	0	6	2			74	30	26	8	2	3	15	29	5	12	11	15	70	6	1	6		
+78	AusOpen	women	2013	Su-Wei Hsieh	Barbora Zahlavova Strycova	1	1	2	58	33	42	15	1	5	14	39	1	4	11	16	75	1	6	1			68	39	32	13	5	2	31	36	5	17	22	28	95	6	4	6		
+79	FrenchOpen	men	2013	Pablo Carreno-Busta	Roger Federer	1	0	3	62	27	38	11	1	3	12	29	1	3	9	20	50	2	2	3			68	33	32	14	10	0	33	19	7	7	14	18	88	6	6	6		
+81	Wimbledon	men	2013	B.Becker	A.Murray	1	0	3	59	29	41	14	5	1	26	18	5	1	28	19		4	3	2			57	39	43	20	11	2	38	16	10	5	23	17		6	6	6		
+85	Wimbledon	men	2013	R.Haase	M.Youzhny	1	0	3	68	61	32	15	7	2	32	29	2	0	29	20		4	5	5			67	53	33	17	9	3	40	26	21	3	44	30		6	7	7		
+89	Wimbledon	men	2013	P.Petzschner	M.Przysiezny	1	0	3	65	31	35	11	3	0	19	26	4	1	26	14		3	6	0			56	41	44	21	4	2	29	20	8	5	27	22		6	7	6		
+90	AusOpen	men	2013	Marinko Matosevic	Kei Nishikori	1	2	3	61	69	39	29	14	9	46	63	3	9	16	30	147	3	7	2	6	2	66	68	34	25	6	6	44	50	7	15	11	16	167	6	5	6	4	6
+92	FrenchOpen	men	2013	Robin Haase	Jerzy Janowicz	2	1	3	68	51	32	21	1	0	23	28	3	10	17	34	115	4	6	4	3		60	48	40	28	5	7	59	47	6	14	25	44	124	6	4	6	6	
+96	AusOpen	women	2013	Angelique Kerber	Alla Kudryavtseva	2	2	0	59	24	41	11	3	1	22	10	4	13	3	4	65	6	6				63	25	37	8	4	2	23	24	1	2	11	17	47	4	2			
+97	Wimbledon	women	2013	A.Morita	M.Erakovic	1	1	2	75	41	25	8	1	4	17	21	4	1	9	4		6	0	5			59	45	41	15	12	7	40	34	9	4	16	14		4	6	7		
+100	USOpen	women	2013	A Riske	D Hantuchova	4	1	2	69	37	31	14	3	1	17	20	2	2	24	12		3	7	2			60	38	40	19	15	2	46	22	7	4	16	12		6	5	6		
+101	USOpen	women	2013	K Flipkens	V Williams	1	0	2	46	15	54	7	1	6	16	19	8	1	16	13		1	2				52	24	48	12	1	5	21	20	12	6	22	15		6	6			
+103	Wimbledon	men	2013	D.Brown	L.Hewitt	2	3	1	64	71	36	25	21	5	74	22	6	5	87	48		6	6	6	6		55	52	45	29	12	4	42	13	10	1	34	15		4	4	7	2	
+104	FrenchOpen	women	2013	Jana Cepelova	Angelique Kerber	2	0	2	70	12	30	3	1	2	13	28	2	8	4	7	38	2	2				62	24	38	11	1	1	13	18	6	7	5	5	63	6	6			
+105	Wimbledon	men	2013	F.Verdasco	X.Malisse	1	3	1	63	58	37	21	20	7	64	29	11	6	25	18		6	6	6	6		63	48	37	24	7	1	23	34	2	1	27	14		7	1	4	3	
+109	FrenchOpen	men	2013	Vasek Pospisil	Horacio Zeballos	1	2	2	56	67	44	34	21	7	58	53	1	4	21	30	141	6	4	7	4		68	71	32	18	10	4	44	42	1	10	15	22	135	7	6	6	1	
+113	AusOpen	men	2013	Roberto Bautista Agut	Tim Smyczek	1	3	0	82	37	18	7	1	1	1	1	8	18			95	6	6	6			61	28	39	10	8	5	8	5	1	2			55	2	1	1		
+116	FrenchOpen	men	2013	Marinko Matosevic	David Ferrer	1	0	3	59	29	41	10	1	5	20	42	5	8	15	26	76	4	3	4			55	33	45	18	3	4	22	22	8	11	6	11	98	6	6	6		
+118	AusOpen	men	2013	Dmitry Tursunov	Michael Russell	1	3	0	53	39	47	24	8	6	8	6	6	9			104	6	6	6			50	24	50	19	1	8	1	8	1	7			79	2	2	3		
+122	USOpen	women	2013	S Kuznetsova	S Peng	2	2	1	54	39	46	19	5	3	41	39	13	6	34	22		6	4	6			71	44	29	14	0	1	22	30	7	3	20	15		1	6	4		
+124	Wimbledon	women	2013	P.Cetkovska	C.Wozniacki	2	2	0	71	31	29	7	1	3	30	13	8	4	15	14		6	6				69	15	31	8	0	1	6	10	6	0	8	4		2	2			
+127	AusOpen	women	2013	Na Li	Dominika Cibulkova	7	2	0	60	21	40	15	2	3	34	30	5	10	8	13	75	7	6				67	29	33	5	0	7	11	28	2	3	3	4	58	6	0			
+132	USOpen	men	2013	Jack Sock	Philipp Petzschner	1	2	1	51	36	49	29	6	8			3	8	13	23	100	7	3	5			46	29	54	27	10	5			3	8	13	21	91	6	6	2		
+140	FrenchOpen	men	2013	Radek Stepanek	Nick Kyrgios	1	0	3	63	62	37	29	5	4	41	44	1	6	19	27	132	6	6	6			56	64	44	35	10	7	46	38	1	3	9	20	130	7	7	7		
+141	FrenchOpen	men	2013	Gilles Simon	Pablo Cuevas	2	3	1	57	41	43	26	4	1	54	41	10	17	16	22	126	6	6	6	6		56	37	44	19	2	4	23	39	2	5	8	14	89	7	1	1	1	
+142	AusOpen	women	2013	Samantha Stosur	Tsvetana Pironkova	2	2	0	59	20	41	10	4	3	23	15	5	13	13	17	58	6	6				57	15	43	4	1	2	5	19	0	1	5	6	30	2	0			
+144	Wimbledon	women	2013	C.Garcia	J.Zheng	1	2	0	64	33	36	11	4	0	22	20	4	2	16	8		6	6				70	25	30	10	1	2	13	14	2	0	9	6		3	4			
+145	Wimbledon	men	2013	G.Pella	J.Levine	1	2	3	65	58	35	26	15	3	50	33	19	4	30	22		4	2	6	6	3	63	63	37	29	18	10	61	53	8	5	46	34		6	6	4	3	4
+150	FrenchOpen	men	2013	Tommy Haas	Guillaume Rufin	1	3	0	65	48	35	13	6	4	27	41	5	9	12	15	101	7	6	6			61	32	39	21	2	2	16	33	1	4	14	23	78	6	1	3		
+154	USOpen	men	2013	Andy Murray	Michael Llodra	1	3	0	67	36	33	15	3	0			6	8	19	26	91	6	6	6			63	31	37	12	2	6			1	2	33	60	61	2	4	3		
+155	FrenchOpen	women	2013	Alize Cornet	Victoria Azarenka	3	1	2	65	28	35	10	3	3	28	32	6	16	7	10	84	6	3	1			69	40	31	11	0	10	41	31	9	20	23	32	99	4	6	6		
+156	AusOpen	men	2013	Michael Berrer	Michael Llodra	1	3	0	63	39	37	19	9	6	9	6	5	12			95	6	7	6			72	47	28	12	10	5	10	5	0	2			74	4	5	1		
+157	FrenchOpen	men	2013	Gael Monfils	Tommy Robredo	3	2	3	68	73	32	27	2	1	61	68	4	12	28	36	154	6	7	2	6	2	70	74	30	30	4	2	50	52	6	17	28	40	170	2	6	6	7	6
+158	USOpen	men	2013	Marcos Baghdatis	Go Soeda	1	3	0	60	34	40	20	16	3			5	10	5	8	89	6	6	6			54	30	46	15	0	5			0	1	10	15	63	4	3	1		
+159	AusOpen	women	2013	Yvonne Meusburger	Victoria Azarenka	3	0	2	70	8	30	4		5	5	18	1	2	3	3	25	1	0				74	20	26	5		2	20	13	7	14	14	17	56	6	6			
+161	AusOpen	women	2013	Agnieszka Radwanska	Anastasia Pavlyuchenkova	3	2	1	65	36	35	16	5	2	25	19	6	9	13	20	96	5	6	6			59	29	41	17	0	7	39	49	3	5	12	21	78	7	2	2		
+162	AusOpen	women	2013	Serena Williams	Daniela Hantuchova	3	2	0	48	20	52	15	10	2	25	21	4	7	4	12	60	6	6				54	15	46	12	2	2	10	19	1	6	1	3	48	3	3			
+165	FrenchOpen	men	2013	Nikolay Davydenko	Richard Gasquet	3	0	3	76	46	24	9	3	0	36	38	2	3	11	18	83	4	4	3			68	40	32	19	5	3	27	18	5	10	17	31	101	6	6	6		
+167	Wimbledon	women	2013	A.Medina Garrigues	S.Peng	1	0	2	66	19	34	9	0	0	21	16	6	0	12	11		3	2				70	44	30	9	7	1	29	21	4	3	21	13		6	6			
+170	AusOpen	men	2013	Kevin Anderson	Dominic Thiem	2	3	0	65	43	35	18	15	5	30	22	3	5	12	15	87	6	6	6			59	34	41	16	10	3	28	21	0	2	2	5	69	4	3	4		
+172	USOpen	men	2013	Santiago Giraldo	Carlos Berlocq	1	2	3	58	63	42	30	9	6			6	9	18	29	146	3	6	7	4	2	64	61	36	30	5	7			9	22	18	28	163	6	3	6	6	6
+173	USOpen	men	2013	Fernando Verdasco	Ivan Dodig	1	2	3	59	58	41	23	5	14			6	17	15	22	144	3	5	6	6	3	57	60	43	34	10	5			6	9	22	41	145	6	7	1	4	6
+175	FrenchOpen	women	2013	Sandra Zahlavova	Annika Beck	1	0	2	69	18	31	7	2	1	13	24	0	3	5	11	40	2	1				83	28	17	5	1	1	19	13	5	11	5	7	62	6	6			
+178	USOpen	men	2013	Lukasz Kubot	Jarkko Nieminen	1	0	3	38	28	62	27	5	14			4	8			86	5	5	2			59	38	41	19	6	3			7	11			111	7	7	6		
+179	Wimbledon	men	2013	J.Janowicz	A.Murray	6	1	3	55	54	45	27	9	11	43	43	7	1	51	32		7	4	4	3		70	60	30	24	20	1	49	15	13	5	36	22		6	6	6	6	
+181	FrenchOpen	women	2013	Jelena Jankovic	Daniela Hantuchova	1	2	0	78	40	22	7	4	1	27	21	3	11	10	15	90	6	7				68	38	32	17	1	2	26	32	2	6	14	23	80	4	6			
+185	AusOpen	women	2013	Donna Vekic	Lucie Hradecka	1	0	2	47	17	53	9	1	2	1	2	0	5			37	3	1				54	23	46	12	9	4	9	4	4	7			58	6	6			
+186	FrenchOpen	women	2013	Varvara Lepchenko	Angelique Kerber	3	1	2	81	54	19	6	1	4	46	45	3	8	14	20	101	4	7	4			65	47	35	19	2	3	24	24	5	10	3	4	110	6	6	6		
+187	AusOpen	men	2013	Kevin Anderson	Jiri Vesely	1	3	2	63	76	37	28	21	9	21	9	3	14			154	2	6	6	6	6	57	69	43	43	16	10	16	10	2	6			154	6	7	4	4	4
+188	USOpen	men	2013	Tommy Robredo	Marinko Matosevic	1	3	1	54	49	46	30	9	3			9	16	9	14	138	6	6	6	6		59	44	41	27	7	3			3	9	34	53	119	3	7	3	2	
+190	AusOpen	men	2013	Stephane Robert	Martin Klizan	3	3	0	72	54	28	11	7	5	35	23	4	10	14	17	105	6	7	6			53	32	47	21	6	4	36	38	0	3	18	29	75	0	6	4		
+193	AusOpen	men	2013	Edouard Roger-Vasselin	Guillermo Garcia-Lopez	2	3	1	57	49	43	28	11	2	11	2	7	17			130	7	6	4	6		51	46	49	26	9	10	9	10	4	13			117	6	4	6	1	
+194	USOpen	men	2013	Daniel Evans	Kei Nishikori	1	3	0	48	35	52	25	8	4			6	9	16	24	102	6	6	6			54	30	46	15	3	8			2	9	10	18	80	4	4	2		
+196	Wimbledon	men	2013	N.Almagro	G.Rufin	2	3	1	69	71	31	20	21	4	55	17	10	5	29	24		7	6	6	6		63	63	37	18	17	6	48	30	3	2	51	33		5	7	3	4	
+198	FrenchOpen	men	2013	Julien Benneteau	Ricardas Berankis	1	3	1	72	87	28	19	14	2	48	27	4	13	14	30	163	7	6	5	7		53	58	47	38	13	10	72	56	4	13	33	43	149	6	3	7	6	
+200	USOpen	women	2013	D Hantuchova	V Duval	2	2	0	46	14	54	18	2	2	10	18	12	5	5	5		6	6				74	21	26	6	0	4	14	27	2	2	7	5		2	3			
+202	USOpen	men	2013	Adrian Mannarino	Sam Querrey	1	3	1	55	68	45	41	13	3			2	6	28	45	157	7	7	6	6		58	77	42	34	25	7			1	8	15	24	150	6	6	7	4	
+204	AusOpen	women	2013	Jie Zheng	Casey Dellacqua	3	0	2	64	18	36	11	0	5	15	28	2	3	2	4	45	2	4				58	20	42	14	1	3	14	16	5	10	3	4	64	6	6			
+205	USOpen	women	2013	A Ivanovic	C McHale	3	2	1	60	41	40	18	7	5	45	51	11	6	32	18		4	7	6			64	39	36	14	2	3	22	28	10	5	9	7		6	5	4		
+206	Wimbledon	men	2013	D.Ferrer	J.Del Potro	5	0	3	68	45	32	17	8	2	41	22	2	0	31	25		2	4	6			72	55	28	11	12	0	42	11	8	3	21	17		6	6	7		
+208	AusOpen	women	2013	Karin Knapp	Maria Sharapova	2	2	1	53	40	47	23	3	9	20	55	6	9	6	7	112	3	6	8			60	44	40	23	2	12	34	67	7	20	6	6	124	6	4	1		
+210	Wimbledon	women	2013	Y.Wickmayer	V.Dolonc	1	1	2	69	40	31	13	1	3	31	37	6	4	17	10		6	2	4			69	33	31	12	2	5	34	26	12	6	10	8		3	6	6		
+211	AusOpen	men	2013	Milos Raonic	Daniel Gimeno-Traver	1	3	1	64	56	36	17	21	7	48	29	7	20	21	30	127	7	6	4	6		56	43	44	25	5	5	22	33	3	6	8	12	96	6	1	6	2	
+214	USOpen	men	2013	Feliciano Lopez	Florent Serra	1	3	1	58	54	42	30	21	3			5	16			148	6	6	6	6		61	63	39	30	8	2			0	3			123	7	2	3	3	
+215	AusOpen	men	2013	Jimmy Wang	Yen-Hsun Lu	1	0	3	63	32	37	12	1	3	1	3	3	7			76	3	2	1			62	33	38	11	9	5	9	5	9	19			101	6	6	6		
+218	Wimbledon	men	2013	N.Djokovic	F.Mayer	1	3	0	63	41	37	26	5		40	20	11	3	26	20		6	7	6			60	46	40	20	3		25	12	3	0	29	19		3	5	4		
+220	Wimbledon	women	2013	P.Cetkovska	D.Vekic	1	2	0	69	28	31	7	6	1	30	14	9	4	11	11		6	6				53	23	47	11	4	2	18	16	0	0	9	4		3	1			
+222	AusOpen	women	2013	Galina Voskoboeva	Irina-Camelia Begu	1	2	1	64	41	36	18	3	3	3	3	6	11			109	7	4	7			62	44	38	15	2	7	2	7	5	9			94	5	6	5		
+229	FrenchOpen	men	2013	Jo-Wilfried Tsonga	Viktor Troicki	4	3	0	77	45	23	15	1	2	33	24	4	12	18	25	98	6	6	6			62	34	38	15	5	1	20	27	0	3	19	28	70	3	3	3		
+230	AusOpen	women	2013	Alize Cornet	Polona Hercog	1			75	3	25	1	1		2	0			1	1	5						0	0	100	1	0		1	1			0	0	1					
+231	USOpen	men	2013	Richard Gasquet	Stephane Robert	1	3	0	58	50	42	22	8	6			6	12	14	23	112	6	7	7			53	35	47	19	8	5			3	10	20	29	97	3	5	5		
+233	FrenchOpen	women	2013	Coco Vandeweghe	Yaroslava Shvedova	1	1	2	53	24	47	12	4	6	16	37	3	7	7	14	61	0	6	2			64	30	36	14	0	5	23	22	7	12	10	11	84	6	3	6		
+235	Wimbledon	men	2013	A.Haider-Maurer	G.Soeda	1	0	3	56	43	44	18	8	6	35	29	2	2	26	16		6	5	1			55	39	45	25	9	2	31	14	9	5	21	14		7	7	6		
+236	FrenchOpen	women	2013	Agnieszka Radwanska	Shahar Peer	1	2	0	67	17	33	9	1	0	13	8	6	14	9	11	58	6	6				56	15	44	7	1	4	17	24	1	2	2	10	32	1	1			
+238	USOpen	women	2013	O Govortsova	N Li	1	0	2	68	22	42	6	3	4	11	17	0	0	6	3		2	2				62	19	48	13	6	1	28	13	10	4	13	9		6	6			
+239	Wimbledon	men	2013	K.Anderson	M.Przysiezny	2	3	0	69	49	31	18	15	2	33	10	6	3	27	18		6	7	6			60	42	40	21	6	4	28	20	1	1	22	16		4	6	4		
+240	Wimbledon	women	2013	A.Cornet	V.King	1	2	1	57	36	43	21	4	4	35	30	14	4	22	17		4	6	6			68	45	32	15	0	4	32	45	4	1	48	32		6	3	1		
+241	FrenchOpen	men	2013	Rafael Nadal	Fabio Fognini	3	3	0	78	52	22	14	5	1	24	40	5	18	15	20	122	7	6	6			67	47	33	26	3	2	47	59	3	11	17	31	111	6	4	4		
+242	USOpen	men	2013	Stanislas Wawrinka	Marcos Baghdatis	1	3	1	52	55	48	37	11	5			5	15	25	30	151	6	6	6	7		47	50	53	43	16	8			2	9	25	37	132	3	2	7	6	
+243	Wimbledon	men	2013	R.Gasquet	B.Tomic	3	1	3	69	83	31	27	15	3	73	25	8	1	64	51		6	7	5	6		81	101	19	15	19	1	60	23	7	1	34	25		7	5	7	7	
+245	Wimbledon	men	2013	J.Levine	J.Del Potro	2	0	3	61	41	39	16	13	7	38	29	3	1	41	26		2	6	3			69	46	31	16	13	0	37	13	11	4	10	6		6	7	6		
+247	Wimbledon	men	2013	M.Baghdatis	M.Cilic	1	0	3	61	31	39	16	4	5	20	18	1	1	14	9		3	4	4			70	45	30	16	16	2	41	19	6	4	11	8		6	6	6		
+249	USOpen	men	2013	Pablo Andujar	Thiemo de Bakker	1	3	0	60	44	40	19	5	3			5	9			105	6	6	6			52	33	48	19	9	4			2	7			82	4	4	4		
+250	Wimbledon	women	2013	S.Williams	C.Garcia	2	2	0	71	25	29	8	9	0	30	9	9	4	11	6		6	6				75	24	25	9	3	1	15	5	0	0	14	8		3	2			
+251	Wimbledon	women	2013	V.Dolonc	K.Flipkens	3	0	2	65	11	35	8	0	2	14	18	8	4	28	15		4	2				63	27	37	8	8	2	29	14	13	7	24	14		6	6			
+252	FrenchOpen	men	2013	Juan Monaco	Daniel Gimeno-Traver	1	2	3	78	85	22	22	2	1	24	30	5	17	12	18	174	6	6	6	4	4	52	67	48	47	12	5	72	64	5	10	11	18	177	4	4	7	6	6
+253	Wimbledon	women	2013	V.Razzano	A.Ivanovic	1	0	2	78	21	22	9	1	2	17	15	1	1	15	9		6	0				67	29	33	10	6	0	17	7	5	4	3	2		7	6			
+255	Wimbledon	women	2013	L.Hradecka	K.Knapp	1	0	2	65	23	35	8	2	2	16	16	3	0	8	4		3	4				63	34	37	11	9	3	26	19	2	2	9	6		6	6			
+258	Wimbledon	women	2013	Kr.Pliskova	J.Cepelova	1	0	2	69	16	31	6	6	1	20	29	8	3	12	7		4	1				62	24	38	12	2	2	18	15	10	6	8	6		6	6			
+261	AusOpen	men	2013	Rafael Nadal	Grigor Dimitrov	5	3	1	73	66	27	22	3	7	42	47	4	11	32	36	147	3	7	7	6		58	64	42	32	16	5	54	61	3	6	28	41	132	6	6	6	2	
+262	Wimbledon	women	2013	R.Oprandi	A.Riske	1	1	2	68	34	32	12	2	1	34	22	11	4	13	3		7	5	1			72	50	28	10	2	7	39	35	9	6	64	42		6	7	3		
+263	FrenchOpen	men	2013	Novak Djokovic	Philipp Kohlschreiber	4	3	1	74	71	26	23	2	2	38	42	4	8	13	31	134	4	6	6	6		55	48	45	28	4	3	48	48	2	13	17	24	123	6	3	4	4	
+264	FrenchOpen	women	2013	Yulia Putintseva	Sara Errani	2	0	2	64	11	36	5		2	14	26	1	5	4	11	31	1	1				87	28	13	3		0	22	7	6	10	9	11	59	6	6			
+266	FrenchOpen	men	2013	Florian Mayer	Denis Istomin	1	1	2	59	40	41	15	6	3	22	24	4	7	10	14	87	6	3	5			69	44	31	13	7	3	53	31	5	11	17	26	101	4	6	7		
+267	USOpen	men	2013	Andy Murray	Stanislas Wawrinka	1	0	3	63	37	37	22	5	4			0	0	10	22	78	4	3	2			55	37	45	20	4	4			4	11	31	42	107	6	6	6		
+268	FrenchOpen	women	2013	Bojana Jovanovski	Svetlana Kuznetsova	3	0	2	69	31	31	10	1	5	21	21	3	3	4	5	64	4	6				67	29	33	11	7	5	24	24	4	7	8	10	77	6	7			
+270	FrenchOpen	women	2013	Monica Puig	Madison Keys	2	2	0	52	26	48	21	1	2	15	21	3	7	1	3	79	6	7				61	31	39	11	4	4	17	38	2	6	1	3	68	4	6			
+271	Wimbledon	men	2013	M.Llodra	J.Nieminen	1	3	0	62	43	38	21	17	4	43	15	6	3	47	32		7	6	6			65	44	35	18	3	3	24	14	1	1	15	9		6	4	3		
+272	AusOpen	men	2013	Roberto Bautista Agut	Juan Martin Del Potro	2	3	2	69	88	31	23	12	6	72	59	5	8	20	28	162	4	6	5	6	7	72	76	28	21	28	2	53	41	4	17	13	25	152	6	3	7	4	5
+278	AusOpen	men	2013	Jordan Thompson	Jerzy Janowicz	1	2	3	60	58	40	21	13	8	40	36	3	10	18	28	140	6	6	4	2	1	64	74	36	27	18	11	62	64	5	9	31	46	153	1	4	6	6	6
+279	FrenchOpen	men	2013	Dmitry Tursunov	Victor Hanescu	2	0	2	59	31	41	9	6	4	25	15	2	2	6	9	62	4	6				67	33	33	9	6	0	24	10	3	5	5	6	66	6	6			
+283	AusOpen	women	2013	Kurumi Nara	Shuai Peng	1	2	1	74	39	26	10	1	6	23	37	8	16	2	4	103	7	4	6			63	40	37	16	3	5	36	54	6	10	4	6	96	5	6	3		
+285	USOpen	men	2013	Alexandr Dolgopolov	Mikhail Youzhny	1	0	3	53	35	47	19	10	4			2	9			84	5	1	3			52	33	48	23	8	3			7	19			104	7	6	6		
+293	USOpen	women	2013	J Jankovic	M Keys	1	2	0	64	28	36	14	1	2	8	21	3	2	15	9		6	6				58	19	42	13	4	1	15	32	2	0	13	6		3	4			
+294	AusOpen	men	2013	Leonardo Mayer	Albert Montanes	1	3	0	61	31	39	13	13	1	13	1	7	14			80	6	6	6			60	23	40	9	1	4	1	4	0	0			42	1	3	1		
+295	FrenchOpen	men	2013	Tommy Haas	Mikhail Youzhny	4	3	0	61	31	39	14	2	3	25	18	8	15	12	15	82	6	6	6			63	16	37	12	0	3	17	32	2	6	13	21	54	1	1	3		
+298	Wimbledon	men	2013	D.Ferrer	A.Dolgopolov	3	3	2	70	76	30	22	6	8	34	39	24	7	50	34		6	7	2	6	6	59	76	41	33	15	2	56	34	9	5	53	35		7	6	6	1	2
+299	AusOpen	women	2013	Andrea Petkovic	Magdalena Rybarikova	1	0	2	68	23	32	6	1	4	15	31	1	3	7	11	48	2	3				67	27	33	8	4	1	18	16	5	8	9	16	66	6	6			
+301	AusOpen	women	2013	Laura Robson	Kirsten Flipkens	1	0	2	57	14	43	5	2	5	12	32	0	0	6	10	27	3	0				57	18	43	11	7	2	14	4	5	6	2	4	54	6	6			
+302	AusOpen	men	2013	Tomas Berdych	Kevin Anderson	4	3	0	52	33	48	21	4	3	38	17	5	17	15	18	92	6	6	6			72	40	28	9	16	1	31	30	0	0	6	19	66	2	2	3		
+303	FrenchOpen	women	2013	Caroline Wozniacki	Laura Robson	1	2	0	76	27	24	8	3	1	11	10	5	7	1	1	66	6	6				56	18	44	5	4	6	25	39	2	5	1	6	43	3	2			
+304	Wimbledon	women	2013	B.Zahlavova Strycova	M.Rybarikova	1	2	1	62	37	38	14	6	3	35	42	22	8	34	23		5	6	6			64	29	36	16	1	1	31	55	8	3	48	25		7	0	1		
+306	Wimbledon	women	2013	A.Cadantu	T.Paszek	1	2	0	71	29	29	8	2	3	17	22	8	5	8	4		6	7				66	19	34	6	1	6	20	40	5	2	9	8		2	5			
+308	AusOpen	women	2013	Olga Govortsova	Ying-Ying Duan	1	2	0	68	35	32	8	10	4	10	4	4	12			78	6	7				60	24	40	16	1	1	1	1	1	5			62	0	6			
+309	FrenchOpen	men	2013	Benoit Paire	Lukasz Kubot	2	3	0	57	34	43	20	9	3	54	35	7	16	15	22	102	7	6	6			75	46	25	8	1	2	23	26	4	6	9	24	82	6	2	4		
+310	USOpen	women	2013	J Hampton	S Stephens	3	0	2	55	14	45	6	0	1	12	34	7	2	17	11		1	3				70	25	30	8	2	2	12	15	9	6	8	5		6	6			
+311	Wimbledon	men	2013	M.Raonic	C.Berlocq	1	3	0	71	45	29	13	19	5	54	18	12	4	27	17		6	6	6			64	42	36	18	4	2	23	13	1	0	25	16		4	3	3		
+312	Wimbledon	men	2013	K.Nishikori	A.Seppi	3	2	3	69	63	31	23	3	6	44	45	11	3	30	23		6	2	7	1	4	60	65	40	34	9	1	44	28	12	6	32	26		3	6	6	6	6
+313	USOpen	men	2013	Andreas Seppi	Xavier Malisse	1	3	1	59	62	41	24	12	4			5	10			138	6	3	7	7		46	41	54	36	14	5			4	9			124	3	6	5	5	
+315	Wimbledon	women	2013	C.Suarez Navarro	E.Bouchard	3	2	0	66	31	34	13	1	2	25	17	15	6	14	9		7	6				56	25	44	15	2	2	24	32	9	3	13	10		5	2			
+316	Wimbledon	men	2013	L.Hewitt	S.Wawrinka	1	3	0	57	37	43	26	5	1	32	11	15	6	31	20		6	7	6			60	41	40	20	12	2	44	37	10	2	21	13		4	5	3		
+317	FrenchOpen	men	2013	Somdev Devvarman	Daniel Munoz-De La Nava	1	3	0	62	54	38	22	7	3	26	20	5	8	12	21	120	6	6	7			52	35	48	24	0	2	40	47	1	16	22	25	106	3	3	5		
+318	USOpen	men	2013	Andy Murray	Denis Istomin	1	3	1	63	58	37	23	5	5			6	15	32	38	129	6	6	6	6		69	55	31	20	4	2			2	4	19	37	114	7	1	4	4	
+319	AusOpen	women	2013	Eugenie Bouchard	Virginie Razzano	2	2	0	50	26	50	17	4	2	25	25	5	10	3	7	84	6	7				75	32	25	6	2	1	27	42	3	9	13	17	71	2	6			
+320	FrenchOpen	women	2013	Madison Keys	Misaki Doi	1	2	0	66	29	34	8	5	1	25	19	4	5	6	8	59	6	6				62	16	38	9	0	2	10	11	1	4	7	12	46	3	2			
+325	FrenchOpen	women	2013	Monica Niculescu	Johanna Larsson	1	0	2	82	15	18	4		1	18	21	2	2	5	8	39	2	3				64	22	36	8		1	25	11	6	6	12	14	61	6	6			
+330	USOpen	men	2013	Tommy Haas	Yen-Hsun Lu	1	3	0	60	51	40	20	15	9			6	10	15	20	118	6	6	7			68	44	32	13	4	5			4	13	11	23	101	3	4	6		
+331	AusOpen	women	2013	Lauren Davis	Julia Goerges	2	2	1	69	51	31	15	0	6	14	20	3	7	5	7	94	7	2	6			71	45	29	11	6	1	42	47	3	13	12	15	98	5	6	4		
+332	FrenchOpen	men	2013	Alex Kuznetsov	Lucas Pouille	1	0	3	63	33	37	13	5	3	34	49	1	6	19	26	84	1	6	2			48	36	52	33	8	3	38	37	5	11	10	14	109	6	7	6		
+333	Wimbledon	men	2013	T.Robredo	N.Mahut	2	3	0	63	52	37	28	9	3	38	9	5	2	15	10		7	6	7			65	48	35	18	17	3	39	19	2	0	54	31		6	1	6		
+334	FrenchOpen	women	2013	Julia Goerges	Zuzana Kucova	1	0	2	54	22	46	14	10	4	39	56	2	9	6	15	73	6	0				76	41	24	13	0	2	13	18	5	9	5	6	90	7	6			
+337	USOpen	women	2013	J Zheng	C Suarez Navarro	3	0	2	75	27	25	6	0	4	13	33	3	2	13	8		2	4				79	30	21	5	0	2	13	23	11	5	9	7		6	6			
+338	AusOpen	men	2013	Damir Dzumhur	Ivan Dodig	2	2	2	51	36	49	26	7	6	33	27	3	5	12	18	95	4	4	6	4		55	39	45	20	13	2	37	43	3	7	12	19	91	6	6	3	1	
+342	Wimbledon	men	2013	H.Zeballos	S.Giraldo	1	2	3	61	66	39	37	17	6	66	55	9	2	46	28		6	6	7	1	3	73	76	27	30	13	0	47	39	9	5	27	15		3	7	6	6	6
+344	AusOpen	women	2013	Dinah Pfizenmaier	Yanina Wickmayer	1	0	2	48	24	52	23	3	12	3	12	2	15			87	6	3				58	38	42	15	6	8	6	8	4	7			95	7	6			
+345	AusOpen	women	2013	Angelique Kerber	Jarmila Gajdosova	1	2	1	65	36	35	13	6	5	30	17	4	7	9	12	81	6	0	6			53	29	47	12	2	6	41	31	4	11	22	33	80	3	6	2		
+346	Wimbledon	women	2013	S.Lisicki	F.Schiavone	1	2	0	60	27	40	11	5	4	25	17	8	4	13	11		6	6				54	15	46	11	1	3	6	8	3	0	16	9		1	2			
+350	Wimbledon	women	2013	M.Camerin	D.Cibulkova	1	1	2	55	42	45	26	2	6	24	31	9	4	17	9		4	6	4			65	43	35	17	0	5	43	48	14	5	23	18		6	4	6		
+351	USOpen	men	2013	Stanislas Wawrinka	Radek Stepanek	1	3	0	51	32	49	27	7	2			6	13	11	18	103	7	6	6			66	37	34	16	1	3			3	7	37	64	88	6	3	2		
+352	Wimbledon	women	2013	A.Cornet	F.Pennetta	3	1	2	56	28	44	19	2	5	24	22	8	5	20	13		6	6	2			56	30	44	16	0	2	23	19	5	4	30	22		0	7	6		
+354	USOpen	women	2013	S Williams	Y Shvedova	3	2	0	66	28	44	7	6	1	22	16	8	4	13	10		6	6				59	14	41	12	0	3	3	21	1	0	13	4		3	1			
+356	AusOpen	women	2013	Julia Glushko	Lucie Safarova	1	1	2	61	35	39	20	6	3	6	3	2	7			82	5	6	1			59	37	41	21	3	4	3	4	4	8			92	7	3	6		
+358	AusOpen	men	2013	Florian Mayer	David Ferrer	4	1	3	61	52	39	27	4	3	33	49	3	11	29	56	118	7	5	2	1		63	55	37	24	3	1	64	43	9	19	19	27	153	6	7	6	6	
+361	FrenchOpen	men	2013	Novak Djokovic	Guido Pella	2	3	0	72	38	28	10	1	2	29	26	7	16	17	23	93	6	6	6			57	26	43	12	1	4	10	34	0	1	3	7	58	2	0	2		
+362	FrenchOpen	women	2013	Romina Oprandi	Elina Svitolina	1	1	2	67	35	33	7	2	3	26	32	5	11	8	17	81	3	6	1			61	30	39	19	2	2	40	24	8	16	16	28	99	6	4	6		
+363	USOpen	men	2013	Yen-Hsun Lu	Daniel Gimeno-Traver	1	3	0	67	49	33	19	4	4			3	9			116	6	7	6			56	45	44	22	14	4			1	2			90	4	6	3		
+364	FrenchOpen	men	2013	Lukas Rosol	Fabio Fognini	2	1	3	57	51	43	21	8	3	37	51	2	6	17	33	105	2	6	6	1		74	60	26	17	7	4	34	36	4	11	5	11	131	6	7	2	6	
+366	Wimbledon	women	2013	E.Bouchard	G.Voskoboeva	1	2	1	61	44	39	24	3	2	29	25	5	3	20	17		5	7	6			59	49	41	21	3	4	34	30	6	3	25	21		7	6	4		
+367	FrenchOpen	women	2013	Galina Voskoboeva	Grace Min	1	2	1	55	30	45	18	3	3	38	30	8	14	16	26	97	4	6	7			69	34	31	17	1	1	31	19	7	10	10	15	92	6	4	5		
+372	AusOpen	men	2013	Tomas Berdych	Damir Dzumhur	3	3	0	57	37	43	19	13	1	32	26	5	9	13	18	93	6	6	6			44	25	56	17	5	6	21	34	0	2	5	9	58	4	2	2		
+374	FrenchOpen	men	2013	Gael Monfils	Ernests Gulbis	2	3	1	64	65	36	32	8	4	29	33	7	11	10	19	139	6	6	7	6		60	55	40	22	3	6	52	69	4	12	26	38	132	7	4	6	2	
+375	AusOpen	women	2013	Serena Williams	Vesna Dolonc	2	2	0	66	28	34	8	10	2	24	19	4	7	3	4	61	6	6				54	17	46	6	2	8	9	20	0	1	3	3	37	1	2			
+378	Wimbledon	women	2013	L.Arruabarrena	L.Tsurenko	1	0	2	79	23	21	4	2	0	7	7	0	0	12	4		1	3				60	24	40	10	2	1	24	22	7	4	12	9		6	6			
+379	FrenchOpen	women	2013	Francesca Schiavone	Kirsten Flipkens	2	2	1	62	34	38	20	1	7	39	39	9	18	28	47	110	6	4	6			53	33	47	13	1	5	33	40	6	17	27	41	98	1	6	3		
+380	FrenchOpen	men	2013	Julien Benneteau	Roger Federer	3	0	3	82	41	18	8	2	1	15	31	1	3	9	15	64	3	4	5			65	42	35	22	7	0	38	21	4	4	8	11	98	6	6	7		
+382	USOpen	women	2013	L Hradecka	A Kerber	1	0	2	49	17	51	4	3	7	20	31	0	0	6	4		1	1				50	16	50	14	0	1	11	6	8	5	6	5		6	6			
+384	AusOpen	women	2013	Mona Barthel	Luksika Kumkhum	2	2	1	63	44	37	18	3	6	25	33	4	5	11	20	92	4	6	6			58	38	42	13	4	8	37	39	3	7	7	8	94	6	3	4		
+385	Wimbledon	men	2013	D.Istomin	A.Seppi	1	2	3	62	78	38	32	17	2	60	40	7	3	23	14		6	6	7	6	3	61	84	39	36	13	5	47	49	5	2	26	17		7	7	5	3	6
+386	USOpen	women	2013	A.Radwanska	A Pavlyuchenkova	3	2	0	75	42	25	12	1	1	13	15	5	3	14	7		6	7				53	30	47	13	4	3	32	41	10	2	29	19		4	6			
+389	USOpen	men	2013	Mikhail Kukushkin	David Ferrer	1	1	3	51	50	49	27	4	3			6	8	15	27	112	4	3	6	4		60	47	40	20	7	2			8	26	15	19	136	6	6	4	6	
+390	USOpen	men	2013	Novak Djokovic	Ricardas Berankis	1	3	0	68	36	32	14	10	1			7	14	15	23	91	6	6	6			53	18	47	9	3	4			1	8	7	15	50	1	2	2		
+391	FrenchOpen	women	2013	Virginie Razzano	Claire Feuerstein	1	2	0	75	46	25	9	3	4	16	18	3	9	7	12	89	7	6				55	29	45	19	1	2	29	37	2	9	5	10	84	6	4			
+395	FrenchOpen	men	2013	Grega Zemlja	Santiago Giraldo	1	3	0	52	32	48	21	12	2	43	24	6	13	6	7	92	6	6	6			64	30	36	12	4	0	19	26	0	3	1	2	62	1	4	1		
+397	FrenchOpen	women	2013	Ashleigh Barty	Maria Kirilenko	2	0	1	61	6	39	4	0		9	5	1	1	2	2	16	3					75	9	25	1	1		7	4	1	1	5	6	18	3				
+399	FrenchOpen	women	2013	Anna Karolina Schmiedlova	Jamie Hampton	2	0	2	70	28	30	7	0	2	10	14	2	2	5	7	52	5	2				57	22	43	15	1	1	30	25	5	13	10	13	69	7	6			
+401	Wimbledon	men	2013	B.Tomic	S.Querrey	1	3	2	78	86	22	20	11	2	45	30	8	2	21	10		7	7	3	2	6	64	81	36	28	36	5	79	43	13	4	42	29		6	6	6	6	3
+402	FrenchOpen	women	2013	Arantxa Rus	Sara Errani	1	0	2	52	11	48	2		7	7	26	2	3	3	6	26	1	2				85	18	15	3		0	14	15	7	9	3	7	52	6	6			
+403	Wimbledon	men	2013	B.Tomic	T.Berdych	4	1	3	71	82	29	22	19	2	43	31	7	1	24	12		6	7	4	4		58	68	42	30	24	5	68	42	15	3	48	30		7	6	6	6	
+404	AusOpen	women	2013	Francesca Schiavone	Dominika Cibulkova	1	0	2	60	21	40	11	5	2	14	27	1	6	5	11	57	3	4				61	33	39	14	0	6	21	30	3	7	6	7	72	6	6			
+406	FrenchOpen	men	2013	Lukasz Kubot	Maxime Teixeira	1	2	1	64	30	36	12	4	5	25	45	6	16	16	36	90	6	5	3			64	37	36	12	4	5	26	42	5	8	11	18	85	4	7	1		
+408	AusOpen	men	2013	Andreas Seppi	Lleyton Hewitt	1	3	2	59	72	41	40	17	5	67	59	7	18	8	11	175	7	6	5	5	7	51	76	49	38	23	5	54	61	7	13	23	40	178	6	3	7	7	5
+409	FrenchOpen	women	2013	Zuzana Kucova	Virginie Razzano	2	1	2	72	36	28	10	1	5	22	42	3	10	5	8	87	6	2	0			72	42	28	14	0	3	35	41	7	17	15	19	105	4	6	6		
+412	Wimbledon	men	2013	G.Elias	A.Dolgopolov	1	0	3	43	22	57	26	0	6	14	20	2	1	22	12		1	6	2			64	38	36	19	7	0	38	17	10	5	42	27		6	7	6		
+413	FrenchOpen	men	2013	Alejandro Falla	Grigor Dimitrov	1	0	2	54	10	46	7	1	1	6	15	1	5	5	7	38	4	0				59	20	41	10	2	1	14	16	2	2	6	7	48	6	1			
+415	Wimbledon	men	2013	N.Mahut	J.Hajek	1	3	0	72	44	28	10	17	3	41	18	8	5	26	17		6	6	6			70	34	30	14	4	0	24	13	1	0	19	12		2	4	3		
+416	USOpen	women	2013	A Cornet	M Koehler	1	2	0	53	19	47	18	0	4	8	20	7	4	6	5		6	6				45	21	55	13	1	8	13	47	4	1	3	3		3	2			
+418	USOpen	women	2013	A Cornet	A Tomljanovic	2	2	0	56	28	44	12	4	6	19	19	11	6	15	9		6	6				55	13	45	9	0	4	14	39	9	2	15	9		2	2			
+420	USOpen	men	2013	Alex Bogomolov Jr.	Tim Smyczek	1	2	3	69	87	31	30	8	9			6	14	24	33	173	6	6	6	4	4	63	73	37	26	21	3			5	16	28	44	169	3	7	2	6	6
+422	Wimbledon	women	2013	M.Burdette	U.Radwanska	1	1	2	74	38	26	10	0	4	42	54	20	8	44	30		6	6	2			68	39	32	15	2	2	26	18	20	9	18	11		7	4	6		
+424	FrenchOpen	women	2013	Serena Williams	Sorana Cirstea	3	2	0	67	22	33	10	3	2	13	16	5	6	3	4	61	6	6				56	13	44	6	0	6	3	19	0	3	3	7	33	0	2			
+425	FrenchOpen	men	2013	Nick Kyrgios	Marin Cilic	2	0	3	64	33	36	10	3	4	14	23	0	3	2	6	57	4	2	2			51	32	49	23	8	3	32	15	5	7	5	5	92	6	6	6		
+427	FrenchOpen	women	2013	Victoria Azarenka	Maria Sharapova	6	1	2	72	28	28	8	3	0	15	22	5	10	8	10	77	1	6	4			62	41	38	10	12	11	42	39	6	10	2	6	87	6	2	6		
+428	USOpen	men	2013	Denis Kudla	Tomas Berdych	1	0	3	60	49	40	26	1	6			4	14	12	15	114	6	6	3			57	49	43	28	11	3			5	15	12	24	141	7	7	6		
+432	FrenchOpen	men	2013	Simone Bolelli	Yen-Hsun Lu	1	0	3	63	33	37	12	4		18	27	1	1	5	8	57	4	4	1			77	32	23	9	4		20	12	4	11	4	6	78	6	6	2		
+434	FrenchOpen	women	2013	Klara Zakopalova	Kaia Kanepi	1	0	2	58	22	42	11	1	2	13	46	3	7	3	8	59	6	2				70	32	30	8	2	3	17	33	5	6	0	2	80	7	6			
+436	AusOpen	women	2013	Alison Riske	Elena Vesnina	1	2	0	64	24	36	8	4	3	15	16	4	8	5	5	57	6	6				62	17	38	10	2	4	9	31	0	0	1	1	34	2	2			
+439	AusOpen	women	2013	Casey Dellacqua	Kirsten Flipkens	2	2	0	73	22	27	6	1	0	15	15	6	19	7	10	61	6	6				48	15	52	10	0	7	17	29	1	1	10	13	38	3	0			
+440	USOpen	men	2013	Tobias Kamke	Steve Johnson	1	3	1	53	55	47	39	10	7			4	15	14	24	157	6	6	7	6		48	56	52	40	12	10			1	5	24	40	137	7	4	6	2	
+441	AusOpen	women	2013	Jelena Jankovic	Simona Halep	4	1	2	67	32	33	11	2	2	23	43	4	8	20	30	69	4	6	0			64	26	36	14	0	4	22	28	6	13	4	4	81	6	2	6		
+443	AusOpen	women	2013	Barbora Zahlavova Strycova	Victoria Azarenka	2	0	2	55	13	45	9	1	2	17	30	2	8	17	27	50	1	4				85	34	15	6	0	1	15	18	5	11	10	19	65	6	6			
+447	AusOpen	women	2013	Timea Babos	Anna Schmiedlova	1	1	2	60	46	40	17	8	11	8	11	5	24			120	6	4	5			66	54	34	23	5	5	5	5	6	14			126	4	6	7		
+451	Wimbledon	women	2013	A.Cornet	S-W.Hsieh	2	2	0	64	29	36	14	2	1	20	10	9	4	15	10		6	6				53	14	47	9	0	2	13	16	8	1	15	10		3	2			
+452	AusOpen	men	2013	Leonardo Mayer	Novak Djokovic	2	0	3	52	28	48	17	3	7	14	39	0	0	7	11	59	0	4	4			66	36	34	17	12	2	30	11	5	6	5	9	93	6	6	6		
+453	AusOpen	men	2013	Ivo Karlovic	Ivan Dodig	1	0	3	66	55	34	18	25	1	48	27	1	3	24	50	93	6	3	6			83	68	17	12	8	2	41	7	2	3	24	35	108	7	6	7		
+456	AusOpen	women	2013	Ekaterina Makarova	Venus Williams	1	2	1	63	43	37	17	1	4	21	26	5	12	6	10	97	2	6	6			55	36	45	18	5	8	50	56	5	14	20	24	103	6	4	4		
+458	AusOpen	women	2013	Karolina Pliskova	Daniela Hantuchova	2	1	2	55	50	45	28	11	6	57	60	3	14	15	17	123	3	6	1			59	53	41	28	9	8	43	35	4	9	10	14	129	6	3	1		
+460	AusOpen	women	2013	Flavia Pennetta	Alexandra Cadantu	1	2	0	40	16	60	14	2	3	28	21	6	17	9	11	66	6	6				58	14	42	9	1	8	13	36	1	3	5	8	41	0	2			
+462	USOpen	women	2013	V Duval	S Stosur	1	2	1	63	49	37	19	0	7	23	35	13	6	20	10		5	6	6			63	45	37	17	9	10	29	56	16	5	22	16		7	4	4		
+465	FrenchOpen	men	2013	Albert Ramos	Jerzy Janowicz	1	0	3	61	41	39	25	5	1	22	17	1	6	10	18	94	6	5	3			63	49	37	26	17	3	65	46	3	7	19	22	113	7	7	6		
+466	Wimbledon	men	2013	S.Robert	A.Falla	1	3	0	68	50	32	13	5	4	37	30	15	7	24	18		6	7	7			57	41	43	22	1	6	28	42	9	5	30	16		3	6	5		
+471	USOpen	men	2013	Ivan Dodig	Rafael Nadal	1	0	3	52	28	48	18	6	1			0	2	13	27	63	4	3	3			65	41	35	20	3	2			4	7	14	17	90	6	6	6		
+474	Wimbledon	women	2013	C.McHale	A.Glatch	1	2	0	60	24	40	13	1	0	16	14	10	4	15	6		6	6				54	26	46	8	7	1	17	24	5	2	25	13		4	4			
+477	Wimbledon	women	2013	S.Lisicki	S.Stosur	3	2	1	68	39	32	13	8	1	34	13	9	4	27	18		4	6	6			61	32	39	15	3	4	20	14	5	1	16	11		6	2	1		
+478	USOpen	men	2013	Edouard Roger-Vasselin	Philipp Kohlschreiber	1	1	3	61	48	39	25	3	3			3	3	25	41	102	3	2	7	2		58	44	42	26	13	2			7	23	14	20	130	6	6	5	6	
+479	FrenchOpen	women	2013	Bethanie Mattek-Sands	Lourdes Dominguez Lino	1	2	0	54	24	46	14	0	2	32	25	5	14	17	24	71	6	6				47	12	53	14	1	2	8	14	2	6	4	11	51	4	1			
+481	AusOpen	women	2013	Serena Williams	Ana Ivanovic	4	1	2	66	43	34	13	13	4	22	31	2	3	10	15	79	6	3	3			53	31	47	21	1	2	33	27	4	14	10	13	91	4	6	6		
+482	AusOpen	men	2013	Rafael Nadal	Gael Monfils	3	3	0	67	38	33	20	2	0	21	18	6	12	9	13	107	6	6	6			69	39	31	10	10	5	33	57	0	6	4	9	70	1	2	3		
+483	USOpen	men	2013	Sergiy Stakhovsky	Jeremy Chardy	1	2	3	53	62	47	33	7	9			3	14			156	4	6	2	6	4	56	64	44	40	8	7			6	11			170	6	4	6	4	6
+484	USOpen	women	2013	J Jankovic	K Nara	3	2	0	52	31	48	12	3	5	20	23	9	6	28	14		6	7				81	30	19	5	0	2	28	27	7	5	26	19		4	6			
+485	AusOpen	men	2013	Andy Murray	Feliciano Lopez	3	3	0	64	50	36	16	6	2	29	30	4	11	11	18	106	7	6	6			57	39	43	20	8	7	31	44	1	1	26	37	84	6	4	2		
+487	AusOpen	women	2013	Nadiya Kichenok	Ayumi Morita	1	0	2	63	27	37	11	4	7	24	43	2	8	11	14	68	2	6				62	30	38	16	6	2	20	24	4	5	1	3	75	6	7			
+489	FrenchOpen	women	2013	Stefanie Voegele	Heather Watson	1	2	1	64	41	36	16	4	4	21	24	3	14	9	12	96	6	2	6			67	44	33	17	4	2	38	24	3	8	9	18	91	4	6	4		
+491	Wimbledon	men	2013	S.Robert	B.Paire	2	0	3	61	42	39	23	4	4	29	27	4	0	30	20		4	5	4			57	49	43	23	12	2	39	27	6	3	41	26		6	7	6		
+492	Wimbledon	men	2013	R.Harrison	J.Chardy	1	1	3	65	70	35	30	18	2	43	17	3	1	49	26		6	6	5	2		66	66	34	22	10	6	60	30	17	3	63	43		7	4	7	6	
+493	FrenchOpen	men	2013	Gilles Simon	Lleyton Hewitt	1	3	2	59	42	41	25	7	2	41	49	10	14	11	18	136	3	1	6	6	7	49	40	51	29	4	6	44	72	9	10	19	35	120	6	6	4	1	5
+494	USOpen	women	2013	S Peng	Y Meusburger	1	2	0	54	18	46	16	3	0	35	30	14	5	27	18		6	6				73	24	27	9	0	4	12	17	5	3	11	7		3	4			
+495	AusOpen	men	2013	Denis Istomin	Novak Djokovic	3	0	3	65	41	35	10	5	1	14	26	1	1	3	9	71	3	3	5			63	38	37	20	6	1	31	23	5	8	16	21	93	6	6	7		
+496	Wimbledon	men	2013	F.Verdasco	A.Murray	5	2	3	59	63	41	29	11	9	45	45	7	3	45	26		6	6	1	4	5	69	72	31	23	14	3	36	27	11	5	31	22		4	3	6	6	7
+497	Wimbledon	women	2013	S.Williams	M.Minella	1	2	0	73	23	27	7	7	1	25	11	6	5	13	9		6	6				48	12	52	12	1	1	5	6	1	1	7	3		1	3			
+499	Wimbledon	women	2013	M.Koehler	V.Azarenka	1	0	2	60	21	40	8	2	4	19	18	7	2	3	3		1	2				72	31	28	4	3	9	25	14	16	6	8	4		6	6			
+500	AusOpen	women	2013	Lourdes Dominguez Lino	Caroline Wozniacki	1	0	2	58	10	42	8		2	9	30	1	2	5	7	31	0	2				61	17	39	11		2	15	16	6	12	11	18	58	6	6			
+501	FrenchOpen	women	2013	Mona Barthel	Angelique Kerber	1	0	2	57	30	43	16	1	0	37	35	1	4	13	20	77	6	2				54	31	46	20	2	1	19	14	3	12	5	7	81	7	6			
+505	USOpen	men	2013	Florian Mayer	Juan Monaco	1	3	0	65	34	35	15	5	1			5	8			77	6	6	3			63	20	37	11	1	5			0	3			51	4	2	0		
+506	Wimbledon	men	2013	T.Kamke	J.Benneteau	1	1	3	69	60	31	14	3	2	33	33	7	2	34	25		4	7	4	2		63	65	37	26	12	6	60	27	12	6	61	44		6	6	6	6	
+511	AusOpen	men	2013	Grigor Dimitrov	Roberto Bautista Agut	4	3	1	60	57	40	21	11	3	38	34	4	5	23	35	114	6	3	6	6		64	44	36	22	5	1	27	45	1	5	13	23	100	3	6	2	4	
+513	USOpen	men	2013	Donald Young	Florian Mayer	1	0	3	62	42	38	20	5	8			3	13	31	54	109	5	3	4			57	48	43	21	10	6			7	21	18	26	126	7	6	6		
+516	Wimbledon	women	2013	C.Giorgi	S.Murray	1	2	0	54	23	46	19	1	4	18	17	13	2	21	14		6	6				58	28	42	16	4	6	18	27	1	0	10	7		3	4			
+518	Wimbledon	women	2013	S.Stephens	J.Hampton	1	2	0	73	34	27	6	4	2	16	15	6	4	13	8		6	6				66	21	34	11	1	1	14	14	4	1	12	6		3	3			
+519	FrenchOpen	men	2013	Rafael Nadal	Martin Klizan	2	3	1	74	55	26	10	5	2	27	29	7	10	14	20	113	4	6	6	6		56	30	44	25	6	5	32	57	4	7	15	28	90	6	3	3	3	
+520	AusOpen	men	2013	Tomas Berdych	Stanislas Wawrinka	6	1	3	62	71	38	30	21	7	60	49	0	1	23	31	142	3	7	6	6		61	72	39	32	18	4	57	49	1	4	14	18	143	6	6	7	7	
+521	USOpen	men	2013	Robin Haase	Frank Dancevic	1	1	3	58	65	42	34	19	4			3	15			149	6	6	5	6		64	68	36	34	14	3			3	4			154	7	3	7	7	
+522	AusOpen	men	2013	Jo-Wilfried Tsonga	Gilles Simon	3	3	0	66	49	34	20	17	0	40	29	3	6	20	27	94	7	6	6			53	34	47	22	7	3	21	25	0	3	23	28	79	6	4	2		
+523	AusOpen	women	2013	Annika Beck	Ana Ivanovic	2	0	2	75	13	25	3	0	3	10	29	2	3	5	8	35	1	2				54	16	46	13	2	2	16	17	6	7	0	1	57	6	6			
+524	Wimbledon	women	2013	M.Kirilenko	L.Robson	1	0	2	60	21	40	10	2	0	8	4	2	1	7	5		3	4				53	24	47	16	8	3	31	17	6	3	10	8		6	6			
+529	Wimbledon	men	2013	T.Robredo	A.Bogomolov Jr.	1	3	0	77	40	23	12	6	0	25	11	14	5	14	11		6	6	6			79	35	21	8	1	4	16	27	0	0	22	13		2	2	4		
+530	AusOpen	men	2013	Stephane Robert	Aljaz Bedene	1	3	0	46	25	54	21	4	2	22	22	9	17	11	12	104	7	6	6			54	40	46	9	16	11	28	52	4	5	6	10	74	6	3	0		
+533	Wimbledon	women	2013	P.Kvitova	C.Suarez Navarro	4	2	0	70	40	30	10	5	3	23	21	2	2	18	11		7	6				66	31	34	11	1	1	10	12	6	1	11	9		6	3			
+538	AusOpen	women	2013	Shuai Zhang	Mona Barthel	1	0	2	75	31	25	8	2	1	17	21	2	6	8	10	68	6	3				69	41	31	10	2	3	33	30	3	6	8	9	77	7	6			
+546	Wimbledon	women	2013	A.Radwanska	M.Johansson	2	2	0	62	23	38	12		1	14	7	9	5	14	10		6	6				66	24	34	6		6	22	29	4	1	27	18		1	3			
+548	AusOpen	men	2013	Marin Cilic	Marcel Granollers	1	3	2	58	57	42	30	22	4	63	53	5	8	21	31	145	4	4	6	6	6	61	64	39	27	13	4	41	34	2	3	20	29	124	6	6	3	3	2
+549	Wimbledon	women	2013	O.Govortsova	S.Halep	1	1	2	58	30	42	16	0	5	20	26	5	4	20	17		2	6	3			56	29	44	15	4	5	32	20	13	6	19	18		6	3	6		
+553	USOpen	women	2013	S Arvidsson	N Li	2	0	2	67	18	33	8	1	2	4	19	2	1	3	1		2	2				58	19	42	13	4	1	29	17	10	5	17	12		6	6			
+557	USOpen	men	2013	Adrian Ungur	Gael Monfils	1	0	3	56	18	44	8	1	7			1	1	6	14	38	1	2	0			84	33	16	4	5	1			9	13	8	12	81	6	6	6		
+558	USOpen	men	2013	Feliciano Lopez	Milos Raonic	1	1	3	59	56	41	29	7	8			0	4	17	27	113	7	4	3	4		67	66	33	19	28	6			4	8	23	38	134	6	6	6	6	
+561	Wimbledon	women	2013	B.Jovanovski	K.Flipkens	2	0	2	59	24	41	15	3	1	19	17	5	1	11	8		4	4				58	27	42	14	7	1	24	9	9	3	10	8		6	6			
+564	Wimbledon	men	2013	Y-H.Lu	A.Murray	2	0	3	66	49	34	13	1	5	29	27	3	0	39	25		3	3	5			63	44	37	20	11	1	41	14	15	4	23	19		6	6	7		
+566	AusOpen	men	2013	Thomaz Bellucci	Julian Reister	1	2	1	53	39	47	24	8	6	33	37	4	7	18	22	98	4	6	7			60	41	40	16	4	9	21	36	4	8	8	19	93	6	3	6		
+567	FrenchOpen	men	2013	Jo-Wilfried Tsonga	Jarkko Nieminen	2	3	0	65	44	35	19	8	1	35	36	4	7	18	22	106	7	6	6			61	41	39	25	1	2	24	35	1	1	21	29	83	6	4	3		
+568	Wimbledon	women	2013	A.Tomljanovic	B.Jovanovski	1	1	2	59	38	41	22	6	4	35	42	14	2	12	6		6	1	7			69	57	31	18	11	5	47	40	13	4	13	7		3	6	9		
+569	Wimbledon	women	2013	M.Bartoli	C.McHale	2	2	0	64	38	36	11	1	6	22	17	12	5	16	12		7	6				64	26	36	11	4	3	31	20	12	3	13	9		5	4			
+571	USOpen	men	2013	Lleyton Hewitt	Brian Baker	1	3	1	46	38	54	29	8	7			10	19	14	27	129	6	4	6	6		49	32	51	28	14	10			7	12	12	25	110	3	6	3	4	
+577	FrenchOpen	women	2013	Sabine Lisicki	Maria-Teresa Torro-Flor	2	2	0	68	26	32	8	2	3	32	33	6	12	8	11	62	6	6				74	17	26	5	0	1	6	17	2	8	1	4	45	4	0			
+578	AusOpen	men	2013	Jeremy Chardy	Jesse Huta Galung	1	3	0	66	46	34	16	9	2	31	27	4	9	12	13	94	6	6	6			57	41	43	13	9	7	30	33	0	5	14	17	80	2	4	4		
+580	FrenchOpen	women	2013	Svetlana Kuznetsova	Angelique Kerber	4	2	1	63	46	37	17	3	1	48	37	5	12	16	28	108	6	4	6			75	44	25	13	0	2	37	31	4	13	10	15	100	4	6	3		
+583	AusOpen	men	2013	Somdev Devvarman	Feliciano Lopez	1	0	3	52	34	48	28	6	1	6	1	2	7			89	4	4	6			65	50	35	18	12	2	12	2	4	7			110	6	6	7		
+585	AusOpen	women	2013	Jie Zheng	Madison Keys	2	2	1	76	40	24	14	0	4	19	48	7	10	10	15	102	7	1	7			63	39	37	18	3	1	30	43	8	16	6	11	109	6	6	5		
+587	Wimbledon	women	2013	C.Giorgi	S.Cirstea	2	2	0	53	36	47	20	0	11	21	36	14	5	22	13		7	7				58	40	42	16	3	6	19	24	15	5	18	10		6	6			
+588	FrenchOpen	women	2013	Anastasia Pavlyuchenkova	Petra Cetkovska	2	1	2	50	33	50	22	5	5	37	40	6	10	11	20	97	5	6	4			54	29	46	20	5	2	29	19	6	14	9	15	96	7	2	6		
+590	USOpen	women	2013	M Minella	S Stephens	1	1	2	65	43	35	18	1	2	15	37	15	4	18	10		6	3	6			58	48	42	26	6	6	38	55	9	4	19	13		4	6	7		
+596	FrenchOpen	women	2013	Tamira Paszek	Melanie Oudin	1	0	2	59	16	41	8	2	6	21	38	6	15	2	4	66	4	3				63	27	37	9	0	3	24	29	8	13	5	8	78	6	6			
+601	FrenchOpen	men	2013	Florent Serra	Nikolay Davydenko	1	0	3	64	35	36	13	1	1	17	25	2	3	2	3	75	3	4	5			67	50	33	16	3	3	28	27	5	7	5	5	96	6	6	7		
+604	AusOpen	women	2013	Tsvetana Pironkova	Silvia Soler-Espinosa	1	2	0	62	28	38	12	5	0	30	21	3	5	4	7	68	6	6				50	18	50	14	3	2	11	23	0	3	6	6	44	3	2			
+608	AusOpen	men	2013	Andy Murray	Vincent Millot	2	3	0	59	35	41	17	5	5	25	31	8	17	7	7	106	6	6	7			55	25	45	20	2	7	22	55	3	4	12	20	68	2	2	5		
+609	FrenchOpen	men	2013	Evgeny Donskoy	Kevin Anderson	2	1	3	67	62	33	21	3	2	44	36	0	5	9	13	120	7	1	5	2		68	69	32	26	14	3	58	37	5	11	14	19	148	6	6	7	6	
+613	AusOpen	women	2013	Elina Svitolina	Svetlana Kuznetsova	1	2	0	61	26	39	8	5	5	27	21	5	12	12	18	65	6	6				48	20	52	11	1	4	17	24	2	4	4	5	53	3	3			
+615	Wimbledon	women	2013	M.Larcher De Brito	M.Sharapova	2	2	0	71	34	29	16	0	2	13	9	6	3	2	1		6	6				60	20	40	9	6	5	21	18	7	1	7	5		3	4			
+619	FrenchOpen	women	2013	Dominika Cibulkova	Marina Erakovic	2	1	2	56	31	44	16	2	3	17	31	5	8	8	11	88	2	6	4			48	25	52	21	2	5	38	38	6	11	6	11	90	6	2	6		
+624	USOpen	men	2013	Mikhail Youzhny	Lleyton Hewitt	1	3	2	59	55	41	29	9	6			10	14	26	37	145	6	3	6	6	7	52	48	48	37	8	9			8	12	39	67	146	3	6	7	4	5
+625	Wimbledon	men	2013	G.Simon	F.Lopez	1	0	3	60	49	40	27	5	6	40	26	0	0	56	36		2	4	6			71	55	29	17	21	2	42	12	10	3	44	31		6	6	7		
+626	FrenchOpen	men	2013	Illya Marchenko	Kevin Anderson	1	0	3	60	39	40	25	0	4	21	35	1	2	8	18	89	3	5	4			64	50	36	15	13	4	38	33	4	12	12	14	115	6	7	6		
+628	FrenchOpen	men	2013	Roberto Bautista Agut	Gilles Muller	1	3	0	83	51	17	6	6	0	27	18	5	14	5	6	100	6	6	6			55	36	45	18	8	5	32	29	1	3	12	20	75	3	4	2		
+630	Wimbledon	women	2013	M.Puig	E.Birnerova	3	0	2	58	15	42	8	3	2	15	10	4	1	10	7		4	1				75	22	25	5	4	2	24	9	5	3	13	11		6	2			
+632	Wimbledon	women	2013	S.Errani	M.Puig	1	0	2	75	28	25	6	0	3	13	15	6	1	11	7		3	2				68	28	32	13	4	3	38	17	8	4	18	12		6	6			
+634	AusOpen	men	2013	Samuel Groth	Vasek Pospisil	1	0	3	65	40	35	17	16	4	35	25	0	2	20	43	74	4	3	4			67	45	33	13	6	4	31	17	4	10	6	10	94	6	6	6		
+638	FrenchOpen	women	2013	Irina-Camelia Begu	Silvia Soler-Espinosa	1	0	2	74	26	26	6		3	19	28	1	3	6	9	53	3	2				56	23	44	15		2	17	15	4	11	4	6	71	6	6			
+642	AusOpen	women	2013	Kristina Mladenovic	Stefanie Voegele	1	0	2	48	29	52	19	3	8	23	41	1	1	14	22	61	5	5				66	32	34	13	7	1	19	20	3	12	5	7	76	7	7			
+647	AusOpen	men	2013	Rhyne Williams	Juan Martin Del Potro	1	1	3	57	52	43	25	29	1	55	39	1	2	12	18	107	7	3	4	4		64	62	36	23	16	3	46	29	4	8	21	28	122	6	6	6	6	
+648	FrenchOpen	women	2013	Kristina Mladenovic	Lauren Davis	1	2	0	58	27	42	13	3	1	31	21	6	15	14	17	77	6	7				72	22	28	5	0	0	18	16	2	9	4	7	49	0	5			
+649	AusOpen	men	2013	Marcos Baghdatis	Denis Istomin	1	0	3	52	53	48	20	8	4	37	50	1	9	16	23	106	4	5	4			77	57	23	15	9	1	41	41	4	13	12	16	126	6	7	6		
+650	FrenchOpen	women	2013	Agnieszka Radwanska	Mallory Burdette	2	2	0	65	23	35	11	2	1	14	5	5	8	5	7	61	6	6				73	17	27	5	1	0	23	28	2	5	9	19	40	3	2			
+651	FrenchOpen	women	2013	Jamie Hampton	Jelena Jankovic	4	0	2	66	11	34	7	1	0	9	29	1	2	9	16	34	0	2				70	22	30	8	2	2	11	15	6	10	6	7	62	6	6			
+653	FrenchOpen	men	2013	Gilles Simon	Sam Querrey	3	3	2	60	52	40	32	3	2	36	29	6	10	11	22	133	2	6	2	7	6	58	60	42	21	9	7	61	50	7	14	21	33	134	6	3	6	6	2
+655	USOpen	men	2013	Andreas Seppi	Somdev Devvarman	1	3	0	52	48	48	27	5	7			7	13	23	33	123	7	6	7			56	41	44	24	7	4			5	18	13	22	114	6	4	5		
+657	Wimbledon	men	2013	L.Kubot	J.Janowicz	5	0	3	57	44	43	20	9	3	32	11	6	0	54	30		5	4	4			68	63	32	12	30	9	58	14	10	3	16	12		7	6	6		
+658	Wimbledon	women	2013	K.Kanepi	T.Moore	1	2	1	54	48	46	26	12	9	45	46	21	5	13	7		7	5	7			58	58	42	24	4	11	30	36	15	4	14	12		5	7	5		
+662	FrenchOpen	women	2013	Chanelle Scheepers	Mathilde Johansson	1	0	2	54	16	46	13		5	9	23	3	5	1	4	56	5	1				68	29	32	9		7	26	36	6	15	6	9	72	7	6			
+665	USOpen	women	2013	L Robson	N Li	3	0	2	52	16	48	16	0	5	7	30	2	1	5	3		2	5				65	29	35	10	11	6	23	21	7	4	9	9		6	7			
+666	FrenchOpen	women	2013	Sloane Stephens	Maria Sharapova	4	0	2	65	28	35	12	1	4	15	25	1	3	2	3	54	4	3				63	25	37	12	1	1	17	20	4	12	5	5	72	6	6			
+667	FrenchOpen	men	2013	Philipp Petzschner	Marin Cilic	1	0	3	56	27	44	13	0	6	12	28	1	2	11	18	54	1	2	3			50	26	50	20	5	1	35	15	7	12	13	21	92	6	6	6		
+670	FrenchOpen	women	2013	Irena Pavlovic	Shelby Rogers	1	0	2	59	24	41	11	4	3	13	26	0	0	1	2	47	3	4				58	26	42	15	5	1	21	18	2	6	9	10	60	6	6			
+671	USOpen	men	2013	Thomas Fabbiano	Milos Raonic	1	0	3	66	46	34	17	0	7			1	5	13	15	87	3	6	3			63	51	37	19	28	4			3	12	12	20	116	6	7	6		
+674	FrenchOpen	women	2013	Jana Cepelova	Christina McHale	1	2	1	78	52	22	9	0	3	25	32	4	12	5	6	104	7	2	6			70	52	30	10	2	3	31	39	5	9	7	13	106	6	6	4		
+676	USOpen	women	2013	P Kvitova	M Doi	1	2	1	73	47	27	11	3	4	29	29	11	5	16	13		6	3	6			58	21	42	17	1	5	15	23	16	2	6	5		2	6	1		
+678	FrenchOpen	women	2013	Serena Williams	Sara Errani	6	2	0	52	14	48	14	5		40	12	5	7	8	10	52	6	6				80	10	20	1	0		2	3	0	0	2	2	16	0	1			
+681	USOpen	women	2013	H Watson	S Halep	1	1	2	54	29	46	16	1	8	23	60	8	5	15	12		6	4	2			73	40	27	7	5	6	16	42	13	7	5	3		4	6	6		
+682	Wimbledon	women	2013	S.Lisicki	E.Vesnina	2	2	0	65	28	35	10	4	1	24	10	6	5	10	8		6	6				74	14	26	4	2	2	10	17	4	1	15	5		3	1			
+683	FrenchOpen	women	2013	Jelena Jankovic	Samantha Stosur	3	2	1	73	39	27	13	4	5	16	24	5	12	12	20	90	3	6	6			70	35	30	16	2	2	28	39	4	7	20	25	87	6	3	4		
+685	FrenchOpen	women	2013	Mathilde Johansson	Ana Ivanovic	2	0	2	73	17	27	4		3	11	18	1	1	1	3	33	2	2				55	20	45	10		1	18	10	5	8	2	2	58	6	6			
+686	Wimbledon	women	2013	L.Tsurenko	E.Birnerova	2	0	2	48	17	52	17	2	7	12	42	3	1	13	6		3	4				55	23	45	19	0	3	10	30	7	3	10	8		6	6			
+687	Wimbledon	men	2013	N.Almagro	J.Janowicz	3	0	3	72	58	28	8	18	3	32	18	1	1	19	9		6	3	4			69	52	31	16	30	3	59	15	5	3	15	14		7	6	6		
+689	FrenchOpen	women	2013	Maria-Teresa Torro-Flor	Julia Glushko	1	2	0	77	32	23	7	0	0	24	17	6	9	3	3	72	6	7				78	22	22	5	2	1	15	23	3	3	3	9	50	2	5			
+691	USOpen	women	2013	A Cornet	V Azarenka	3	1	2	56	44	44	21	9	10	30	44	6	1	18	13		7	3	2			68	48	32	17	2	6	24	38	18	4	30	19		6	6	6		
+692	FrenchOpen	women	2013	Dinah Pfizenmaier	Urszula Radwanska	2	2	0	60	24	40	15	1	1	33	32	5	12	16	24	70	6	6				67	20	33	9	0	1	6	15	2	10	5	6	55	3	3			
+693	AusOpen	men	2013	Radek Stepanek	Blaz Kavcic	1	2	2	51	37	49	29	5	11	51	54	4	11	22	32	104	7	6	1	0		63	43	37	22	10	6	41	27	6	14	6	15	121	6	4	6	2	
+695	Wimbledon	men	2013	K.Nishikori	L.Mayer	2	3	0	67	51	33	19	2	5	29	20	12	5	15	9		7	6	6			65	44	35	15	5	5	27	28	5	2	32	19		6	4	2		
+698	AusOpen	women	2013	Olivia Rogowska	Mariana Duque-Marino	1	2	0	63	25	37	10	2	6	21	31	6	13	4	5	66	6	6				67	18	33	5	4	4	10	32	3	8	2	6	47	3	3			
+700	AusOpen	women	2013	Na Li	Ana Konjuh	1	2	0	76	24	24	7	3	0	20	18	5	12	13	19	61	6	6				50	13	50	9	0	5	7	25	0	1	3	6	36	2	0			
+710	USOpen	men	2013	Denis Istomin	Nicolas Almagro	1	3	1	64	50	36	23	13	2			7	11			112	6	6	4	6		64	36	36	14	7	5			3	9			84	3	1	6	3	
+711	FrenchOpen	women	2013	Petra Kvitova	Shuai Peng	2	2	0	53	20	47	13	4	4	30	26	6	11	9	11	66	6	6				73	22	27	5	0	3	9	18	3	5	4	4	49	4	3			
+712	AusOpen	women	2013	Luksika Kumkhum	Petra Kvitova	1	2	1	48	26	52	20	4	6	28	27	5	16	7	8	92	6	1	6			60	36	40	15	3	8	32	40	4	12	12	16	80	2	6	4		
+713	AusOpen	men	2013	Florian Mayer	Jerzy Janowicz	3	3	0	68	42	32	15	17	0	38	7	5	11	12	13	98	7	6	6			53	34	47	18	3	7	34	44	0	1	11	15	63	5	2	2		
+715	AusOpen	men	2013	Rafael Nadal	Roger Federer	6	3	0	65	41	35	22	3	1	28	25	4	14	3	10	105	7	6	6			66	45	34	18	8	1	34	50	1	2	23	42	86	6	3	3		
+717	USOpen	women	2013	C Wozniack	C Giorgi	3	1	2	62	34	38	21	2	2	13	27	11	2	10	7		6	4	3			63	47	37	22	3	4	46	45	9	3	34	27		4	6	6		
+718	USOpen	men	2013	Guido Pella	Sam Querrey	1	1	3	56	54	44	31	6	9			1	7	19	28	117	6	6	1	2		58	60	42	26	24	4			4	18	16	24	145	7	4	6	6	
+722	FrenchOpen	women	2013	Elena Vesnina	Victoria Azarenka	1	0	2	74	21	26	6	2	1	20	16	1	5	9	11	47	1	4				70	31	30	6	4	1	21	13	4	8	8	10	63	6	6			
+724	FrenchOpen	men	2013	Albert Montanes	David Ferrer	2	0	3	67	28	33	9	3	1	28	36	2	3	10	17	63	2	1	3			60	31	40	15	3	2	29	21	8	15	8	13	96	6	6	6		
+726	USOpen	men	2013	Andreas Seppi	Denis Istomin	1	2	3	61	55	39	23	10	5			5	19	14	24	134	3	4	6	6	1	65	65	35	23	24	6			6	8	17	27	138	6	6	2	3	6
+727	FrenchOpen	men	2013	Tommy Haas	Jack Sock	2	3	0	74	62	26	15	11	3	34	30	4	16	10	15	116	7	6	7			54	39	46	22	4	6	25	34	1	7	18	26	96	6	2	5		
+729	Wimbledon	men	2013	L.Lacko	R.Ram	1	1	3	64	66	36	18	13	2	55	40	3	1	22	15		5	4	7	2		67	64	33	23	16	0	52	21	16	5	50	32		7	6	6	6	
+730	AusOpen	women	2013	Carla Suarez Navarro	Vania King	1	2	0	79	31	21	4	0	1	17	19	4	5	6	9	61	6	6				69	20	31	5	1	2	12	28	1	2	5	14	42	3	2			
+731	AusOpen	men	2013	Tommy Robredo	Julien Benneteau	2	3	1	58	61	42	38	17	3	66	25	4	13	13	17	159	6	6	6	7		62	68	38	27	14	6	64	65	1	11	42	65	138	3	7	1	6	
+733	FrenchOpen	women	2013	Varvara Lepchenko	Elina Svitolina	2	2	0	61	23	39	12	1	5	32	31	5	11	13	16	71	7	6				65	22	35	10	0	2	11	23	3	3	2	5	56	6	1			
+736	FrenchOpen	men	2013	Jiri Vesely	Philipp Kohlschreiber	1	1	3	61	59	39	25	8	6	35	44	3	5	21	35	120	6	6	5	2		62	61	38	21	7	2	50	41	3	13	16	22	132	7	1	7	6	
+737	Wimbledon	women	2013	S.Stephens	P.Cetkovska	3	1	1	79	32	21	3	2	4	10	17	5	1	10	4		7	0				56	23	44	17	0	2	14	15	7	4	14	11		6	6			
+738	USOpen	women	2013	L Davis	C Suarez Navarro	1	0	2	63	12	37	3	0	4	6	26	2	0	4	0		0	0				78	21	22	4	1	1	9	12	12	6	10	8		6	6			
+740	AusOpen	women	2013	Angelique Kerber	Alison Riske	3	2	0	63	21	37	6	4	4	21	16	7	13	6	9	64	6	6				62	16	38	8	0	6	18	29	4	5	8	23	48	3	4			
+741	AusOpen	women	2013	Shahar Peer	Monica Niculescu	1	0	2	80	21	20	2	2	1	23	38	3	7	9	23	49	4	1				82	26	18	3	1	0	10	13	7	10	10	14	61	6	6			
+742	USOpen	women	2013	K Knapp	R Vinci	3	0	2	58	22	42	8	3	6	17	35	5	3	17	9		4	3				51	25	49	16	0	0	14	23	16	5	17	12		6	6			
+744	AusOpen	women	2013	Pauline Parmentier	Karolina Pliskova	1	0	2	63	16	37	4	3	6	3	6	0	2			37	0	1				60	26	40	7	5	0	5	0	5	14			64	6	6			
+745	USOpen	men	2013	Tim Smyczek	James Duckworth	1	3	1	66	47	34	21	4	2			7	17	24	36	134	3	6	6	6		55	47	45	26	8	5			3	7	22	39	114	6	2	4	1	
+747	FrenchOpen	women	2013	Jelena Jankovic	Maria Sharapova	5	1	2	63	31	37	16	0	4	9	21	4	7	5	12	74	6	4	3			66	30	34	13	1	2	30	45	4	4	9	11	79	0	6	6		
+750	USOpen	women	2013	P Ormaechea	K Date-Krumm	1	2	0	59	32	41	10	2	5	24	35	13	6	8	5		6	7				69	28	31	6	0	3	14	43	9	4	14	9		3	6			
+751	AusOpen	men	2013	Sam Querrey	Ernests Gulbis	2	3	0	72	45	28	11	19	4	30	21	5	9	6	11	88	6	6	6			46	23	54	21	7	4	19	41	1	3	6	11	59	2	3	4		
+752	FrenchOpen	women	2013	Kiki Bertens	Sorana Cirstea	1	1	2	63	42	37	12	3	10	31	54	5	10	9	19	96	7	5	2			65	40	35	21	3	3	22	37	7	13	12	19	108	5	7	6		
+753	USOpen	men	2013	Jurgen Melzer	Evgeny Donskoy	1	0	3	65	39	35	17	4	2			3	10			96	5	3	6			57	48	43	27	5	1			4	10			116	7	6	7		
+758	AusOpen	men	2013	Milos Raonic	Victor Hanescu	2	3	0	64	57	36	23	27	2	63	36	2	6	17	25	116	7	6	6			67	55	33	22	6	1	23	23	0	5	7	10	101	6	4	4		
+759	USOpen	men	2013	Tim Smyczek	Marcel Granollers	1	2	3	61	63	39	26	10	3			7	16	39	55	146	4	6	6	3	5	59	66	41	28	10	3			6	12	25	43	147	6	4	0	6	7
+760	Wimbledon	men	2013	V.Hanescu	R.Federer	1	0	3	85	26	15	3	3	1	14	13	0	0	22	8		3	2	0			70	35	30	14	7	0	32	6	8	6	25	21		6	6	6		
+762	FrenchOpen	men	2013	Andreas Beck	Fabio Fognini	1	0	3	55	37	45	25	4	4	34	39	1	13	15	23	106	3	5	3			64	50	36	27	10	5	39	22	5	13	9	11	125	6	7	6		
+765	USOpen	women	2013	A Riske	M Barthel	2	2	0	62	26	38	11	0	1	18	12	12	4	15	11		6	6				57	21	43	15	5	3	18	21	4	1	26	11		4	2			
+767	FrenchOpen	men	2013	Jack Sock	Guillermo Garcia-Lopez	1	3	0	56	32	44	23	4	2	26	26	7	13	6	9	97	6	6	7			63	30	37	11	0	10	13	38	2	7	9	14	66	2	2	5		
+768	USOpen	men	2013	Roberto Bautista Agut	David Ferrer	1	1	3	62	42	38	20	2	5			3	8	21	24	104	3	7	1	2		59	48	41	29	10	3			8	16	19	29	135	6	6	6	6	
+769	Wimbledon	women	2013	R.Vinci	N.Li	4	0	2	64	12	36	5	0	2	8	4	4	1	13	7		2	0				61	21	39	10	0	1	26	10	7	6	19	14		6	6			
+771	Wimbledon	men	2013	J.Struff	J.Chardy	2	2	1	55	36	45	17	7	3	20	15	2	1	10	6		2	7	2			59	28	41	16	9	3	30	7	7	2	16	9		6	5	1		
+772	AusOpen	women	2013	Annika Beck	Petra Martic	1	2	0	67	18	33	8	0	0	8	10	6	11	3	3	52	6	6				50	8	50	4	2	6	7	34	0	2	3	7	25	0	0			
+773	Wimbledon	men	2013	D.Kudla	I.Dodig	2	0	3	57	39	43	24	3	5	26	22	7	2	40	26		1	6	5			61	55	39	22	24	4	48	20	13	5	28	20		6	7	7		
+776	FrenchOpen	women	2013	Karolina Pliskova	Garbine Muguruza	1	1	2	60	41	40	20	9	4	27	22	2	4	5	7	88	6	5	3			69	49	31	13	7	7	46	25	3	7	11	17	99	4	7	6		
+780	Wimbledon	women	2013	E.Bouchard	A.Ivanovic	2	2	0	54	25	46	10	0	2	14	11	7	5	6	5		6	6				51	12	49	10	5	3	18	9	5	2	12	6		3	3			
+781	USOpen	women	2013	K Mladenovic	A Medina Garrigues	1	2	1	51	29	49	15	8	1	49	41	25	7	30	19		6	1	6			61	32	39	11	1	2	21	29	13	4	14	7		1	6	1		
+784	AusOpen	women	2013	Bojana Jovanovski	Yvonne Meusburger	2	1	2	69	30	31	14		1	32	50	6	9	7	9	85	6	3	2			67	38	33	5		5	18	34	8	15	9	12	92	3	6	6		
+786	Wimbledon	women	2013	S.Stephens	M.Bartoli	5	0	2	63	24	37	5	3	3	21	19	8	4	10	8		4	5				58	26	42	15	0	3	6	12	12	6	10	4		6	7			
+788	FrenchOpen	women	2013	Marina Erakovic	Elena Baltacha	1	2	0	66	23	34	8	6	2	29	10	5	6	5	9	56	6	6				69	11	31	6	1	1	7	13	1	5	2	6	30	3	0			
+790	Wimbledon	men	2013	E.Roger-Vasselin	E.Gulbis	1	0	3	66	48	34	21	5	5	42	30	11	2	49	29		6	4	5			65	59	35	20	20	6	55	36	8	4	26	17		7	6	7		
+800	AusOpen	men	2013	Jack Sock	Gael Monfils	2	0	3	58	48	42	23	5	9	34	37	1	1	16	29	92	6	5	2			62	47	38	23	13	3	39	30	4	11	20	26	117	7	7	6		
+801	FrenchOpen	men	2013	Fernando Verdasco	Janko Tipsarevic	2	2	3	58	77	42	40	10	9	74	89	4	14	29	39	187	6	1	6	7	6	64	82	36	38	9	1	49	52	5	20	21	32	194	7	6	3	5	8
+805	Wimbledon	men	2013	R.Bautista Agut	T.Gabashvili	1	3	0	75	63	25	16	6	1	31	25	10	4	20	15		6	6	7			58	40	42	21	5	5	38	52	8	2	26	16		3	4	6		
+808	Wimbledon	women	2013	S.Voegele	S.Cirstea	1	0	2	51	29	49	19	1	3	13	32	10	4	18	16		5	6				59	32	41	15	1	3	29	29	12	5	25	15		7	7			
+809	AusOpen	men	2013	Pablo Carreno Busta	Julien Benneteau	1	2	3	53	46	47	35	7	7	47	58	4	5	19	33	126	3	6	6	1	2	66	62	34	24	16	4	49	46	7	19	30	43	152	6	3	4	6	6
+810	USOpen	women	2013	A Wozniak	V Azarenka	2	0	2	48	10	52	4	0	8	10	35	5	3	10	5		3	1				65	25	35	8	3	5	16	19	10	7	8	7		6	6			
+811	FrenchOpen	women	2013	Sabine Lisicki	Sara Errani	3	0	2	46	15	54	7	1	3	25	34	1	7	8	15	42	0	4				89	34	11	2	1	0	14	7	5	7	5	8	64	6	6			
+812	FrenchOpen	men	2013	Tommy Haas	John Isner	3	2	3	63	99	37	52	15	9	85	43	3	23	14	23	224	7	7	4	6	1	78	132	22	24	27	0	92	58	2	13	52	80	213	5	6	6	7	8
+813	FrenchOpen	women	2013	Virginie Razzano	Ana Ivanovic	3	0	2	70	18	30	7	1	1	11	20	1	4	13	17	48	3	2				73	32	27	8	5	3	23	21	4	10	2	3	68	6	6			
+814	USOpen	women	2013	D Pfizenmaier	V Azarenka	1	0	2	67	17	33	4	3	4	15	27	3	0	4	2		0	0				51	16	49	12	1	1	14	10	14	6	12	10		6	6			
+815	FrenchOpen	men	2013	Edouard Roger-Vasselin	Nicolas Almagro	2	0	3	57	30	43	16	4	1	23	34	1	11	11	17	81	2	4	3			46	36	54	30	9	6	41	45	5	12	11	14	95	6	6	6		
+817	AusOpen	men	2013	Florian Mayer	Denis Kudla	1	3	0	58	36	42	22	6	1	25	23	5	11	11	14	101	6	6	6			59	35	41	18	1	2	31	45	1	3	12	20	78	4	2	4		
+818	FrenchOpen	men	2013	Kevin Anderson	David Ferrer	4	0	3	71	34	29	7	5	2	25	41	0	2	6	12	60	3	1	1			52	28	48	24	1	3	28	11	6	17	9	12	97	6	6	6		
+820	AusOpen	women	2013	Ana Ivanovic	Eugenie Bouchard	5	1	2	56	34	44	23	1	4	34	35	5	12	12	18	104	7	5	2			58	42	42	20	2	6	47	37	7	13	19	24	113	5	7	6		
+821	FrenchOpen	men	2013	Roberto Bautista Agut	Jeremy Chardy	2	0	3	79	42	21	8	1	0	17	11	0	0	14	20	80	1	5	4			64	50	36	17	11	4	59	41	4	8	21	28	101	6	7	6		
+826	USOpen	women	2013	S Williams	N Li	6	2	0	63	26	37	9	4	1	19	20	11	5	11	6		6	6				63	20	37	10	0	4	8	24	4	1	19	13		0	3			
+827	FrenchOpen	men	2013	Andreas Seppi	Leonardo Mayer	1	3	2	67	73	33	32	8	3	50	69	9	14	18	27	171	6	6	6	6	6	64	68	36	28	11	8	48	69	6	10	19	37	154	7	4	3	7	4
+828	FrenchOpen	women	2013	Serena Williams	Svetlana Kuznetsova	5	2	1	66	42	34	12	4	5	37	28	6	16	12	20	92	6	3	6			77	28	23	7	1	1	19	24	4	9	3	6	75	1	6	3		
+834	FrenchOpen	women	2013	Monica Puig	Carla Suarez Navarro	3	0	2	59	24	41	12	1	2	21	31	3	5	7	12	68	4	5				72	39	28	8	3	1	21	29	5	10	7	9	82	6	7			
+837	USOpen	men	2013	Nicolas Mahut	Mikhail Youzhny	1	0	3	63	50	37	22	6	5			1	3			94	4	4	6			64	50	36	20	8	3			3	11			115	6	6	7		
+838	FrenchOpen	men	2013	Stanislas Wawrinka	Thiemo De Bakker	1	3	1	69	74	31	24	9	3	55	50	4	15	35	56	146	7	6	6	7		69	70	31	25	7	2	38	30	1	4	20	33	135	5	3	7	5	
+840	USOpen	men	2013	Novak Djokovic	Benjamin Becker	1	3	0	74	48	26	11	13	2			5	14	15	22	102	7	6	6			59	33	41	19	6	4			1	1	6	10	73	6	2	2		
+851	USOpen	men	2013	Paolo Lorenzi	Tomas Berdych	1	0	3	48	27	52	11	2	6			2	4	9	20	62	1	4	1			56	34	44	12	10	3			8	15	21	28	93	6	6	6		
+854	USOpen	men	2013	Roger Federer	Carlos Berlocq	1	3	0	52	27	48	22	6	2			7	13	28	40	94	6	6	6			84	36	16	2	1	2			1	3	7	17	58	3	2	1		
+855	FrenchOpen	women	2013	Serena Williams	Maria Sharapova	7	2	0	69	27	31	8	10	0	29	21	4	15	10	12	71	6	6				55	20	45	20	2	4	10	17	2	2	3	4	56	4	4			
+856	USOpen	men	2013	John Isner	Gael Monfils	1	3	1	70	71	30	21	23	2			3	9	37	63	130	7	6	4	7		83	74	17	11	7	3			1	7	9	16	120	5	2	6	6	
+857	USOpen	men	2013	Albert Montanes	Edouard Roger-Vasselin	1	0	3	51	29	49	20	4	8			0	0			57	3	2	4			64	38	36	18	10	1			4	11			93	6	6	6		
+858	FrenchOpen	women	2013	Shelby Rogers	Carla Suarez Navarro	2	1	2	67	38	33	14	2	1	37	38	5	10	11	14	91	6	4	4			63	41	37	14	1	2	32	31	5	8	10	14	98	3	6	6		
+859	USOpen	men	2013	Victor Hanescu	Leonardo Mayer	1	1	3	67	72	33	29	5	1			3	13			156	6	4	6	6		57	60	43	37	8	8			3	14			157	7	6	3	7	
+861	AusOpen	women	2013	Agnieszka Radwanska	Garbine Muguruza	4	2	0	73	34	27	11	2	1	9	15	4	9	4	7	76	6	6				56	18	44	10	3	3	23	44	0	6	6	14	49	1	3			
+862	USOpen	men	2013	Rogerio Dutra Silva	Vasek Pospisil	1	3	2	58	64	42	39	3	3			6	16			178	4	3	7	6	7	48	66	52	46	21	15			7	18			176	6	6	6	2	6
+864	AusOpen	men	2013	Jeremy Chardy	David Ferrer	3	0	3	58	44	42	17	8	8	30	51	1	3	17	27	87	2	6	2			72	44	28	17	2	1	22	24	5	11	10	12	111	6	7	6		
+866	AusOpen	men	2013	Teymuraz Gabashvili	Sergiy Stakhovsky	1	3	1	58	49	42	24	5	4	5	4	9	17			133	6	6	6	6		55	50	45	21	14	8	14	8	3	6			112	7	4	2	0	
+867	USOpen	men	2013	Nick Kyrgios	David Ferrer	1	0	3	69	44	31	9	8	3			1	3	13	19	75	5	3	2			55	40	45	21	11	2			5	11	6	6	103	7	6	6		
+868	AusOpen	women	2013	Lucie Hradecka	Lucie Safarova	2	1	2	44	33	56	26	9	9	9	9	0	6			90	7	3	0			62	47	38	20	6	7	6	7	4	13			113	6	6	6		
+869	USOpen	women	2013	A Ivanovic	A Tatishvili	1	2	0	62	17	48	11	2	2	16	17	9	7	7	4		6	6				63	13	47	4	0	5	8	22	5	2	5	3		2	0			
+870	Wimbledon	women	2013	O.Puchkova	A.Rus	1	2	0	69	24	31	4		7	17	26	10	7	4	3		6	6				56	19	44	15		7	19	48	5	4	9	6		4	2			
+871	FrenchOpen	men	2013	Blaz Kavcic	James Duckworth	1	3	0	63	33	37	17	1	0	25	8	7	12	11	20	89	6	6	6			46	19	54	11	3	4	13	27	1	5	7	22	50	2	2	2		
+873	USOpen	women	2013	K Nara	S Cirstea	2	2	0	80	25	20	8	0	0	12	18	10	6	5	4		7	6				58	19	42	6	2	2	14	35	4	3	9	5		5	1			
+874	Wimbledon	men	2013	J-W.Tsonga	D.Goffin	1	3	0	68	54	32	15	18	2	47	13	6	3	48	32		7	6	6			71	46	29	19	2	3	40	10	1	0	36	26		6	4	3		
+876	AusOpen	women	2013	Samantha Stosur	Klara Zakopalova	1	2	0	65	28	35	11	6	1	19	18	7	10	7	10	74	6	6				50	18	50	7	1	5	27	27	4	14	10	15	60	3	4			
+883	FrenchOpen	men	2013	Tommy Robredo	David Ferrer	5	0	3	59	22	41	9	2	2	9	28	0	1	4	7	46	2	1	1			47	25	53	22	1	3	26	18	7	12	13	15	84	6	6	6		
+884	USOpen	women	2013	S Halep	F Pennetta	4	0	2	75	22	25	8	1	1	18	32	10	3	15	10		2	6				45	23	55	16	2	3	22	23	6	5	22	16		6	7			
+887	USOpen	women	2013	P Ormaechea	S Lisicki	2	0	2	41	9	59	15	0	4	2	16	6	1	7	1		2	3				42	24	58	15	8	6	33	25	6	4	16	7		6	6			
+889	FrenchOpen	women	2013	Petra Kvitova	Aravane Rezai	1	2	1	69	35	31	13	5	6	29	32	9	16	4	11	94	6	4	6			56	27	44	12	1	7	33	32	6	13	11	15	87	3	6	2		
+890	AusOpen	women	2013	Eugenie Bouchard	Na Li	6	0	2	45	13	55	5	2	2	10	14	3	7	4	5	49	2	4				61	27	39	11	4	5	35	23	6	10	11	14	71	6	6			
+891	USOpen	men	2013	Collin Altamirano	Philipp Kohlschreiber	1	0	3	58	27	42	8	3	3			0	0	4	4	50	1	3	1			58	31	42	16	10	4			7	12	16	17	86	6	6	6		
+893	FrenchOpen	women	2013	Agnieszka Radwanska	Ana Ivanovic	4	2	0	57	21	43	15	1	1	18	5	5	9	9	12	72	6	6				50	19	50	15	1	9	29	33	2	5	8	17	59	2	4			
+895	FrenchOpen	women	2013	Paula Ormaechea	Yaroslava Shvedova	2	2	0	64	27	36	14	1	3	17	26	6	9	3	8	81	6	7				74	26	26	7	0	3	18	38	5	8	9	11	72	4	6			
+897	Wimbledon	women	2013	P.Kvitova	C.Vandeweghe	1	2	1	67	40	33	17	2	5	32	31	15	5	24	15		6	5	6			64	40	36	20	5	3	24	25	9	3	17	10		1	7	4		
+900	Wimbledon	men	2013	A.Seppi	J.Del Potro	4	0	3	59	47	41	18	5	4	36	20	2	0	27	21		4	6	3			72	55	28	18	9	1	36	15	11	2	28	15		6	7	6		
+901	Wimbledon	men	2013	D.Tursunov	T.Haas	1	0	3	56	37	44	24	5	4	29	13	4	0	22	14		3	5	5			64	56	36	18	17	3	45	13	6	3	19	14		6	7	7		
+903	FrenchOpen	men	2013	Ivan Dodig	Guido Pella	1	2	3	56	80	44	37	21	8	70	72	6	14	35	48	172	6	4	3	6	1	61	71	39	35	4	7	52	49	6	15	21	31	179	4	6	6	2	1
+904	USOpen	men	2013	Igor Sijsling	Peter Gojowczyk	1	1	3	55	49	45	24	13	3			4	9			107	6	6	4	1		51	40	49	29	8	6			6	11			124	7	2	6	6	
+907	FrenchOpen	women	2013	Melanie Oudin	Jie Zheng	2	0	2	65	12	35	7	1	2	18	31	3	8	7	9	46	3	1				73	26	27	7	0	0	20	14	7	9	3	5	65	6	6			
+908	USOpen	men	2013	Kenny De Schepper	Bradley Klahn	1	1	3	59	68	41	37	20	11			1	1	30	42	133	7	2	6	6		71	72	29	26	6	1			3	11	30	48	151	6	6	7	7	
+911	Wimbledon	women	2013	M.Puig	S.Soler-Espinosa	2	2	1	63	43	37	24	6	1	31	20	9	3	23	17		6	5	6			57	38	43	18	2	4	36	27	6	1	17	13		2	7	4		
+912	USOpen	women	2013	J Glushko	D Hantuchova	3	1	2	73	43	27	10	1	3	27	32	17	8	20	12		6	5	6			61	41	39	21	1	4	32	58	11	7	35	27		3	7	7		
+914	USOpen	women	2013	E Makarova	S Lisicki	3	2	0	61	36	39	15	6	3	24	20	8	3	15	11		6	7				56	28	44	12	7	3	25	30	6	1	11	9		4	5			
+916	AusOpen	women	2013	Chanelle Scheepers	Yvonne Meusburger	1	0	2	53	27	47	12	2	13	2	13	4	7			71	6	4				68	32	32	12	1	5	1	5	5	11			80	7	6			
+917	FrenchOpen	men	2013	Viktor Troicki	Marin Cilic	3	3	0	65	61	35	20	7	4	32	36	4	10	13	21	128	7	6	7			59	43	41	27	6	4	34	56	2	9	20	29	115	6	4	5		
+918	Wimbledon	men	2013	J.Janowicz	J.Melzer	4	3	2	57	68	43	36	16	8	54	26	9	3	42	28		3	7	6	4	6	71	76	29	28	11	3	57	19	12	3	50	32		6	6	4	6	4
+922	Wimbledon	women	2013	K.Zakopalova	A.Beck	2	2	0	59	28	41	10	1	7	23	33	18	7	8	7		7	6				66	23	34	9	0	4	9	27	14	6	3	2		6	3			
+925	FrenchOpen	women	2013	Marina Erakovic	Sloane Stephens	3	1	2	64	37	36	15	4	6	31	44	3	9	11	14	93	4	7	3			78	58	22	11	2	2	30	33	5	6	9	12	102	6	6	6		
+927	FrenchOpen	women	2013	Jie Zheng	Maria Sharapova	3	0	2	81	23	19	3	0	1	8	24	4	11	4	4	58	1	5				57	22	43	13	3	8	25	34	8	8	4	7	76	6	7			
+928	Wimbledon	women	2013	T.Babos	M.Johansson	1	1	2	51	25	49	15	7	8	19	47	6	4	13	6		6	1	3			59	32	41	17	1	7	19	38	12	7	18	12		4	6	6		
+929	FrenchOpen	men	2013	Jo-Wilfried Tsonga	Aljaz Bedene	1	3	0	50	32	50	23	5	0	29	33	6	10	13	17	93	6	6	6			62	26	38	12	4	4	15	35	1	4	9	13	63	2	2	3		
+932	USOpen	women	2013	K Pliskova	E Bouchard	1	1	2	53	48	47	21	6	4	35	51	7	2	23	16		6	4	5			72	45	28	16	5	2	26	29	13	3	13	10		4	6	7		
+933	AusOpen	women	2013	Ekaterina Makarova	Irina Falconi	2	2	0	56	26	44	14	4	6	18	28	5	13	9	14	74	6	7				74	22	26	10	0	2	18	40	2	4	3	7	55	2	5			
+934	USOpen	men	2013	Benjamin Becker	Lukas Rosol	1	3	1	52	38	48	27	8	5			8	17			125	6	3	6	6		47	44	53	27	18	14			5	12			111	3	6	3	4	
+935	AusOpen	women	2013	Zarina Diyas	Katerina Siniakova	1	2	0	74	33	26	6	1	4	1	4	5	6			72	6	6				57	22	43	10	2	3	2	3	2	6			58	2	4			
+936	FrenchOpen	men	2013	Jo-Wilfried Tsonga	Jeremy Chardy	3	3	0	67	40	33	17	6	0	25	24	5	10	13	15	86	6	6	7			65	35	35	10	3	3	17	34	0	2	15	21	60	1	2	5		
+937	FrenchOpen	men	2013	Novak Djokovic	David Goffin	1	3	0	69	53	31	20	5	0	26	31	3	11	13	21	114	7	6	7			61	46	39	25	7	2	32	38	1	2	15	26	99	6	4	5		
+938	FrenchOpen	women	2013	Vania King	Alexandra Cadantu	1	2	0	74	27	26	11		0	38	15	6	9	14	21	83	7	6				72	28	28	9		5	21	17	3	8	5	9	64	6	1			
+939	FrenchOpen	women	2013	Alize Cornet	Maria Joao Koehler	1	2	0	70	28	30	11		3	16	19	6	9	7	9	72	7	6				60	19	40	8		9	20	45	3	8	4	8	58	5	2			
+940	AusOpen	women	2013	Monica Niculescu	Sabine Lisicki	2	2	1	66	35	34	9	0	6	8	18	7	14	12	16	87	2	6	6			53	23	47	14	10	6	43	56	5	6	19	34	76	6	2	2		
+941	AusOpen	women	2013	Eugenie Bouchard	Lauren Davis	3	2	0	61	23	39	10	4	2	18	23	5	8	3	5	67	6	6				77	24	23	3	0	1	7	31	1	3	3	4	43	2	2			
+942	AusOpen	men	2013	Guillermo Garcia-Lopez	Tommy Haas	1	2	0	58	27	42	11	7	3	19	9	4	4	3	5	65	7	5				52	22	48	11	4	7	18	35	1	2	10	10	55	5	2			
