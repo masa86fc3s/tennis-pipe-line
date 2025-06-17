@@ -40,7 +40,7 @@ submission = pd.DataFrame({
 })
 
 # CSV保存（ローカルに保存したい場合）
-submission.to_csv("submission.csv", index=False)
+submission.to_csv("submission.csv", index=False, header=False)
 
 print("予測完了、submission.csvを出力しました。")
 

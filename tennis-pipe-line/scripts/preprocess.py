@@ -91,3 +91,30 @@ df_test["aggressiveness_1"] = (
     df_test["DBF.1"] * 0.5
 ) 
 
+
+# S3クライアントの作成
+# 共通のS3クライアント
+s3 = boto3.client('s3', region_name='ap-southeast-2')
+
+
+# データフレームをメモリ上にCSV（TSV）形式で保存
+csv_buffer = io.StringIO()
+df_train.to_csv(csv_buffer, sep='\t', index=False)
+
+# S3にアップロード
+bucket_name = "tennis-pipe-line"
+region_name = 'ap-southeast-2'  # 東京リージョンの場合（実際のリージョンを確認してください）
+s3_key = "data/train_preprocessed.tsv"
+url = f"https://{bucket_name}.s3.{region_name}.amazonaws.com/{s3_key}"
+
+
+s3.put_object(Bucket=bucket_name, Key=s3_key, Body=csv_buffer.getvalue())
+# ===============================
+# TestデータもS3にアップロード
+# ===============================
+csv_buffer_test = io.StringIO()
+df_test.to_csv(csv_buffer_test, sep='\t', index=False)
+
+s3.put_object(Bucket=bucket_name, Key="data/test_preprocessed.tsv", Body=csv_buffer_test.getvalue())
+
+print("前処理済みのtrainおよびtestデータをS3に保存しました。")

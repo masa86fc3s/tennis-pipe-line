@@ -16,8 +16,8 @@ if __name__ == '__main__':
 
     # ステップ2: モデル学習
     run_script('scripts/train_model.py')
-
-    # ステップ3: モデル評価
-    run_script('scripts/evaluate_model.py')
+    
+    # ステップ3: csvファイル提出
+    run_script('scripts/submission.py')
 
     print("========== モデルパイプライン完了 ==========")
