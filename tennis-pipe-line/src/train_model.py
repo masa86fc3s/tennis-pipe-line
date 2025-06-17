@@ -14,27 +14,27 @@ from sklearn.metrics import accuracy_score
 from lightgbm.basic import Booster
 from pandas import DataFrame, Series
 
-# ================================
-# S3設定
-# ================================
-bucket_name = 'tennis-pipe-line'
-train_key = 'data/train_preprocessed.tsv'
-model_output_key = 'model/lgb_model.pkl'
+# YAMLファイル読み込み
+with open("s3_data.yaml", "r") as f:
+    config = yaml.safe_load(f)
 
-# S3からtrain.tsvを読み込み
-s3 = boto3.client('s3', region_name='ap-southeast-2')
+# S3設定をconfigから取得
+bucket_name = config["s3"]["bucket_name"]
+train_key = config["s3"]["train_key"]
+model_output_key = config["s3"]["model_output_key"]
+region = config["s3"]["region"]
+
+# 特徴量とターゲット
+features = config["features"]["columns"]
+target = config["target"]
+
+# S3クライアント作成
+s3 = boto3.client("s3", region_name=region)
+
+# S3からtrainデータ取得＆DataFrame化
 response = s3.get_object(Bucket=bucket_name, Key=train_key)
-csv_body = response['Body'].read()
-df_train = pd.read_csv(io.BytesIO(csv_body), sep='\t')
-
-# ================================
-# 特徴量
-# ================================
-features = ['FSW.1', 'WNR.1', 'NPW.1', 'UFE.1', 'ST1.1',
-            'FSW.2', 'NPW.2', 'UFE.2', 'SSW.2', 'WNR.2',
-            'long_rally_success_1', 'aggressiveness_1']
-target = "Result"
-
+csv_body = response["Body"].read()
+df_train = pd.read_csv(io.BytesIO(csv_body), sep="\t")
 # ================================
 # データ分割
 # ================================
@@ -151,6 +151,7 @@ def optimize_params_with_optuna(
 # モデル評価（CV）
 # ================================
 
+
 def evaluate_model_cv(
     X: DataFrame,                                               #特徴量データ（トレーニング全体）
     y: Series,                                                  #目的変数（ラベル）
@@ -165,8 +166,8 @@ def evaluate_model_cv(
 
     for fold, (train_idx, val_idx) in enumerate(folds):
         print(f"Fold {fold + 1}")
-        X_train_fold, X_val_fold = X_tr.iloc[train_idx], X_tr.iloc[val_idx]
-        y_train_fold, y_val_fold = y_tr.iloc[train_idx], y_tr.iloc[val_idx]
+        X_train_fold, X_val_fold = X.iloc[train_idx], X.iloc[val_idx]
+        y_train_fold, y_val_fold = y.iloc[train_idx], y.iloc[val_idx]
 
         dtrain = lgb.Dataset(X_train_fold, y_train_fold)
         dvalid = lgb.Dataset(X_val_fold, y_val_fold)
@@ -185,18 +186,22 @@ def evaluate_model_cv(
         y_pred = model.predict(X_val_fold)
         y_pred_label = (y_pred > 0.5).astype(int)
         acc = accuracy_score(y_val_fold, y_pred_label)
+
         val_accuracies.append(acc)
         models.append(model)
 
     print(f"平均CV Accuracy: {np.mean(val_accuracies):.4f}")
 
+    # =============== 追加: アンサンブル評価 ===============
     if X_va2 is not None and y_va2 is not None:
-        y_pred = models[-1].predict(X_va2)
-        y_pred_label = (y_pred > 0.5).astype(int)
+        y_preds = np.mean([model.predict(X_va2) for model in models], axis=0)
+        y_pred_label = (y_preds > 0.5).astype(int)
         acc = accuracy_score(y_va2, y_pred_label)
-        print(f"交差検証Accuracy: {acc:.4f}")
+        print(f"アンサンブルモデルの検証Accuracy: {acc:.4f}")
+    # ======================================================
 
-    return models[-1]
+    return val_accuracies, base_accuracies, models
+
 
 # ================================
 # 実行部分

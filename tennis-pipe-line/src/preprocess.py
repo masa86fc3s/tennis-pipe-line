@@ -2,31 +2,25 @@ import pandas as pd
 import boto3
 import io
 from sklearn.preprocessing import LabelEncoder
+import yaml
 
+with open("s3_data.yaml", "r") as f:
+    config = yaml.safe_load(f)
 
-# S3設定
-bucket_name = 'tennis-pipe-line'
-train_key = 'data/train.tsv'
-test_key = 'data/test.tsv'
+bucket_name = config["s3"]["bucket_name"]
+train_key = config["s3"]["train1_key"]
+test_key = config["s3"]["test1_key"]
+region = config["s3"]["region"]
 
-# ===============================
-# S3からTSVを読み込む
-# ===============================
-s3 = boto3.client('s3', region_name='ap-southeast-2')
+s3 = boto3.client("s3", region_name=region)
 
-# Trainデータの読み込み
-response1 = s3.get_object(Bucket=bucket_name, Key=train_key)
-csv_body1 = response1['Body'].read()
-df_train = pd.read_csv(io.BytesIO(csv_body1), sep='\t')
+def load_tsv_from_s3(bucket: str, key: str) -> pd.DataFrame:
+    response = s3.get_object(Bucket=bucket, Key=key)
+    body = response['Body'].read()
+    return pd.read_csv(io.BytesIO(body), sep='\t')
 
-# Testデータの読み込み
-response2 = s3.get_object(Bucket=bucket_name, Key=test_key)
-csv_body2 = response2['Body'].read()
-df_test = pd.read_csv(io.BytesIO(csv_body2), sep='\t')
-
-# 確認
-#print(df_train.head())
-
+df_train = load_tsv_from_s3(bucket_name, train_key)
+df_test = load_tsv_from_s3(bucket_name, test_key)
 
 # ===============================
 # 前処理

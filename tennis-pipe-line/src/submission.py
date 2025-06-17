@@ -4,25 +4,28 @@ import boto3
 import io
 import joblib
 
-bucket_name = 'tennis-pipe-line'
-test_key = 'data/test_preprocessed.tsv'
-model_key = 'model/lgb_model.pkl'
+import yaml
 
-# S3クライアント
-s3 = boto3.client('s3', region_name='ap-southeast-2')
+# YAMLの読み込み
+with open("s3_data.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+bucket_name = config["s3"]["bucket_name"]
+test_key = config["s3"]["test_key"]
+model_key = config["s3"]["model_key"]
+region = config["s3"]["region"]
+
+features = config["features"]["columns"]
+
+s3 = boto3.client("s3", region_name=region)
 
 # モデル読み込み
 response = s3.get_object(Bucket=bucket_name, Key=model_key)
-model = joblib.load(io.BytesIO(response['Body'].read()))
+model = joblib.load(io.BytesIO(response["Body"].read()))
 
 # テストデータ読み込み
 response = s3.get_object(Bucket=bucket_name, Key=test_key)
-df_test = pd.read_csv(io.BytesIO(response['Body'].read()), sep='\t')
-
-# 予測に使う特徴量リスト
-features = ['FSW.1', 'WNR.1', 'NPW.1', 'UFE.1', 'ST1.1',
-            'FSW.2', 'NPW.2', 'UFE.2', 'SSW.2', 'WNR.2',
-            'long_rally_success_1', 'aggressiveness_1']
+df_test = pd.read_csv(io.BytesIO(response["Body"].read()), sep="\t")
 
 X_test = df_test[features]
 
