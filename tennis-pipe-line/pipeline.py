@@ -1,5 +1,20 @@
 # pipeline.py
 import subprocess
+import os
+
+# 保存先のパス（バケットやキーの変数として定義）
+# 出力ディレクトリの作成
+
+# 変数で定義して一括管理
+train_key = os.path.join( 'data')
+test_key = os.path.join( 'data')
+model_output_key = os.path.join( 'output')
+model_key = os.path.join( 'models')
+
+# ディレクトリ作成
+for path in [train_key, test_key, model_output_key, model_key]:
+    os.makedirs(path, exist_ok=True)
+
 
 def run_script(script_name):
     print(f"\n===== 実行中: {script_name} =====")

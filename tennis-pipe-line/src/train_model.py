@@ -14,7 +14,7 @@ from sklearn.metrics import accuracy_score
 # ================================
 bucket_name = 'tennis-pipe-line'
 train_key = 'data/train_preprocessed.tsv'
-model_output_key = 'model/lgb_model.pkl'
+model_output_key = 'models/lgb_model.pkl'
 
 s3 = boto3.client('s3', region_name='ap-southeast-2')
 
