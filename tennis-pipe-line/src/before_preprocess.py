@@ -6,7 +6,6 @@ import os
 from sklearn.preprocessing import LabelEncoder  
 
 
-
 # YAMLファイルの絶対パスを取得して読み込み
 yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
 with open(os.path.abspath(yaml_path), "r") as f:
