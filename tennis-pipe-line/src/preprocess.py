@@ -5,7 +5,6 @@ import yaml
 import os
 from sklearn.preprocessing import LabelEncoder
 
-
 class ConfigLoader: #（YAML読み込みクラス）
     @staticmethod
     def load_config(path: str) -> dict:
