@@ -1,32 +1,33 @@
 import pandas as pd
 import boto3
 import io
-from sklearn.preprocessing import LabelEncoder
+import yaml
+import os
+from sklearn.preprocessing import LabelEncoder  
 
 
-# S3設定
-bucket_name = 'tennis-pipe-line'
-train_key = 'data/train.tsv'
-test_key = 'data/test.tsv'
+# YAMLファイルの絶対パスを取得して読み込み
+yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
+with open(os.path.abspath(yaml_path), "r") as f:
+    config = yaml.safe_load(f)
 
-# ===============================
-# S3からTSVを読み込む
-# ===============================
-s3 = boto3.client('s3', region_name='ap-southeast-2')
+# YAMLからS3の設定情報を取得
+bucket_name = config["s3"]["bucket_name"]
+train_key = config["s3"]["train1_key"]
+test_key = config["s3"]["test1_key"]
+region = config["s3"]["region"]
 
-# Trainデータの読み込み
-response1 = s3.get_object(Bucket=bucket_name, Key=train_key)
-csv_body1 = response1['Body'].read()
-df_train = pd.read_csv(io.BytesIO(csv_body1), sep='\t')
+# S3クライアントの初期化
+s3 = boto3.client("s3", region_name=region)
 
-# Testデータの読み込み
-response2 = s3.get_object(Bucket=bucket_name, Key=test_key)
-csv_body2 = response2['Body'].read()
-df_test = pd.read_csv(io.BytesIO(csv_body2), sep='\t')
 
-# 確認
-#print(df_train.head())
+def load_tsv_from_s3(bucket: str, key: str) -> pd.DataFrame:
+    response = s3.get_object(Bucket=bucket, Key=key)
+    body = response['Body'].read()
+    return pd.read_csv(io.BytesIO(body), sep='\t')
 
+df_train = load_tsv_from_s3(bucket_name, train_key)
+df_test = load_tsv_from_s3(bucket_name, test_key)
 
 # ===============================
 # 前処理
@@ -90,3 +91,31 @@ df_test["aggressiveness_1"] = (
     df_test["UFE.1"] * 0.7 -
     df_test["DBF.1"] * 0.5
 ) 
+
+
+# S3クライアントの作成
+# 共通のS3クライアント
+s3 = boto3.client('s3', region_name='ap-southeast-2')
+
+
+# データフレームをメモリ上にCSV（TSV）形式で保存
+csv_buffer = io.StringIO()
+df_train.to_csv(csv_buffer, sep='\t', index=False)
+
+# S3にアップロード
+bucket_name = "tennis-pipe-line"
+region_name = 'ap-southeast-2'  # 東京リージョンの場合（実際のリージョンを確認してください）
+s3_key = "data/train_preprocessed.tsv"
+url = f"https://{bucket_name}.s3.{region_name}.amazonaws.com/{s3_key}"
+
+
+s3.put_object(Bucket=bucket_name, Key=s3_key, Body=csv_buffer.getvalue())
+# ===============================
+# TestデータもS3にアップロード
+# ===============================
+csv_buffer_test = io.StringIO()
+df_test.to_csv(csv_buffer_test, sep='\t', index=False)
+
+s3.put_object(Bucket=bucket_name, Key="data/test_preprocessed.tsv", Body=csv_buffer_test.getvalue())
+
+print("前処理済みのtrainおよびtestデータをS3に保存しました。")
