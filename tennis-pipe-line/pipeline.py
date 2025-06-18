@@ -2,6 +2,7 @@
 import subprocess
 import os
 
+
 # 保存先のパス（バケットやキーの変数として定義）
 # 出力ディレクトリの作成
 
