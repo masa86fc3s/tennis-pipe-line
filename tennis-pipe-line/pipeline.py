@@ -27,12 +27,12 @@ if __name__ == '__main__':
     print("========== モデルパイプライン開始 ==========")
 
     # ステップ1: 前処理（前処理スクリプトを作成済みならここで実行）
-    run_script('scripts/preprocess.py')  # 必要に応じて有効化
+    run_script('src/preprocess.py')  # 必要に応じて有効化
 
     # ステップ2: モデル学習
-    run_script('scripts/train_model.py')
+    run_script('src/train_model.py')
     
     # ステップ3: csvファイル提出
-    run_script('scripts/submission.py')
+    run_script('src/submission.py')
 
     print("========== モデルパイプライン完了 ==========")

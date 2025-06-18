@@ -10,13 +10,15 @@ import yaml
 from typing import Tuple, List, Optional
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import accuracy_score
-
+import os
 from lightgbm.basic import Booster
 from pandas import DataFrame, Series
 
-# YAMLファイル読み込み
-with open("s3_data.yaml", "r") as f:
+# YAMLファイルの絶対パスを取得して読み込み
+yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
+with open(os.path.abspath(yaml_path), "r") as f:
     config = yaml.safe_load(f)
+
 
 # S3設定をconfigから取得
 bucket_name = config["s3"]["bucket_name"]
@@ -47,8 +49,10 @@ X_tr, X_va2, y_tr, y_va2 = train_test_split(
 folds = list(StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(X_tr, y_tr))
 
 
-def load_config(config_path: str = "config.yaml") -> dict:
-    with open(config_path, "r") as f:
+def load_config(config_path: str = "../yaml/config.yaml") -> dict:
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    full_path = os.path.join(base_dir, config_path)
+    with open(full_path, "r") as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     return config
 
@@ -212,11 +216,23 @@ best_params, _ = optimize_params_with_optuna(X_tr, y_tr, folds, n_trials=30)
 print("クロスバリデーションでモデル評価中...")
 best_model = evaluate_model_cv(X_tr, y_tr, best_params, folds, X_va2, y_va2)
 
+val_accuracies, base_accuracies, models = evaluate_model_cv(X_tr, y_tr, best_params, folds, X_va2, y_va2)
+
+# 一番精度の高かったモデルを選んで保存（例）
+best_index = np.argmax(val_accuracies)
+best_model = models[best_index]
 # ================================
 # モデル保存（S3へ）
 # ================================
-joblib.dump(best_model, "../models/lgb_model.pkl")
-with open("../models/lgb_model.pkl", "rb") as f:
+# スクリプト（この.pyファイル）から見た絶対パスを生成
+base_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_dir, "../models/lgb_model.pkl")
+
+# モデルをローカルに保存
+joblib.dump(best_model, model_path)
+
+# モデルファイルを開いてS3にアップロード
+with open(model_path, "rb") as f:
     s3.upload_fileobj(f, bucket_name, model_output_key)
 
 print("最良モデルをS3に保存しました。")

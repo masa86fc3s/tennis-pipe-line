@@ -1,9 +1,0 @@
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-lightgbm
-optuna
-boto3
-dash>=3.0.0

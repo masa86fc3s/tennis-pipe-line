@@ -1,13 +1,15 @@
+
 # scripts/predict_model.py（またはevaluate_model.pyを置き換えてもOK）
 import pandas as pd
 import boto3
 import io
 import joblib
-
+import os
 import yaml
 
-# YAMLの読み込み
-with open("s3_data.yaml", "r") as f:
+# YAMLファイルの絶対パスを取得して読み込み
+yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
+with open(os.path.abspath(yaml_path), "r") as f:
     config = yaml.safe_load(f)
 
 bucket_name = config["s3"]["bucket_name"]
@@ -22,6 +24,7 @@ s3 = boto3.client("s3", region_name=region)
 # モデル読み込み
 response = s3.get_object(Bucket=bucket_name, Key=model_key)
 model = joblib.load(io.BytesIO(response["Body"].read()))
+print(f"モデルの型: {type(model)}")  # 出力例: <class 'lightgbm.sklearn.LGBMClassifier'>
 
 # テストデータ読み込み
 response = s3.get_object(Bucket=bucket_name, Key=test_key)

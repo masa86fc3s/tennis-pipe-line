@@ -3,16 +3,23 @@ import boto3
 import io
 from sklearn.preprocessing import LabelEncoder
 import yaml
+import os  
 
-with open("s3_data.yaml", "r") as f:
+
+# YAMLファイルの絶対パスを取得して読み込み
+yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
+with open(os.path.abspath(yaml_path), "r") as f:
     config = yaml.safe_load(f)
 
+# YAMLからS3の設定情報を取得
 bucket_name = config["s3"]["bucket_name"]
 train_key = config["s3"]["train1_key"]
 test_key = config["s3"]["test1_key"]
 region = config["s3"]["region"]
 
+# S3クライアントの初期化
 s3 = boto3.client("s3", region_name=region)
+
 
 def load_tsv_from_s3(bucket: str, key: str) -> pd.DataFrame:
     response = s3.get_object(Bucket=bucket, Key=key)
