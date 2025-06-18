@@ -74,6 +74,7 @@ for col in cols_to_impute:
 for col in cols_to_zero:
     df_test[col] = df_test[col].fillna(0)
 
+
 # ===============================
 # 特徴量生成
 # ===============================
