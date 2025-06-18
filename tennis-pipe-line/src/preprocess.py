@@ -1,121 +1,106 @@
 import pandas as pd
 import boto3
 import io
-from sklearn.preprocessing import LabelEncoder
 import yaml
-import os  
+import os
+from sklearn.preprocessing import LabelEncoder
 
 
-# YAMLファイルの絶対パスを取得して読み込み
-yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
-with open(os.path.abspath(yaml_path), "r") as f:
-    config = yaml.safe_load(f)
-
-# YAMLからS3の設定情報を取得
-bucket_name = config["s3"]["bucket_name"]
-train_key = config["s3"]["train1_key"]
-test_key = config["s3"]["test1_key"]
-region = config["s3"]["region"]
-
-# S3クライアントの初期化
-s3 = boto3.client("s3", region_name=region)
+class ConfigLoader: #（YAML読み込みクラス）
+    @staticmethod
+    def load_config(path: str) -> dict:
+        with open(os.path.abspath(path), "r") as f:
+            return yaml.safe_load(f)
 
 
-def load_tsv_from_s3(bucket: str, key: str) -> pd.DataFrame:
-    response = s3.get_object(Bucket=bucket, Key=key)
-    body = response['Body'].read()
-    return pd.read_csv(io.BytesIO(body), sep='\t')
+class S3Client: #（S3との入出力操作をまとめるクラス）
+    def __init__(self, region_name: str):
+        self.client = boto3.client("s3", region_name=region_name)
 
-df_train = load_tsv_from_s3(bucket_name, train_key)
-df_test = load_tsv_from_s3(bucket_name, test_key)
+    def load_tsv(self, bucket: str, key: str) -> pd.DataFrame:
+        response = self.client.get_object(Bucket=bucket, Key=key)
+        body = response["Body"].read()
+        return pd.read_csv(io.BytesIO(body), sep="\t")
 
-# ===============================
-# 前処理
-# ===============================
-
-# Tournamentのラベルエンコード
-encoder = LabelEncoder()
-encoder.fit(pd.concat([df_train["Tournament"], df_test["Tournament"]]))
-df_train["Tournament"] = encoder.transform(df_train["Tournament"])
-df_test["Tournament"] = encoder.transform(df_test["Tournament"])
-
-# Sexのラベルエンコード
-encoder = LabelEncoder()
-encoder.fit(pd.concat([df_train["Sex"], df_test["Sex"]]))
-df_train["Sex"] = encoder.transform(df_train["Sex"])
-df_test["Sex"] = encoder.transform(df_test["Sex"])
+    def upload_df_as_tsv(self, df: pd.DataFrame, bucket: str, key: str):
+        buffer = io.StringIO()
+        df.to_csv(buffer, sep="\t", index=False)
+        self.client.put_object(Bucket=bucket, Key=key, Body=buffer.getvalue())
 
 
+class DataPreprocessor: #（前処理・特徴量生成など）
+    def __init__(self):
+        self.label_encoders = {}
 
-#print("変換結果 : ", encoder.classes_)    # 左から順に0, 1
+    def encode_label(self, df_train: pd.DataFrame, df_test: pd.DataFrame, col: str):
+        encoder = LabelEncoder()
+        encoder.fit(pd.concat([df_train[col], df_test[col]]))
+        df_train[col] = encoder.transform(df_train[col])
+        df_test[col] = encoder.transform(df_test[col])
+        self.label_encoders[col] = encoder
+        return df_train, df_test
 
-#原因変数を削除
-df_train = df_train.drop(["Player1","Player2","Year","ST2.1","ST3.1","ST4.1","ST5.1","ST2.2","ST3.2","ST4.2","ST5.2","FNL.1","FNL.2","TPW.1","TPW.2","BPW.1", "BPW.2", "BPC.1", "BPC.2"],axis=1)
-df_test = df_test.drop(["Player1","Player2","Year","ST2.1","ST3.1","ST4.1","ST5.1","ST2.2","ST3.2","ST4.2","ST5.2","FNL.1","FNL.2","TPW.1","TPW.2","BPW.1", "BPW.2", "BPC.1", "BPC.2"],axis=1)
+    def drop_columns(self, df: pd.DataFrame) -> pd.DataFrame:
+        drop_cols = ["Player1", "Player2", "Year", "ST2.1", "ST3.1", "ST4.1", "ST5.1",
+                     "ST2.2", "ST3.2", "ST4.2", "ST5.2", "FNL.1", "FNL.2",
+                     "TPW.1", "TPW.2", "BPW.1", "BPW.2", "BPC.1", "BPC.2"]
+        return df.drop(drop_cols, axis=1)
 
+    def impute_missing(self, df: pd.DataFrame, cols_to_impute, cols_to_zero) -> pd.DataFrame:
+        for col in cols_to_impute:
+            df[col] = df[col].fillna(df[col].median())
+        for col in cols_to_zero:
+            df[col] = df[col].fillna(0)
+        return df
 
-# ===============================
-# 欠損値補完
-# ===============================
-
-# 対象カラムリスト
-cols_to_impute = ['WNR.1', 'UFE.1', 'WNR.2', 'UFE.2', 'NPW.1', 'NPW.2', 'NPA.1', 'NPA.2']
-cols_to_zero = ['ACE.1','DBF.1','ACE.2','DBF.2']
-# 各列に対して中央値で補完
-for col in cols_to_impute:
-    median_val = df_train[col].median()
-    df_train[col] = df_train[col].fillna(median_val)
-for cols in cols_to_zero:
-    df_train[cols] = df_train[cols].fillna(0)
-# testデータも同様に補完
-for col in cols_to_impute:
-    median_val = df_test[col].median()
-    df_test[col] = df_test[col].fillna(median_val)
-for col in cols_to_zero:
-    df_test[col] = df_test[col].fillna(0)
-
-# ===============================
-# 特徴量生成
-# ===============================
-df_train['long_rally_success_1'] = df_train['SSW.1'] / df_train['SSP.1']
-df_test['long_rally_success_1'] = df_test['SSW.1'] / df_test['SSP.1']
-df_train["aggressiveness_1"] = (
-    df_train["ACE.1"] * 1.0 +
-    df_train["WNR.1"] * 0.8 -
-    df_train["UFE.1"] * 0.7 -
-    df_train["DBF.1"] * 0.5
-)
-df_test["aggressiveness_1"] = (
-    df_test["ACE.1"] * 1.0 +
-    df_test["WNR.1"] * 0.8 -
-    df_test["UFE.1"] * 0.7 -
-    df_test["DBF.1"] * 0.5
-) 
+    def create_features(self, df: pd.DataFrame) -> pd.DataFrame:
+        df["long_rally_success_1"] = df["SSW.1"] / df["SSP.1"]
+        df["aggressiveness_1"] = (
+            df["ACE.1"] * 1.0 +
+            df["WNR.1"] * 0.8 -
+            df["UFE.1"] * 0.7 -
+            df["DBF.1"] * 0.5
+        )
+        return df
 
 
-# S3クライアントの作成
-# 共通のS3クライアント
-s3 = boto3.client('s3', region_name='ap-southeast-2')
+def main(): #メイン処理（main()関数）
+    # 設定読み込み
+    yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
+    config = ConfigLoader.load_config(yaml_path)
+
+    bucket = config["s3"]["bucket_name"]
+    region = config["s3"]["region"]
+    train_key = config["s3"]["train1_key"]
+    test_key = config["s3"]["test1_key"]
+
+    s3_client = S3Client(region)
+    df_train = s3_client.load_tsv(bucket, train_key)
+    df_test = s3_client.load_tsv(bucket, test_key)
+
+    # 前処理
+    processor = DataPreprocessor()
+    for col in ["Tournament", "Sex"]:
+        df_train, df_test = processor.encode_label(df_train, df_test, col)
+
+    df_train = processor.drop_columns(df_train)
+    df_test = processor.drop_columns(df_test)
+
+    cols_to_impute = ['WNR.1', 'UFE.1', 'WNR.2', 'UFE.2', 'NPW.1', 'NPW.2', 'NPA.1', 'NPA.2']
+    cols_to_zero = ['ACE.1', 'DBF.1', 'ACE.2', 'DBF.2']
+
+    df_train = processor.impute_missing(df_train, cols_to_impute, cols_to_zero)
+    df_test = processor.impute_missing(df_test, cols_to_impute, cols_to_zero)
+
+    df_train = processor.create_features(df_train)
+    df_test = processor.create_features(df_test)
+
+    # アップロード
+    s3_client.upload_df_as_tsv(df_train, bucket, "data/train_preprocessed.tsv")
+    s3_client.upload_df_as_tsv(df_test, bucket, "data/test_preprocessed.tsv")
+
+    print("前処理済みのtrainおよびtestデータをS3に保存しました。")
 
 
-# データフレームをメモリ上にCSV（TSV）形式で保存
-csv_buffer = io.StringIO()
-df_train.to_csv(csv_buffer, sep='\t', index=False)
-
-# S3にアップロード
-bucket_name = "tennis-pipe-line"
-region_name = 'ap-southeast-2'  # 東京リージョンの場合（実際のリージョンを確認してください）
-s3_key = "data/train_preprocessed.tsv"
-url = f"https://{bucket_name}.s3.{region_name}.amazonaws.com/{s3_key}"
-
-
-s3.put_object(Bucket=bucket_name, Key=s3_key, Body=csv_buffer.getvalue())
-# ===============================
-# TestデータもS3にアップロード
-# ===============================
-csv_buffer_test = io.StringIO()
-df_test.to_csv(csv_buffer_test, sep='\t', index=False)
-
-s3.put_object(Bucket=bucket_name, Key="data/test_preprocessed.tsv", Body=csv_buffer_test.getvalue())
-
-print("前処理済みのtrainおよびtestデータをS3に保存しました。")
+if __name__ == "__main__":
+    main()
