@@ -1,0 +1,36 @@
+# config.yaml
+model_params:
+  objective: binary
+  metric: binary_logloss
+  boosting_type: gbdt
+  verbosity: -1
+  random_state: 42
+  feature_pre_filter: False
+  num_boost_round: 1000
+  early_stopping_rounds: 50
+  log_evaluation_period: 10
+
+optuna_params:
+  lambda_l1:
+    low: 1e-8
+    high: 10.0
+    log: true
+  lambda_l2:
+    low: 1e-8
+    high: 10.0
+    log: true
+  num_leaves:
+    low: 4
+    high: 64
+  feature_fraction:
+    low: 0.4
+    high: 1.0
+  bagging_fraction:
+    low: 0.4
+    high: 1.0
+  bagging_freq:
+    low: 1
+    high: 7
+  min_child_samples:
+    low: 5
+    high: 100
