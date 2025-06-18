@@ -1,20 +1,3 @@
 # すべてのファイルに対してデフォルトのレビュワー
 * @masa86fc3s
 
-# ソースコード全体
-/src/ @masa86fc3s
-
-# モデル関連ファイル
-/models/ @masa86fc3s
-
-# notebook（分析用ノート）
-/notebooks/ @masa86fc3s
-
-# パイプラインファイル
-pipeline.py @masa86fc3s
-
-# yaml設定ファイル
-*.yaml @masa86fc3s
-
-# requirementsファイル
-requirements.txt @masa86fc3s

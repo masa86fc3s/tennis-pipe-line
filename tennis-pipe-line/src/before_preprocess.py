@@ -20,7 +20,6 @@ region = config["s3"]["region"]
 # S3クライアントの初期化
 s3 = boto3.client("s3", region_name=region)
 
-
 def load_tsv_from_s3(bucket: str, key: str) -> pd.DataFrame:
     response = s3.get_object(Bucket=bucket, Key=key)
     body = response['Body'].read()
