@@ -129,7 +129,7 @@ class LightGBMPipeline:
                     ],
                 )
                 y_pred = model.predict(X_val)
-                # numpy配列であることを保証
+                # numpy配列であることを確認
                 y_pred = np.array(y_pred) 
                 scores.append(accuracy_score(y_val, (y_pred > 0.5).astype(int)))
                 if self.X_va2 is not None and self.y_va2 is not None:
