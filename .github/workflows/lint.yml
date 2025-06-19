@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install -r ../requirements.txt  # ← あれば追加
+        pip install -r requirements.txt  # ← あれば追加
         pip install mypy flake8 pandas-stubs types-PyYAML types-seaborn
 
     - name: Run mypy
