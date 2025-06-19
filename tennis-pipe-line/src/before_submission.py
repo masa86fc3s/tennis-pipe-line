@@ -23,7 +23,8 @@ s3 = boto3.client("s3", region_name=region)
 # モデル読み込み
 response = s3.get_object(Bucket=bucket_name, Key=model_key)
 model = joblib.load(io.BytesIO(response["Body"].read()))
-print(f"モデルの型: {type(model)}")  # 出力例: <class 'lightgbm.sklearn.LGBMClassifier'>
+# 出力例: <class 'lightgbm.sklearn.LGBMClassifier'>
+print(f"モデルの型:{type(model)}")
 
 # テストデータ読み込み
 response = s3.get_object(Bucket=bucket_name, Key=test_key)
@@ -57,7 +58,10 @@ print("予測完了、submission.csvを出力しました。")
 csv_buffer_test = io.StringIO()
 submission.to_csv(csv_buffer_test, sep='\t', index=False)
 
-s3.put_object(Bucket=bucket_name, Key="data/submission.csv", Body=csv_buffer_test.getvalue())
+s3.put_object(Bucket=bucket_name,
+Key="data/submission.csv",
+Body=csv_buffer_test.getvalue()
+)
 
 print("予測完了、submission.csvをS3に保存しました。")
 """
