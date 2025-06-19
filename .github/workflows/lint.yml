@@ -1,9 +1,9 @@
-name: Lint Check
+name: Lint and Type Check
 
 on: [push, pull_request]
 
 jobs:
-  lint:
+  lint-and-typecheck:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,10 +13,16 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'  # あなたのプロジェクトに合わせて変更OK
+        python-version: '3.10'  # 必要なら '3.11' に変更OK
 
-    - name: Install flake8
-      run: pip install flake8
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt  # ← あれば追加
+        pip install mypy flake8 pandas-stubs types-PyYAML types-seaborn
+
+    - name: Run mypy
+      run: mypy . --ignore-missing-imports
 
     - name: Run flake8
       run: flake8 .
