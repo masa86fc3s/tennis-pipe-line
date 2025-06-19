@@ -4,7 +4,7 @@
 import os
 import io
 import pickle
-
+from typing import List
 # ==============================
 # サードパーティライブラリ
 # ==============================
@@ -111,8 +111,8 @@ class LightGBMPipeline:
                 "min_child_samples", **optuna_cfg["min_child_samples"]
             )
 
-            scores = []
-            val2_scores = []
+            scores: List[float] = []
+            val2_scores: List[float] = []
             for train_idx, val_idx in self.folds:
                 X_train, X_val = self.X_tr.iloc[train_idx], self.X_tr.iloc[val_idx]
                 y_train, y_val = self.y_tr.iloc[train_idx], self.y_tr.iloc[val_idx]
@@ -129,6 +129,8 @@ class LightGBMPipeline:
                     ],
                 )
                 y_pred = model.predict(X_val)
+                # numpy配列であることを保証
+                y_pred = np.array(y_pred) 
                 scores.append(accuracy_score(y_val, (y_pred > 0.5).astype(int)))
                 if self.X_va2 is not None and self.y_va2 is not None:
                     y_pred_val2 = model.predict(self.X_va2)
@@ -159,6 +161,8 @@ class LightGBMPipeline:
                 callbacks=[lgb.early_stopping(50), lgb.log_evaluation(10)],
             )
             y_pred = model.predict(X_val)
+            # numpy配列であることを保証
+            y_pred = np.array(y_pred) 
             acc = accuracy_score(y_val, (y_pred > 0.5).astype(int))
             val_scores.append(acc)
             models.append(model)
