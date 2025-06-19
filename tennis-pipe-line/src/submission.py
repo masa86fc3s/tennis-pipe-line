@@ -59,20 +59,25 @@ class ModelPredictor:
         upload_to_s3: bool = False,
         s3_key: str = "data/submission.csv",
     ):
-        # ローカル保存
-        self.submission.to_csv(local_path, index=False, header=False)
-        print(f"submission.csv をローカルに保存しました: {local_path}")
+        if self.submission is not None:
+            self.submission.to_csv(local_path, index=False, header=False)
+            print(f"submission.csv をローカルに保存しました: {local_path}")
+        else:
+            print("self.submission が None なので、保存できませんでした")
 
         # S3保存（必要な場合）
         if upload_to_s3:
-            csv_buffer = io.StringIO()
-            self.submission.to_csv(csv_buffer, sep="\t", index=False)
-            self.s3.put_object(
-                Bucket=self.bucket_name, Key=s3_key, Body=csv_buffer.getvalue()
-            )
-            print(
-                f"submission.csv を S3 に保存しました: s3://{self.bucket_name}/{s3_key}"
-            )
+            if self.submission is not None:
+                csv_buffer = io.StringIO()
+                self.submission.to_csv(csv_buffer, sep="\t", index=False)
+                self.s3.put_object(
+                    Bucket=self.bucket_name, Key=s3_key, Body=csv_buffer.getvalue()
+                )
+                print(
+                    f"submission.csv を S3 に保存しました: s3://{self.bucket_name}/{s3_key}"
+                )
+            else:
+                print("submissionがNoneなので、S3に保存できません")
 
 
 if __name__ == "__main__":
