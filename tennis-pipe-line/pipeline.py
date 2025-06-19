@@ -18,7 +18,12 @@ for path in [train_key, test_key, model_output_key, model_key]:
 
 def run_script(script_name):
     print(f"\n===== 実行中: {script_name} =====")
-    result = subprocess.run(["python", script_name], capture_output=True, text=True)
+    result = subprocess.run(
+        ["python", script_name],
+        capture_output=True,
+        text=True
+    )
+
     print(result.stdout)
     if result.stderr:
         print(f"[ERROR]:\n{result.stderr}")

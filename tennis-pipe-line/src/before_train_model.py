@@ -53,7 +53,10 @@ X_tr, X_va2, y_tr, y_va2 = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-folds = list(StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(X_tr, y_tr))
+folds = list(
+    StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(X_tr, y_tr)
+)
+
 
 def load_config(config_path: str = "../yaml/config.yaml") -> dict:
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -61,6 +64,7 @@ def load_config(config_path: str = "../yaml/config.yaml") -> dict:
     with open(full_path, "r") as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     return config
+
 
 config = load_config()
 optuna_cfg = config["optuna_params"]
@@ -72,6 +76,7 @@ for param in ["lambda_l1", "lambda_l2"]:
 for param in ["lambda_l1", "lambda_l2"]:
     if isinstance(optuna_cfg[param]["log"], str):
         optuna_cfg[param]["log"] = optuna_cfg[param]["log"].lower() == "true"
+
 
 def optimize_params_with_optuna(
     X: DataFrame,
@@ -147,12 +152,16 @@ def optimize_params_with_optuna(
                 ],
             )
 
-            y_pred_val: NDArray[np.float64] = np.array(model.predict(X_val_fold, num_iteration=model.best_iteration))
+            y_pred_val: NDArray[np.float64] = np.array(
+                model.predict(X_val_fold, num_iteration=model.best_iteration)
+            )
             acc = accuracy_score(y_val_fold, (y_pred_val > 0.5).astype(int))
             scores.append(acc)
 
             if X_val2 is not None and y_val2 is not None:
-                y_pred_val2: NDArray[np.float64] = np.array(model.predict(X_val2, num_iteration=model.best_iteration))
+                y_pred_val2: NDArray[np.float64] = np.array(
+                    model.predict(X_val2, num_iteration=model.best_iteration)
+                )
                 acc_val2 = accuracy_score(y_val2, (y_pred_val2 > 0.5).astype(int))
                 val2_scores.append(acc_val2)
 
@@ -165,6 +174,7 @@ def optimize_params_with_optuna(
     study.optimize(objective, n_trials=n_trials)
 
     return study.best_params, study
+
 
 def evaluate_model_cv(
     X: DataFrame,
@@ -210,6 +220,7 @@ def evaluate_model_cv(
         print(f"アンサンブルモデルの検証Accuracy: {acc:.4f}")
 
     return val_accuracies, base_accuracies, models[0], models
+
 
 print("Optunaによるハイパーパラメータ最適化中...")
 best_params, _ = optimize_params_with_optuna(X_tr, y_tr, folds, n_trials=30)

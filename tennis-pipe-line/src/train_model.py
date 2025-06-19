@@ -130,7 +130,7 @@ class LightGBMPipeline:
                         lgb.log_evaluation(0),
                     ],
                 )
-                            # 型を明示しつつ、一度だけ代入する
+                # 型を明示しつつ、一度だけ代入する
             y_pred: NDArray[np.float64] = np.array(model.predict(X_val))
             scores.append(accuracy_score(y_val, (y_pred > 0.5).astype(int)))
 
@@ -143,6 +143,7 @@ class LightGBMPipeline:
             score_cv: float = float(np.mean(scores))
             score_val2: float = float(np.mean(val2_scores)) if val2_scores else 0.0
             return 1.0 - ((score_cv + score_val2) / 2.0)
+
         study = optuna.create_study(direction="minimize")
         study.optimize(objective, n_trials=n_trials)
         return study.best_params, study
@@ -166,7 +167,7 @@ class LightGBMPipeline:
             )
             y_pred = model.predict(X_val)
             # numpy配列であることを保証
-            y_pred = np.array(y_pred) 
+            y_pred = np.array(y_pred)
             acc = accuracy_score(y_val, (y_pred > 0.5).astype(int))
             val_scores.append(acc)
             models.append(model)
