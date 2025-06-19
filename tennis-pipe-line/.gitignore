@@ -11,6 +11,8 @@ __pycache__/
 *.so
 *.csv
 *.pkl
+# .gitignore に追加
+*.pem
 
 # Distribution / packaging
 .Python
