@@ -25,16 +25,13 @@ class ModelPredictor:
         self.submission = None
 
     def load_model_from_s3(self):
-        response = self.s3.get_object(
-            Bucket=self.bucket_name, Key=self.model_key)
+        response = self.s3.get_object(Bucket=self.bucket_name, Key=self.model_key)
         self.model = joblib.load(io.BytesIO(response["Body"].read()))
         print(f"モデルをロードしました: {type(self.model)}")
 
     def load_test_data_from_s3(self):
-        response = self.s3.get_object(
-            Bucket=self.bucket_name, Key=self.test_key)
-        self.df_test = pd.read_csv(io.BytesIO(
-            response["Body"].read()), sep="\t")
+        response = self.s3.get_object(Bucket=self.bucket_name, Key=self.test_key)
+        self.df_test = pd.read_csv(io.BytesIO(response["Body"].read()), sep="\t")
         print(f"テストデータを読み込みました: {self.df_test.shape}")
 
     def predict(self):

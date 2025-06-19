@@ -76,8 +76,7 @@ def evaluate_model(X, y, params, folds, X_va2=None, y_va2=None):
             callbacks=[lgb.early_stopping(stopping_rounds=50, verbose=False)],
         )
 
-        y_val_pred = model_fold.predict(
-            X_val, num_iteration=model_fold.best_iteration)
+        y_val_pred = model_fold.predict(X_val, num_iteration=model_fold.best_iteration)
         y_val_pred_label = (y_val_pred > 0.5).astype(int)
         acc = accuracy_score(y_val, y_val_pred_label)
         val_accuracies.append(acc)
@@ -93,8 +92,7 @@ def evaluate_model(X, y, params, folds, X_va2=None, y_va2=None):
 
     if X_va2 is not None and y_va2 is not None:
         print("=== 別検証データ X_va2 の評価 ===")
-        y_va_pred = models[-1].predict(X_va2,
-                                       num_iteration=models[-1].best_iteration)
+        y_va_pred = models[-1].predict(X_va2, num_iteration=models[-1].best_iteration)
         y_va_pred_label = (y_va_pred > 0.5).astype(int)
         va_acc = accuracy_score(y_va2, y_va_pred_label)
         print(f"X_va2のAccuracy: {va_acc:.4f}")

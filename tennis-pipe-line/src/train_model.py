@@ -65,8 +65,7 @@ class LightGBMPipeline:
         self._convert_optuna_config()
 
     def _load_data_from_s3(self) -> DataFrame:
-        response = self.s3.get_object(
-            Bucket=self.bucket_name, Key=self.train_key)
+        response = self.s3.get_object(Bucket=self.bucket_name, Key=self.train_key)
         csv_body = response["Body"].read()
         return pd.read_csv(io.BytesIO(csv_body), sep="\t")
 
@@ -82,8 +81,7 @@ class LightGBMPipeline:
             optuna_cfg[param]["low"] = float(optuna_cfg[param]["low"])
             optuna_cfg[param]["high"] = float(optuna_cfg[param]["high"])
             if isinstance(optuna_cfg[param]["log"], str):
-                optuna_cfg[param]["log"] = optuna_cfg[param]["log"].lower(
-                ) == "true"
+                optuna_cfg[param]["log"] = optuna_cfg[param]["log"].lower() == "true"
 
     def optimize_params(self, n_trials: int = 30) -> Tuple[dict, optuna.study.Study]:
         optuna_cfg = self.config["optuna_params"]
@@ -135,15 +133,13 @@ class LightGBMPipeline:
             scores.append(accuracy_score(y_val, (y_pred > 0.5).astype(int)))
 
             if self.X_va2 is not None and self.y_va2 is not None:
-                y_pred_val2: NDArray[np.float64] = np.array(
-                    model.predict(self.X_va2))
+                y_pred_val2: NDArray[np.float64] = np.array(model.predict(self.X_va2))
                 val2_scores.append(
                     accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int))
                 )
 
             score_cv: float = float(np.mean(scores))
-            score_val2: float = float(
-                np.mean(val2_scores)) if val2_scores else 0.0
+            score_val2: float = float(np.mean(val2_scores)) if val2_scores else 0.0
             return 1.0 - ((score_cv + score_val2) / 2.0)
 
         study = optuna.create_study(direction="minimize")
@@ -183,8 +179,7 @@ class LightGBMPipeline:
 
     def save_model_to_s3(self, model: Booster):
         model_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)
-                            ), "../models/lgb_model.pkl"
+            os.path.dirname(os.path.abspath(__file__)), "../models/lgb_model.pkl"
         )
         joblib.dump(model, model_path)
         with open(model_path, "rb") as f:

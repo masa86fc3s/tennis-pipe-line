@@ -53,8 +53,7 @@ X_tr, X_va2, y_tr, y_va2 = train_test_split(
 )
 
 folds = list(
-    StratifiedKFold(n_splits=5, shuffle=True,
-                    random_state=42).split(X_tr, y_tr)
+    StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(X_tr, y_tr)
 )
 
 
@@ -162,8 +161,7 @@ def optimize_params_with_optuna(
                 y_pred_val2: NDArray[np.float64] = np.array(
                     model.predict(X_val2, num_iteration=model.best_iteration)
                 )
-                acc_val2 = accuracy_score(
-                    y_val2, (y_pred_val2 > 0.5).astype(int))
+                acc_val2 = accuracy_score(y_val2, (y_pred_val2 > 0.5).astype(int))
                 val2_scores.append(acc_val2)
 
         score_cv: float = float(np.mean(scores))
