@@ -5,14 +5,15 @@ import yaml
 import os
 from sklearn.preprocessing import LabelEncoder
 
-class ConfigLoader: #（YAML読み込みクラス）
+
+class ConfigLoader:  # （YAML読み込みクラス）
     @staticmethod
     def load_config(path: str) -> dict:
         with open(os.path.abspath(path), "r") as f:
             return yaml.safe_load(f)
 
 
-class S3Client: #（S3との入出力操作をまとめるクラス）
+class S3Client:  # （S3との入出力操作をまとめるクラス）
     def __init__(self, region_name: str):
         self.client = boto3.client("s3", region_name=region_name)
 
@@ -27,7 +28,7 @@ class S3Client: #（S3との入出力操作をまとめるクラス）
         self.client.put_object(Bucket=bucket, Key=key, Body=buffer.getvalue())
 
 
-class DataPreprocessor: #（前処理・特徴量生成など）
+class DataPreprocessor:  # （前処理・特徴量生成など）
     def __init__(self):
         self.label_encoders = {}
 
@@ -40,12 +41,32 @@ class DataPreprocessor: #（前処理・特徴量生成など）
         return df_train, df_test
 
     def drop_columns(self, df: pd.DataFrame) -> pd.DataFrame:
-        drop_cols = ["Player1", "Player2", "Year", "ST2.1", "ST3.1", "ST4.1", "ST5.1",
-                     "ST2.2", "ST3.2", "ST4.2", "ST5.2", "FNL.1", "FNL.2",
-                     "TPW.1", "TPW.2", "BPW.1", "BPW.2", "BPC.1", "BPC.2"]
+        drop_cols = [
+            "Player1",
+            "Player2",
+            "Year",
+            "ST2.1",
+            "ST3.1",
+            "ST4.1",
+            "ST5.1",
+            "ST2.2",
+            "ST3.2",
+            "ST4.2",
+            "ST5.2",
+            "FNL.1",
+            "FNL.2",
+            "TPW.1",
+            "TPW.2",
+            "BPW.1",
+            "BPW.2",
+            "BPC.1",
+            "BPC.2",
+        ]
         return df.drop(drop_cols, axis=1)
 
-    def impute_missing(self, df: pd.DataFrame, cols_to_impute, cols_to_zero) -> pd.DataFrame:
+    def impute_missing(
+        self, df: pd.DataFrame, cols_to_impute, cols_to_zero
+    ) -> pd.DataFrame:
         for col in cols_to_impute:
             df[col] = df[col].fillna(df[col].median())
         for col in cols_to_zero:
@@ -55,15 +76,15 @@ class DataPreprocessor: #（前処理・特徴量生成など）
     def create_features(self, df: pd.DataFrame) -> pd.DataFrame:
         df["long_rally_success_1"] = df["SSW.1"] / df["SSP.1"]
         df["aggressiveness_1"] = (
-            df["ACE.1"] * 1.0 +
-            df["WNR.1"] * 0.8 -
-            df["UFE.1"] * 0.7 -
-            df["DBF.1"] * 0.5
+            df["ACE.1"] * 1.0
+            + df["WNR.1"] * 0.8
+            - df["UFE.1"] * 0.7
+            - df["DBF.1"] * 0.5
         )
         return df
 
 
-def main(): #メイン処理（main()関数）
+def main():  # メイン処理（main()関数）
     # 設定読み込み
     yaml_path = os.path.join(os.path.dirname(__file__), "../yml/s3_data.yml")
     config = ConfigLoader.load_config(yaml_path)
@@ -85,8 +106,17 @@ def main(): #メイン処理（main()関数）
     df_train = processor.drop_columns(df_train)
     df_test = processor.drop_columns(df_test)
 
-    cols_to_impute = ['WNR.1', 'UFE.1', 'WNR.2', 'UFE.2', 'NPW.1', 'NPW.2', 'NPA.1', 'NPA.2']
-    cols_to_zero = ['ACE.1', 'DBF.1', 'ACE.2', 'DBF.2']
+    cols_to_impute = [
+        "WNR.1",
+        "UFE.1",
+        "WNR.2",
+        "UFE.2",
+        "NPW.1",
+        "NPW.2",
+        "NPA.1",
+        "NPA.2",
+    ]
+    cols_to_zero = ["ACE.1", "DBF.1", "ACE.2", "DBF.2"]
 
     df_train = processor.impute_missing(df_train, cols_to_impute, cols_to_zero)
     df_test = processor.impute_missing(df_test, cols_to_impute, cols_to_zero)

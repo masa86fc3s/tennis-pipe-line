@@ -11,17 +11,21 @@ import pickle
 # データ処理
 import pandas as pd
 import numpy as np
+
 # 機械学習・モデル
 import lightgbm as lgb
 import optuna
 from lightgbm.basic import Booster
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import accuracy_score
+
 # ファイル保存・読み込み
 import joblib
 import yaml
+
 # AWS（S3操作）
 import boto3
+
 # ==============================
 # 型ヒント・補助
 # ==============================
@@ -49,8 +53,13 @@ class LightGBMPipeline:
         self.X = self.df_train[self.features]
         self.y = self.df_train[self.target]
         self.X_tr, self.X_va2, self.y_tr, self.y_va2 = train_test_split(
-            self.X, self.y, test_size=0.2, random_state=42, stratify=self.y)
-        self.folds = list(StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(self.X_tr, self.y_tr))
+            self.X, self.y, test_size=0.2, random_state=42, stratify=self.y
+        )
+        self.folds = list(
+            StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(
+                self.X_tr, self.y_tr
+            )
+        )
 
         self.config = self._load_local_config()
         self._convert_optuna_config()
@@ -67,26 +76,40 @@ class LightGBMPipeline:
             return yaml.load(f, Loader=yaml.FullLoader)
 
     def _convert_optuna_config(self):
-        optuna_cfg = self.config['optuna_params']
-        for param in ['lambda_l1', 'lambda_l2']:
-            optuna_cfg[param]['low'] = float(optuna_cfg[param]['low'])
-            optuna_cfg[param]['high'] = float(optuna_cfg[param]['high'])
-            if isinstance(optuna_cfg[param]['log'], str):
-                optuna_cfg[param]['log'] = optuna_cfg[param]['log'].lower() == 'true'
+        optuna_cfg = self.config["optuna_params"]
+        for param in ["lambda_l1", "lambda_l2"]:
+            optuna_cfg[param]["low"] = float(optuna_cfg[param]["low"])
+            optuna_cfg[param]["high"] = float(optuna_cfg[param]["high"])
+            if isinstance(optuna_cfg[param]["log"], str):
+                optuna_cfg[param]["log"] = optuna_cfg[param]["log"].lower() == "true"
 
     def optimize_params(self, n_trials: int = 30) -> Tuple[dict, optuna.study.Study]:
-        optuna_cfg = self.config['optuna_params']
-        base_params = self.config['model_params']
+        optuna_cfg = self.config["optuna_params"]
+        base_params = self.config["model_params"]
 
         def objective(trial: optuna.trial.Trial) -> float:
             params = base_params.copy()
-            params['lambda_l1'] = trial.suggest_float('lambda_l1', **optuna_cfg['lambda_l1'])
-            params['lambda_l2'] = trial.suggest_float('lambda_l2', **optuna_cfg['lambda_l2'])
-            params['num_leaves'] = trial.suggest_int('num_leaves', **optuna_cfg['num_leaves'])
-            params['feature_fraction'] = trial.suggest_float('feature_fraction', **optuna_cfg['feature_fraction'])
-            params['bagging_fraction'] = trial.suggest_float('bagging_fraction', **optuna_cfg['bagging_fraction'])
-            params['bagging_freq'] = trial.suggest_int('bagging_freq', **optuna_cfg['bagging_freq'])
-            params['min_child_samples'] = trial.suggest_int('min_child_samples', **optuna_cfg['min_child_samples'])
+            params["lambda_l1"] = trial.suggest_float(
+                "lambda_l1", **optuna_cfg["lambda_l1"]
+            )
+            params["lambda_l2"] = trial.suggest_float(
+                "lambda_l2", **optuna_cfg["lambda_l2"]
+            )
+            params["num_leaves"] = trial.suggest_int(
+                "num_leaves", **optuna_cfg["num_leaves"]
+            )
+            params["feature_fraction"] = trial.suggest_float(
+                "feature_fraction", **optuna_cfg["feature_fraction"]
+            )
+            params["bagging_fraction"] = trial.suggest_float(
+                "bagging_fraction", **optuna_cfg["bagging_fraction"]
+            )
+            params["bagging_freq"] = trial.suggest_int(
+                "bagging_freq", **optuna_cfg["bagging_freq"]
+            )
+            params["min_child_samples"] = trial.suggest_int(
+                "min_child_samples", **optuna_cfg["min_child_samples"]
+            )
 
             scores = []
             val2_scores = []
@@ -95,13 +118,23 @@ class LightGBMPipeline:
                 y_train, y_val = self.y_tr.iloc[train_idx], self.y_tr.iloc[val_idx]
                 dtrain = lgb.Dataset(X_train, y_train)
                 dvalid = lgb.Dataset(X_val, y_val, reference=dtrain)
-                model = lgb.train(params, dtrain, valid_sets=[dvalid], num_boost_round=1000,
-                                  callbacks=[lgb.early_stopping(50, verbose=False), lgb.log_evaluation(0)])
+                model = lgb.train(
+                    params,
+                    dtrain,
+                    valid_sets=[dvalid],
+                    num_boost_round=1000,
+                    callbacks=[
+                        lgb.early_stopping(50, verbose=False),
+                        lgb.log_evaluation(0),
+                    ],
+                )
                 y_pred = model.predict(X_val)
                 scores.append(accuracy_score(y_val, (y_pred > 0.5).astype(int)))
                 if self.X_va2 is not None and self.y_va2 is not None:
                     y_pred_val2 = model.predict(self.X_va2)
-                    val2_scores.append(accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int)))
+                    val2_scores.append(
+                        accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int))
+                    )
             score_cv = np.mean(scores)
             score_val2 = np.mean(val2_scores) if val2_scores else 0
             return 1 - ((score_cv + score_val2) / 2)
@@ -118,8 +151,13 @@ class LightGBMPipeline:
             y_train, y_val = self.y_tr.iloc[train_idx], self.y_tr.iloc[val_idx]
             dtrain = lgb.Dataset(X_train, y_train)
             dvalid = lgb.Dataset(X_val, y_val)
-            model = lgb.train(params, dtrain, valid_sets=[dvalid], num_boost_round=1000,
-                              callbacks=[lgb.early_stopping(50), lgb.log_evaluation(10)])
+            model = lgb.train(
+                params,
+                dtrain,
+                valid_sets=[dvalid],
+                num_boost_round=1000,
+                callbacks=[lgb.early_stopping(50), lgb.log_evaluation(10)],
+            )
             y_pred = model.predict(X_val)
             acc = accuracy_score(y_val, (y_pred > 0.5).astype(int))
             val_scores.append(acc)
@@ -133,7 +171,9 @@ class LightGBMPipeline:
         return val_scores, base_scores, models[best_index]
 
     def save_model_to_s3(self, model: Booster):
-        model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../models/lgb_model.pkl")
+        model_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "../models/lgb_model.pkl"
+        )
         joblib.dump(model, model_path)
         with open(model_path, "rb") as f:
             self.s3.upload_fileobj(f, self.bucket_name, self.model_output_key)

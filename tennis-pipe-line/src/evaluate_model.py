@@ -9,37 +9,52 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # S3クライアント
-s3 = boto3.client('s3', region_name='ap-southeast-2')
+s3 = boto3.client("s3", region_name="ap-southeast-2")
+
 
 # S3からモデル読み込み
 def load_model_from_s3(bucket, key):
     response = s3.get_object(Bucket=bucket, Key=key)
-    body = response['Body'].read()
+    body = response["Body"].read()
     return pickle.load(io.BytesIO(body))
+
 
 # S3からデータ読み込み
 def load_data_from_s3(bucket, key):
     response = s3.get_object(Bucket=bucket, Key=key)
-    body = response['Body'].read()
-    return pd.read_csv(io.BytesIO(body), sep='\t')
+    body = response["Body"].read()
+    return pd.read_csv(io.BytesIO(body), sep="\t")
+
 
 # 設定
-BUCKET_NAME = 'tennis-pipe-line'
-MODEL_KEY = 'model/lgb_model.pkl'
-DATA_KEY = 'data/train_preprocessed.tsv'
+BUCKET_NAME = "tennis-pipe-line"
+MODEL_KEY = "model/lgb_model.pkl"
+DATA_KEY = "data/train_preprocessed.tsv"
 
 # モデル・データ読み込み
 model = load_model_from_s3(BUCKET_NAME, MODEL_KEY)
 df = load_data_from_s3(BUCKET_NAME, DATA_KEY)
 
 # 特徴量・ターゲット
-FEATURES = ['FSW.1', 'WNR.1', 'NPW.1', 'UFE.1', 'ST1.1',
-            'FSW.2', 'NPW.2', 'UFE.2', 'SSW.2', 'WNR.2',
-            'long_rally_success_1', 'aggressiveness_1']
-TARGET = 'Result'
+FEATURES = [
+    "FSW.1",
+    "WNR.1",
+    "NPW.1",
+    "UFE.1",
+    "ST1.1",
+    "FSW.2",
+    "NPW.2",
+    "UFE.2",
+    "SSW.2",
+    "WNR.2",
+    "long_rally_success_1",
+    "aggressiveness_1",
+]
+TARGET = "Result"
 
 X = df[FEATURES]
 y = df[TARGET]
+
 
 def evaluate_model(X, y, params, folds, X_va2=None, y_va2=None):
     val_accuracies = []
@@ -53,8 +68,13 @@ def evaluate_model(X, y, params, folds, X_va2=None, y_va2=None):
         dtrain = lgb.Dataset(X_train, y_train)
         dvalid = lgb.Dataset(X_val, y_val, reference=dtrain)
 
-        model_fold = lgb.train(params, dtrain, valid_sets=[dvalid], num_boost_round=1000,
-                               callbacks=[lgb.early_stopping(stopping_rounds=50, verbose=False)])
+        model_fold = lgb.train(
+            params,
+            dtrain,
+            valid_sets=[dvalid],
+            num_boost_round=1000,
+            callbacks=[lgb.early_stopping(stopping_rounds=50, verbose=False)],
+        )
 
         y_val_pred = model_fold.predict(X_val, num_iteration=model_fold.best_iteration)
         y_val_pred_label = (y_val_pred > 0.5).astype(int)
@@ -79,6 +99,7 @@ def evaluate_model(X, y, params, folds, X_va2=None, y_va2=None):
 
     return val_accuracies, base_accuracies, models[-1], models
 
+
 # 予測ラベルの作成
 y_pred = model.predict(X, num_iteration=model.best_iteration)
 y_pred_label = (y_pred > 0.5).astype(int)
@@ -89,10 +110,9 @@ print(f"Loaded model Accuracy on the entire dataset: {accuracy:.4f}")
 
 # 混同行列表示
 cm = confusion_matrix(y, y_pred_label)
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
 plt.title("Confusion Matrix")
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.tight_layout()
 plt.show()
-

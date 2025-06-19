@@ -4,23 +4,28 @@
 import os
 import io
 import pickle
+
 # ==============================
 # サードパーティライブラリ
 # ==============================
 # データ処理
 import pandas as pd
 import numpy as np
+
 # 機械学習・モデル
 import lightgbm as lgb
 import optuna
 from lightgbm.basic import Booster
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import accuracy_score
+
 # ファイル保存・読み込み
 import joblib
 import yaml
+
 # AWS（S3操作）
 import boto3
+
 # ==============================
 # 型ヒント・補助
 # ==============================
@@ -57,9 +62,12 @@ X = df_train[features]
 y = df_train[target]
 
 X_tr, X_va2, y_tr, y_va2 = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y)
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
 
-folds = list(StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(X_tr, y_tr))
+folds = list(
+    StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(X_tr, y_tr)
+)
 
 
 def load_config(config_path: str = "../yaml/config.yaml") -> dict:
@@ -72,17 +80,16 @@ def load_config(config_path: str = "../yaml/config.yaml") -> dict:
 
 # 関数定義のあとで呼び出す！
 config = load_config()
-optuna_cfg = config['optuna_params']
+optuna_cfg = config["optuna_params"]
 # 数値に変換（必要ならループ化してもOK）
-for param in ['lambda_l1', 'lambda_l2']:
-    optuna_cfg[param]['low'] = float(optuna_cfg[param]['low'])
-    optuna_cfg[param]['high'] = float(optuna_cfg[param]['high'])
+for param in ["lambda_l1", "lambda_l2"]:
+    optuna_cfg[param]["low"] = float(optuna_cfg[param]["low"])
+    optuna_cfg[param]["high"] = float(optuna_cfg[param]["high"])
 
 # booleanの変換（必要に応じて）
-for param in ['lambda_l1', 'lambda_l2']:
-    if isinstance(optuna_cfg[param]['log'], str):
-        optuna_cfg[param]['log'] = optuna_cfg[param]['log'].lower() == 'true'
-
+for param in ["lambda_l1", "lambda_l2"]:
+    if isinstance(optuna_cfg[param]["log"], str):
+        optuna_cfg[param]["log"] = optuna_cfg[param]["log"].lower() == "true"
 
 
 def optimize_params_with_optuna(
@@ -91,35 +98,51 @@ def optimize_params_with_optuna(
     folds: List[Tuple[np.ndarray, np.ndarray]],
     X_val2: Optional[DataFrame] = None,
     y_val2: Optional[Series] = None,
-    n_trials: int = 30
+    n_trials: int = 30,
 ) -> Tuple[dict, optuna.study.Study]:
 
-    optuna_cfg = config['optuna_params']
-    base_params = config['model_params']
+    optuna_cfg = config["optuna_params"]
+    base_params = config["model_params"]
 
     def objective(trial: optuna.trial.Trial) -> float:
         params = base_params.copy()
 
-        params['lambda_l1'] = trial.suggest_float(
-            'lambda_l1', optuna_cfg['lambda_l1']['low'], optuna_cfg['lambda_l1']['high'], log=optuna_cfg['lambda_l1']['log']
+        params["lambda_l1"] = trial.suggest_float(
+            "lambda_l1",
+            optuna_cfg["lambda_l1"]["low"],
+            optuna_cfg["lambda_l1"]["high"],
+            log=optuna_cfg["lambda_l1"]["log"],
         )
-        params['lambda_l2'] = trial.suggest_float(
-            'lambda_l2', optuna_cfg['lambda_l2']['low'], optuna_cfg['lambda_l2']['high'], log=optuna_cfg['lambda_l2']['log']
+        params["lambda_l2"] = trial.suggest_float(
+            "lambda_l2",
+            optuna_cfg["lambda_l2"]["low"],
+            optuna_cfg["lambda_l2"]["high"],
+            log=optuna_cfg["lambda_l2"]["log"],
         )
-        params['num_leaves'] = trial.suggest_int(
-            'num_leaves', optuna_cfg['num_leaves']['low'], optuna_cfg['num_leaves']['high']
+        params["num_leaves"] = trial.suggest_int(
+            "num_leaves",
+            optuna_cfg["num_leaves"]["low"],
+            optuna_cfg["num_leaves"]["high"],
         )
-        params['feature_fraction'] = trial.suggest_float(
-            'feature_fraction', optuna_cfg['feature_fraction']['low'], optuna_cfg['feature_fraction']['high']
+        params["feature_fraction"] = trial.suggest_float(
+            "feature_fraction",
+            optuna_cfg["feature_fraction"]["low"],
+            optuna_cfg["feature_fraction"]["high"],
         )
-        params['bagging_fraction'] = trial.suggest_float(
-            'bagging_fraction', optuna_cfg['bagging_fraction']['low'], optuna_cfg['bagging_fraction']['high']
+        params["bagging_fraction"] = trial.suggest_float(
+            "bagging_fraction",
+            optuna_cfg["bagging_fraction"]["low"],
+            optuna_cfg["bagging_fraction"]["high"],
         )
-        params['bagging_freq'] = trial.suggest_int(
-            'bagging_freq', optuna_cfg['bagging_freq']['low'], optuna_cfg['bagging_freq']['high']
+        params["bagging_freq"] = trial.suggest_int(
+            "bagging_freq",
+            optuna_cfg["bagging_freq"]["low"],
+            optuna_cfg["bagging_freq"]["high"],
         )
-        params['min_child_samples'] = trial.suggest_int(
-            'min_child_samples', optuna_cfg['min_child_samples']['low'], optuna_cfg['min_child_samples']['high']
+        params["min_child_samples"] = trial.suggest_int(
+            "min_child_samples",
+            optuna_cfg["min_child_samples"]["low"],
+            optuna_cfg["min_child_samples"]["high"],
         )
 
         scores: List[float] = []
@@ -139,8 +162,8 @@ def optimize_params_with_optuna(
                 num_boost_round=1000,
                 callbacks=[
                     lgb.early_stopping(stopping_rounds=50, verbose=False),
-                    lgb.log_evaluation(period=0)
-                ]
+                    lgb.log_evaluation(period=0),
+                ],
             )
 
             y_pred_val = model.predict(X_val_fold, num_iteration=model.best_iteration)
@@ -170,16 +193,24 @@ def optimize_params_with_optuna(
 
 
 def evaluate_model_cv(
-    X: DataFrame,                                               #特徴量データ（トレーニング全体）
-    y: Series,                                                  #目的変数（ラベル）
-    params: dict,                                               #LightGBMモデルのハイパーパラメータ
-    folds: List[Tuple[np.ndarray, np.ndarray]],                 #KFoldで生成した学習・検証インデックスのリスト（タプル）
-    X_va2: Optional[DataFrame] = None,                          #別検証用の特徴量データ（任意）
-    y_va2: Optional[Series] = None                              #別検証用のラベルデータ（任意）
+    X: DataFrame,  # 特徴量データ（トレーニング全体）
+    y: Series,  # 目的変数（ラベル）
+    params: dict,  # LightGBMモデルのハイパーパラメータ
+    folds: List[
+        Tuple[np.ndarray, np.ndarray]
+    ],  # KFoldで生成した学習・検証インデックスのリスト（タプル）
+    X_va2: Optional[DataFrame] = None,  # 別検証用の特徴量データ（任意）
+    y_va2: Optional[Series] = None,  # 別検証用のラベルデータ（任意）
 ) -> Tuple[List[float], List[float], Booster, List[Booster]]:
-    val_accuracies: List[float] = []                            #各foldごとのLightGBMモデルの検証データでの精度（accuracy）のリスト
-    base_accuracies: List[float] = []                           #各foldごとの「ベースライン精度」（= 予測せずに一番多いクラスで全部予測）のリスト
-    models: List[Booster] = []                                  #各foldごとに学習されたLightGBMモデル（Boosterオブジェクト）のリスト
+    val_accuracies: List[float] = (
+        []
+    )  # 各foldごとのLightGBMモデルの検証データでの精度（accuracy）のリスト
+    base_accuracies: List[float] = (
+        []
+    )  # 各foldごとの「ベースライン精度」（= 予測せずに一番多いクラスで全部予測）のリスト
+    models: List[Booster] = (
+        []
+    )  # 各foldごとに学習されたLightGBMモデル（Boosterオブジェクト）のリスト
 
     for fold, (train_idx, val_idx) in enumerate(folds):
         print(f"Fold {fold + 1}")
@@ -194,10 +225,7 @@ def evaluate_model_cv(
             dtrain,
             valid_sets=[dvalid],
             num_boost_round=1000,
-            callbacks=[
-                lgb.early_stopping(50),
-                lgb.log_evaluation(10)
-            ]
+            callbacks=[lgb.early_stopping(50), lgb.log_evaluation(10)],
         )
 
         y_pred = model.predict(X_val_fold)
@@ -229,7 +257,9 @@ best_params, _ = optimize_params_with_optuna(X_tr, y_tr, folds, n_trials=30)
 print("クロスバリデーションでモデル評価中...")
 best_model = evaluate_model_cv(X_tr, y_tr, best_params, folds, X_va2, y_va2)
 
-val_accuracies, base_accuracies, models = evaluate_model_cv(X_tr, y_tr, best_params, folds, X_va2, y_va2)
+val_accuracies, base_accuracies, models = evaluate_model_cv(
+    X_tr, y_tr, best_params, folds, X_va2, y_va2
+)
 
 # 一番精度の高かったモデルを選んで保存（例）
 best_index = np.argmax(val_accuracies)
@@ -249,9 +279,3 @@ with open(model_path, "rb") as f:
     s3.upload_fileobj(f, bucket_name, model_output_key)
 
 print("最良モデルをS3に保存しました。")
-
-
-
-
-
-

@@ -48,13 +48,17 @@ class ModelPredictor:
 
         self.predictions = y_pred_label
 
-        self.submission = pd.DataFrame({
-            'id': self.df_test['id'],
-            'Result': self.predictions
-        })
+        self.submission = pd.DataFrame(
+            {"id": self.df_test["id"], "Result": self.predictions}
+        )
         print("予測が完了しました。")
 
-    def save_submission(self, local_path: str = "submission.csv", upload_to_s3: bool = False, s3_key: str = "data/submission.csv"):
+    def save_submission(
+        self,
+        local_path: str = "submission.csv",
+        upload_to_s3: bool = False,
+        s3_key: str = "data/submission.csv",
+    ):
         # ローカル保存
         self.submission.to_csv(local_path, index=False, header=False)
         print(f"submission.csv をローカルに保存しました: {local_path}")
@@ -62,9 +66,13 @@ class ModelPredictor:
         # S3保存（必要な場合）
         if upload_to_s3:
             csv_buffer = io.StringIO()
-            self.submission.to_csv(csv_buffer, sep='\t', index=False)
-            self.s3.put_object(Bucket=self.bucket_name, Key=s3_key, Body=csv_buffer.getvalue())
-            print(f"submission.csv を S3 に保存しました: s3://{self.bucket_name}/{s3_key}")
+            self.submission.to_csv(csv_buffer, sep="\t", index=False)
+            self.s3.put_object(
+                Bucket=self.bucket_name, Key=s3_key, Body=csv_buffer.getvalue()
+            )
+            print(
+                f"submission.csv を S3 に保存しました: s3://{self.bucket_name}/{s3_key}"
+            )
 
 
 if __name__ == "__main__":

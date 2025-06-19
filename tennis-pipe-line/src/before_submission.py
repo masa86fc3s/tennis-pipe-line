@@ -1,4 +1,3 @@
-
 # scripts/predict_model.py（またはevaluate_model.pyを置き換えてもOK）
 import pandas as pd
 import boto3
@@ -40,10 +39,9 @@ else:
     y_pred_label = (y_pred > 0.5).astype(int)
 
 # 提出用DataFrame作成
-submission = pd.DataFrame({
-    'id': df_test['id'],  # カラム名は適宜確認
-    'Result': y_pred_label
-})
+submission = pd.DataFrame(
+    {"id": df_test["id"], "Result": y_pred_label}  # カラム名は適宜確認
+)
 
 # CSV保存（ローカルに保存したい場合）
 submission.to_csv("submission.csv", index=False, header=False)
@@ -51,8 +49,7 @@ submission.to_csv("submission.csv", index=False, header=False)
 print("予測完了、submission.csvを出力しました。")
 
 
-
-#s3に保存したいときは以下のコードを実行する
+# s3に保存したいときは以下のコードを実行する
 """"
 # ===============================
 # 提出用ファイルもS3にアップロード
