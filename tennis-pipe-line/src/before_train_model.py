@@ -25,6 +25,7 @@ import boto3
 from typing import Tuple, List, Optional
 from pandas import DataFrame, Series
 from numpy.typing import NDArray
+from typing import BinaryIO  # 追加する
 
 # YAMLファイルの絶対パスを取得して読み込み
 yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
@@ -226,7 +227,9 @@ model_path = os.path.join(base_dir, "../models/lgb_model.pkl")
 
 joblib.dump(best_model, model_path)
 
-with open(model_path, "rb") as f:
-    s3.upload_fileobj(f, bucket_name, model_output_key)
+
+model_file: BinaryIO
+with open(model_path, "rb") as model_file:
+    s3.upload_fileobj(model_file, bucket_name, model_output_key)
 
 print("最良モデルをS3に保存しました。")
