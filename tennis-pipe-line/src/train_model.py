@@ -30,7 +30,7 @@ from pandas import DataFrame, Series
 
 
 class LightGBMPipeline:
-    def __init__(self, config_path: str = "../yml/s3_data.yaml"):
+    def __init__(self, config_path: str = "../yml/s3_data.yml"):
         base_dir = os.path.dirname(os.path.abspath(__file__))
         yaml_path = os.path.join(base_dir, config_path)
         with open(yaml_path, "r") as f:
