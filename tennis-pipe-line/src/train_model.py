@@ -5,12 +5,14 @@ import os
 import io
 import pickle
 from typing import List
+
 # ==============================
 # サードパーティライブラリ
 # ==============================
 # データ処理
 import pandas as pd
 import numpy as np
+from numpy.typing import NDArray
 
 # 機械学習・モデル
 import lightgbm as lgb
@@ -128,25 +130,27 @@ class LightGBMPipeline:
                         lgb.log_evaluation(0),
                     ],
                 )
-                y_pred = model.predict(X_val)
-                # numpy配列であることを確認
-                y_pred = np.array(y_pred) 
-                scores.append(accuracy_score(y_val, (y_pred > 0.5).astype(int)))
-                if self.X_va2 is not None and self.y_va2 is not None:
-                    y_pred_val2 = model.predict(self.X_va2)
-                    val2_scores.append(
-                        accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int))
-                    )
-            score_cv = np.mean(scores)
-            score_val2 = np.mean(val2_scores) if val2_scores else 0
-            return 1 - ((score_cv + score_val2) / 2)
+                            # 型を明示しつつ、一度だけ代入する
+            y_pred: NDArray[np.float64] = np.array(model.predict(X_val))
+            scores.append(accuracy_score(y_val, (y_pred > 0.5).astype(int)))
 
+            if self.X_va2 is not None and self.y_va2 is not None:
+                y_pred_val2: NDArray[np.float64] = np.array(model.predict(self.X_va2))
+                val2_scores.append(
+                    accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int))
+                )
+
+            score_cv: float = float(np.mean(scores))
+            score_val2: float = float(np.mean(val2_scores)) if val2_scores else 0.0
+            return 1.0 - ((score_cv + score_val2) / 2.0)
         study = optuna.create_study(direction="minimize")
         study.optimize(objective, n_trials=n_trials)
         return study.best_params, study
 
     def evaluate_cv(self, params: dict) -> Tuple[List[float], List[float], Booster]:
-        val_scores, base_scores, models = [], [], []
+        val_scores: List[float] = []
+        base_scores: List[float] = []
+        models: List[Booster] = []
         for fold, (train_idx, val_idx) in enumerate(self.folds):
             print(f"Fold {fold + 1}")
             X_train, X_val = self.X_tr.iloc[train_idx], self.X_tr.iloc[val_idx]
