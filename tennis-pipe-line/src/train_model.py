@@ -30,7 +30,7 @@ from pandas import DataFrame, Series
 
 
 class LightGBMPipeline:
-    def __init__(self, config_path: str = "../yaml/s3_data.yaml"):
+    def __init__(self, config_path: str = "../yml/s3_data.yaml"):
         base_dir = os.path.dirname(os.path.abspath(__file__))
         yaml_path = os.path.join(base_dir, config_path)
         with open(yaml_path, "r") as f:
@@ -60,7 +60,7 @@ class LightGBMPipeline:
         csv_body = response["Body"].read()
         return pd.read_csv(io.BytesIO(csv_body), sep="\t")
 
-    def _load_local_config(self, config_path: str = "../yaml/config.yaml") -> dict:
+    def _load_local_config(self, config_path: str = "../yml/config.yml") -> dict:
         base_dir = os.path.dirname(os.path.abspath(__file__))
         full_path = os.path.join(base_dir, config_path)
         with open(full_path, "r") as f:

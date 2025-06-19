@@ -68,7 +68,7 @@ class ModelPredictor:
 
 
 if __name__ == "__main__":
-    yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
+    yaml_path = os.path.join(os.path.dirname(__file__), "../yml/s3_data.yml")
     predictor = ModelPredictor(yaml_path)
     predictor.load_model_from_s3()
     predictor.load_test_data_from_s3()

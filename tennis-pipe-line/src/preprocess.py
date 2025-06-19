@@ -65,7 +65,7 @@ class DataPreprocessor: #（前処理・特徴量生成など）
 
 def main(): #メイン処理（main()関数）
     # 設定読み込み
-    yaml_path = os.path.join(os.path.dirname(__file__), "../yaml/s3_data.yaml")
+    yaml_path = os.path.join(os.path.dirname(__file__), "../yml/s3_data.yml")
     config = ConfigLoader.load_config(yaml_path)
 
     bucket = config["s3"]["bucket_name"]
