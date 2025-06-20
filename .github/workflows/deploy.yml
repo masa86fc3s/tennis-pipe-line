@@ -19,7 +19,7 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -i "tennis-pipe.pem" ubuntu@ec2-13-239-184-128.ap-southeast-2.compute.amazonaws.com << 'EOF'
+          ssh -i ~/.ssh/tennis-pipe.pem ubuntu@ec2-13-239-184-128.ap-southeast-2.compute.amazonaws.com<< 'EOF'
             cd /home/make-pipeline/tennis-pipe-line
             git pull origin master
             # 必要に応じて仮想環境の更新やサービスの再起動など
