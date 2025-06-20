@@ -20,7 +20,7 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r tennis-pipe-line/requirements.txt
+        run: pip install -r ../../requirements.txt
 
       - name: Run pipeline
-        run: python tennis-pipe-line/pipeline.py
+        run: python ../../tennis-pipe-line/src/pipeline.py
