@@ -25,7 +25,7 @@ jobs:
           ls -l
 
       - name: Install dependencies
-        run: pip install -r ../../requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run pipeline
-        run: python ../../tennis-pipe-line/src/pipeline.py
+        run: python tennis-pipe-line/pipeline.py
