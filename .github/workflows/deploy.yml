@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -i ~/.ssh/tennis-pipe.pem -o StrictHostKeyChecking=no ubuntu@ec2-13-239-184-128.ap-southeast-2.compute.amazonaws.com << 'EOF'
-            cd /home/make-pipeline/tennis-pipe-line
+            cd /make-pipeline/tennis-pipe-line
             git pull origin master
             # 仮想環境の更新・アプリ再起動など
             pkill -f app.py || true
