@@ -11,6 +11,7 @@ test_key = os.path.join("data")
 model_output_key = os.path.join("output")
 model_key = os.path.join("models")
 
+
 # ディレクトリ作成
 for path in [train_key, test_key, model_output_key, model_key]:
     os.makedirs(path, exist_ok=True)
