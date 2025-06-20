@@ -14,14 +14,16 @@ jobs:
 
       - name: Set up SSH key
         run: |
+          mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/tennis-pipe.pem
           chmod 400 ~/.ssh/tennis-pipe.pem
 
       - name: Deploy to EC2
         run: |
-          ssh -i ~/.ssh/tennis-pipe.pem ubuntu@ec2-13-239-184-128.ap-southeast-2.compute.amazonaws.com<< 'EOF'
+          ssh -i ~/.ssh/tennis-pipe.pem -o StrictHostKeyChecking=no ubuntu@ec2-13-239-184-128.ap-southeast-2.compute.amazonaws.com << 'EOF'
             cd /home/make-pipeline/tennis-pipe-line
             git pull origin master
-            # 必要に応じて仮想環境の更新やサービスの再起動など
-            systemctl restart your-app.service
+            # 仮想環境の更新・アプリ再起動など
+            pkill -f app.py || true
+            nohup python3 app.py > app.log 2>&1 &
           EOF
