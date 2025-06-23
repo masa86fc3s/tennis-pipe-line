@@ -15,13 +15,6 @@ for path in [train_key, test_key, model_output_key, model_key]:
     os.makedirs(path, exist_ok=True)
 
 
-
-
-
-
-
-
-
 def run_script(script_relative_path: str):
     script_path = os.path.join(BASE_DIR, script_relative_path)
     print(f"\n===== 実行中: {script_path} =====")
