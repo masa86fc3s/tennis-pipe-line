@@ -7,7 +7,7 @@ def submit_to_signate(competition_id: int, submission_file: str, comment: str = 
         print(f"[ERROR] 提出ファイルが存在しません: {submission_file}")
         return
 
-    print(f"\n===== Signate提出開始 =====")
+    print("\n===== Signate提出開始 =====")
     command = ["signate", "submit", f"--competition-id={competition_id}"]
 
     # ファイルパスは位置引数として最後に
@@ -18,5 +18,5 @@ def submit_to_signate(competition_id: int, submission_file: str, comment: str = 
         print(result.stdout)
         print("[SUCCESS] 提出が正常に完了しました。")
     except subprocess.CalledProcessError as e:
-        print(f"[ERROR] Signate提出コマンドでエラーが発生しました")
+        print("[ERROR] Signate提出コマンドでエラーが発生しました")
         print(e.stderr)
