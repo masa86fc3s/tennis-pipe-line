@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Signate CLI
+        run: pip install signate
+
       - name: Checkout code
         uses: actions/checkout@v3
 
