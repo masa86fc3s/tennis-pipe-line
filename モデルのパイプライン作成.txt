@@ -35,3 +35,6 @@ SQL : 基本的な構文
 aws s3 cp test.tsv s3://tennis-pipe-line/data/test.tsv --region ap-southeast-2
 （最初に送りたいファイルの名前、//作ったバケットの名前/再生したいディレクトリの名前/送りたいファイルの名前 --regionはawsリージョンに記載されているコード）
 
+シグネイトの自動提出までは作成したい
+
+
