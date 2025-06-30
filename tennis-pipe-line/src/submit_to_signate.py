@@ -1,6 +1,7 @@
 import subprocess
 import os
 
+
 def submit_to_signate(competition_id: int, submission_file: str, comment: str = ""):
     if not os.path.exists(submission_file):
         print(f"[ERROR] 提出ファイルが存在しません: {submission_file}")
@@ -8,8 +9,6 @@ def submit_to_signate(competition_id: int, submission_file: str, comment: str = 
 
     print(f"\n===== Signate提出開始 =====")
     command = ["signate", "submit", f"--competition-id={competition_id}"]
-
-    
 
     # ファイルパスは位置引数として最後に
     command.append(submission_file)
