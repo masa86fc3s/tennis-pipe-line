@@ -7,7 +7,7 @@ def upload_directory(local_directory, bucket_name):
     for root, dirs, files in os.walk(local_directory):
         for file in files:
             # フォルダ名によるスキップ
-            skip_folders = ['.git', '__pycache__', '.mypy_cache', '.pytest_cache']
+            skip_folders = ['.git', '__pycache__', '.mypy_cache', '.pytest_cache','sagemaker-env']
             if any(skip in root for skip in skip_folders):
                 continue
 
