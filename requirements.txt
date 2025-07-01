@@ -9,3 +9,4 @@ boto3
 dash>=3.0.0
 mypy
 flake8
+sagemaker

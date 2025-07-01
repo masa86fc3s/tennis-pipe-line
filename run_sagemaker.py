@@ -1,18 +1,36 @@
 import sagemaker
 from sagemaker.processing import ScriptProcessor
 from sagemaker.processing import ProcessingInput, ProcessingOutput
+# もしくは明示的に
+import boto3
+from sagemaker import Session
 
-role = "arn:aws:iam::xxxxxxxxxxxx:role/YourSageMakerRole"  # 自分のIAMロールARNにする
+boto_session = boto3.session.Session(region_name='ap-southeast-2')  # ←東京ならこれ
+sagemaker_session = Session(boto_session=boto_session)
+
+
+role = "arn:aws:iam::216989098479:user/masa86fc3s"  # 自分のIAMロールARNにする
 bucket = "tennis-sagemaker"
-script_path_in_s3 = "s3://tennis-sagemaker/tennis-pipe-line/train_model.py"
+script_path_in_s3 = "s3://tennis-sagemaker/tennis-pipe-line/pipeline.py"
 
-# 処理用インスタンス指定（無料枠なら ml.t3.mediumとか ml.m5.largeあたりが安い）
+from sagemaker import image_uris
+
+image_uri = image_uris.retrieve(
+    framework='scikit-learn',
+    region='ap-southeast-2',
+    version='1.0-1',
+    py_version='py3',
+    instance_type="ml.t3.medium",
+)
+print(image_uri)
+
 script_processor = ScriptProcessor(
-    image_uri="683313688378.dkr.ecr.ap-northeast-1.amazonaws.com/sagemaker-scikit-learn:1.0-1-cpu-py3",  # scikit-learn用公式コンテナ
+    image_uri=image_uri,  # ここでimage_uris.retrieveの結果を使う
     command=["python3"],
-    instance_type="ml.m5.large",
+    instance_type="ml.t3.medium",
     instance_count=1,
     role=role,
+    sagemaker_session=sagemaker_session,
 )
 
 script_processor.run(
