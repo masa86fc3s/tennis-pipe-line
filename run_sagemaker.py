@@ -1,53 +1,81 @@
 import boto3
-from sagemaker import Session, image_uris
-from sagemaker.processing import ScriptProcessor, ProcessingInput, ProcessingOutput
+import sagemaker
+from sagemaker.workflow.pipeline import Pipeline
+from sagemaker.workflow.steps import ProcessingStep, TrainingStep
+from sagemaker.processing import ScriptProcessor
+from sagemaker.sklearn.estimator import SKLearn
+from sagemaker.workflow.parameters import ParameterString
+from sagemaker.processing import ProcessingOutput
 
-# 必要情報
+# --- リージョン指定とセッション初期化 ---
 region = "ap-southeast-2"
+boto_session = boto3.Session(region_name=region)
+session = sagemaker.Session(boto_session=boto_session)
+
+# --- IAMロール設定 ---
 role = "arn:aws:iam::216989098479:role/service-role/AmazonSageMaker-ExecutionRole-20250630T164486"
-bucket = "tennis-sagemaker"
 
-boto_session = boto3.session.Session(region_name=region)
-sagemaker_session = Session(boto_session=boto_session)
+# --- パイプラインパラメータ ---
+bucket_param = ParameterString(name="InputBucket", default_value="tennis-pipe-line")
+model_output_path = f"s3://{bucket_param.default_value}/models/"
 
-# Dockerイメージ (scikit-learn)
-image_uri = image_uris.retrieve(
-    framework='sklearn',
-    region=region,
-    version='1.0-1',
-    py_version='py3'
-)
-print(image_uri)
-
-# ScriptProcessor 定義
-script_processor = ScriptProcessor(
-    image_uri=image_uri,
+# --- 1. 前処理ステップ ---
+preprocess_processor = ScriptProcessor(
+    image_uri="763104351884.dkr.ecr.ap-southeast-2.amazonaws.com/python-training:3.9",
     command=["python3"],
-    instance_type="ml.t3.medium",
     instance_count=1,
+    instance_type="ml.t3.medium",
+    base_job_name="tennis-preprocess",
     role=role,
-    sagemaker_session=sagemaker_session,
+    sagemaker_session=session,
 )
 
-# ジョブ実行
-script_processor.run(
-    code="tennis-pipe-line/sagemaker-pipeline.py",  # ローカル相対パス
-    inputs=[
-        ProcessingInput(
-            source=f"s3://{bucket}/tennis-pipe-line/",
-            destination="/opt/ml/processing/input/tennis-pipe-line",
-        ),
-        ProcessingInput(
-            source=f"s3://{bucket}/requirements.txt",
-            destination="/opt/ml/processing/input/",
-        ),
-    ],
+preprocess_step = ProcessingStep(
+    name="PreprocessData",
+    processor=preprocess_processor,
     outputs=[
         ProcessingOutput(
-            source="/opt/ml/processing/output/",
-            destination=f"s3://{bucket}/output/",
+            output_name="preprocessed_train",
+            source="/opt/ml/processing/output/train_preprocessed.tsv",
+            destination=f"s3://{bucket_param.default_value}/data/"
+        ),
+        ProcessingOutput(
+            output_name="preprocessed_test",
+            source="/opt/ml/processing/output/test_preprocessed.tsv",
+            destination=f"s3://{bucket_param.default_value}/data/"
         ),
     ],
+    code="tennis-pipeline/src/preprocess.py",
 )
 
+# --- 2. 学習ステップ ---
+sklearn_estimator = SKLearn(
+    entry_point="tennis-pipeline/src/train_model.py",
+    role=role,
+    instance_count=1,
+    instance_type="ml.t2.medium",  # 無料枠
+    framework_version="0.23-1",
+    sagemaker_session=session,
+    base_job_name="tennis-lgbm-train",
+    output_path=model_output_path,
+)
 
+training_step = TrainingStep(
+    name="TrainLightGBMModel",
+    estimator=sklearn_estimator,
+    inputs={},
+)
+
+# --- 3. パイプライン定義 ---
+pipeline = Pipeline(
+    name="TennisModelPipeline",
+    parameters=[bucket_param],
+    steps=[preprocess_step, training_step],
+    sagemaker_session=session,
+)
+
+# --- パイプライン登録と実行 ---
+pipeline.upsert(role_arn=role)
+execution = pipeline.start()
+
+print(f"Pipeline {pipeline.name} が実行開始されました。")

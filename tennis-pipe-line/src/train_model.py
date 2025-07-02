@@ -1,55 +1,36 @@
-# ==============================
-# 標準ライブラリ
-# ==============================
 import os
 import io
-
-# ==============================
-# サードパーティライブラリ
-# ==============================
-# データ処理
+import argparse
 import pandas as pd
 import numpy as np
-from numpy.typing import NDArray
-
-# 機械学習・モデル
 import lightgbm as lgb
 import optuna
-from lightgbm.basic import Booster
+import joblib
+import yaml
+import boto3
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import accuracy_score
 
-# ファイル保存・読み込み
-import joblib
-import yaml
-
-# AWS（S3操作）
-import boto3
-
-# ==============================
-# 型ヒント・補助
-# ==============================
-from typing import Tuple, List
-from pandas import DataFrame
-
-
 class LightGBMPipeline:
-    def __init__(self, config_path: str = "../yml/s3_data.yml"):
+    def __init__(self, train_data_path: str, model_output_dir: str, config_path: str = "../yml/config.yml"):
+        self.train_data_path = train_data_path
+        self.model_output_dir = model_output_dir
+
+        # config読み込み
         base_dir = os.path.dirname(os.path.abspath(__file__))
-        yaml_path = os.path.join(base_dir, config_path)
-        with open(yaml_path, "r") as f:
-            config = yaml.safe_load(f)
+        full_config_path = os.path.join(base_dir, config_path)
+        with open(full_config_path, "r") as f:
+            self.config = yaml.load(f, Loader=yaml.FullLoader)
 
-        self.bucket_name = config["s3"]["bucket_name"]
-        self.train_key = config["s3"]["train_key"]
-        self.model_output_key = config["s3"]["model_output_key"]
-        self.region = config["s3"]["region"]
+        # S3クライアント（もし必要なら）
+        self.bucket_name = None
+        self.region = None
 
-        self.features = config["features"]["columns"]
-        self.target = config["target"]
-        self.s3 = boto3.client("s3", region_name=self.region)
+        # データ読み込み
+        self.df_train = pd.read_csv(self.train_data_path, sep="\t")
+        self.features = self.config["features"]["columns"]
+        self.target = self.config["target"]
 
-        self.df_train = self._load_data_from_s3()
         self.X = self.df_train[self.features]
         self.y = self.df_train[self.target]
         self.X_tr, self.X_va2, self.y_tr, self.y_va2 = train_test_split(
@@ -61,58 +42,22 @@ class LightGBMPipeline:
             )
         )
 
-        self.config = self._load_local_config()
-        self._convert_optuna_config()
-
-    def _load_data_from_s3(self) -> DataFrame:
-        response = self.s3.get_object(Bucket=self.bucket_name, Key=self.train_key)
-        csv_body = response["Body"].read()
-        return pd.read_csv(io.BytesIO(csv_body), sep="\t")
-
-    def _load_local_config(self, config_path: str = "../yml/config.yml") -> dict:
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        full_path = os.path.join(base_dir, config_path)
-        with open(full_path, "r") as f:
-            return yaml.load(f, Loader=yaml.FullLoader)
-
-    def _convert_optuna_config(self):
-        optuna_cfg = self.config["optuna_params"]
-        for param in ["lambda_l1", "lambda_l2"]:
-            optuna_cfg[param]["low"] = float(optuna_cfg[param]["low"])
-            optuna_cfg[param]["high"] = float(optuna_cfg[param]["high"])
-            if isinstance(optuna_cfg[param]["log"], str):
-                optuna_cfg[param]["log"] = optuna_cfg[param]["log"].lower() == "true"
-
-    def optimize_params(self, n_trials: int = 30) -> Tuple[dict, optuna.study.Study]:
+    def optimize_params(self, n_trials: int = 30):
         optuna_cfg = self.config["optuna_params"]
         base_params = self.config["model_params"]
 
-        def objective(trial: optuna.trial.Trial) -> float:
+        def objective(trial):
             params = base_params.copy()
-            params["lambda_l1"] = trial.suggest_float(
-                "lambda_l1", **optuna_cfg["lambda_l1"]
-            )
-            params["lambda_l2"] = trial.suggest_float(
-                "lambda_l2", **optuna_cfg["lambda_l2"]
-            )
-            params["num_leaves"] = trial.suggest_int(
-                "num_leaves", **optuna_cfg["num_leaves"]
-            )
-            params["feature_fraction"] = trial.suggest_float(
-                "feature_fraction", **optuna_cfg["feature_fraction"]
-            )
-            params["bagging_fraction"] = trial.suggest_float(
-                "bagging_fraction", **optuna_cfg["bagging_fraction"]
-            )
-            params["bagging_freq"] = trial.suggest_int(
-                "bagging_freq", **optuna_cfg["bagging_freq"]
-            )
-            params["min_child_samples"] = trial.suggest_int(
-                "min_child_samples", **optuna_cfg["min_child_samples"]
-            )
+            params["lambda_l1"] = trial.suggest_float("lambda_l1", **optuna_cfg["lambda_l1"])
+            params["lambda_l2"] = trial.suggest_float("lambda_l2", **optuna_cfg["lambda_l2"])
+            params["num_leaves"] = trial.suggest_int("num_leaves", **optuna_cfg["num_leaves"])
+            params["feature_fraction"] = trial.suggest_float("feature_fraction", **optuna_cfg["feature_fraction"])
+            params["bagging_fraction"] = trial.suggest_float("bagging_fraction", **optuna_cfg["bagging_fraction"])
+            params["bagging_freq"] = trial.suggest_int("bagging_freq", **optuna_cfg["bagging_freq"])
+            params["min_child_samples"] = trial.suggest_int("min_child_samples", **optuna_cfg["min_child_samples"])
 
-            scores: List[float] = []
-            val2_scores: List[float] = []
+            scores = []
+            val2_scores = []
             for train_idx, val_idx in self.folds:
                 X_train, X_val = self.X_tr.iloc[train_idx], self.X_tr.iloc[val_idx]
                 y_train, y_val = self.y_tr.iloc[train_idx], self.y_tr.iloc[val_idx]
@@ -123,33 +68,26 @@ class LightGBMPipeline:
                     dtrain,
                     valid_sets=[dvalid],
                     num_boost_round=1000,
-                    callbacks=[
-                        lgb.early_stopping(50, verbose=False),
-                        lgb.log_evaluation(0),
-                    ],
+                    callbacks=[lgb.early_stopping(50), lgb.log_evaluation(0)],
                 )
-                # 型を明示しつつ、一度だけ代入する
-            y_pred: NDArray[np.float64] = np.array(model.predict(X_val))
+            y_pred = np.array(model.predict(X_val))
             scores.append(accuracy_score(y_val, (y_pred > 0.5).astype(int)))
 
             if self.X_va2 is not None and self.y_va2 is not None:
-                y_pred_val2: NDArray[np.float64] = np.array(model.predict(self.X_va2))
-                val2_scores.append(
-                    accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int))
-                )
+                y_pred_val2 = np.array(model.predict(self.X_va2))
+                val2_scores.append(accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int)))
 
-            score_cv: float = float(np.mean(scores))
-            score_val2: float = float(np.mean(val2_scores)) if val2_scores else 0.0
+            score_cv = float(np.mean(scores))
+            score_val2 = float(np.mean(val2_scores)) if val2_scores else 0.0
             return 1.0 - ((score_cv + score_val2) / 2.0)
 
         study = optuna.create_study(direction="minimize")
         study.optimize(objective, n_trials=n_trials)
         return study.best_params, study
 
-    def evaluate_cv(self, params: dict) -> Tuple[List[float], List[float], Booster]:
-        val_scores: List[float] = []
-        base_scores: List[float] = []
-        models: List[Booster] = []
+    def evaluate_cv(self, params):
+        val_scores = []
+        models = []
         for fold, (train_idx, val_idx) in enumerate(self.folds):
             print(f"Fold {fold + 1}")
             X_train, X_val = self.X_tr.iloc[train_idx], self.X_tr.iloc[val_idx]
@@ -163,9 +101,7 @@ class LightGBMPipeline:
                 num_boost_round=1000,
                 callbacks=[lgb.early_stopping(50), lgb.log_evaluation(10)],
             )
-            y_pred = model.predict(X_val)
-            # numpy配列であることを保証
-            y_pred = np.array(y_pred)
+            y_pred = np.array(model.predict(X_val))
             acc = accuracy_score(y_val, (y_pred > 0.5).astype(int))
             val_scores.append(acc)
             models.append(model)
@@ -173,24 +109,29 @@ class LightGBMPipeline:
         if self.X_va2 is not None and self.y_va2 is not None:
             y_preds = np.mean([m.predict(self.X_va2) for m in models], axis=0)
             acc = accuracy_score(self.y_va2, (y_preds > 0.5).astype(int))
-            print(f"アンサンブルモデルの検証Accuracy: {acc:.4f}")
+            print(f"検証用データ Accuracy: {acc:.4f}")
         best_index = np.argmax(val_scores)
-        return val_scores, base_scores, models[best_index]
+        return val_scores, models[best_index]
 
-    def save_model_to_s3(self, model: Booster):
-        model_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "../models/lgb_model.pkl"
-        )
+    def save_model(self, model):
+        os.makedirs(self.model_output_dir, exist_ok=True)
+        model_path = os.path.join(self.model_output_dir, "lgb_model.pkl")
         joblib.dump(model, model_path)
-        with open(model_path, "rb") as f:
-            self.s3.upload_fileobj(f, self.bucket_name, self.model_output_key)
-        print("最良モデルをS3に保存しました。")
+        print(f"モデルを {model_path} に保存しました。")
+
+
+def main(args):
+    pipeline = LightGBMPipeline(train_data_path=args.train_data, model_output_dir=args.model_dir)
+    print("Optunaでハイパーパラメータ最適化中...")
+    best_params, _ = pipeline.optimize_params(n_trials=30)
+    print("クロスバリデーション評価中...")
+    _, best_model = pipeline.evaluate_cv(best_params)
+    pipeline.save_model(best_model)
 
 
 if __name__ == "__main__":
-    pipeline = LightGBMPipeline()
-    print("Optunaによるハイパーパラメータ最適化中...")
-    best_params, _ = pipeline.optimize_params(n_trials=30)
-    print("クロスバリデーションでモデル評価中...")
-    val_accs, base_accs, best_model = pipeline.evaluate_cv(best_params)
-    pipeline.save_model_to_s3(best_model)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--train-data", type=str, required=True, help="前処理済みの学習データTSVファイルパス")
+    parser.add_argument("--model-dir", type=str, default="/opt/ml/model", help="モデル出力ディレクトリ")
+    args = parser.parse_args()
+    main(args)
