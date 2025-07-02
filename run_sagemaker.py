@@ -1,31 +1,27 @@
-import sagemaker
-from sagemaker.processing import ScriptProcessor
-from sagemaker.processing import ProcessingInput, ProcessingOutput
-# もしくは明示的に
 import boto3
-from sagemaker import Session
+from sagemaker import Session, image_uris
+from sagemaker.processing import ScriptProcessor, ProcessingInput, ProcessingOutput
 
-boto_session = boto3.session.Session(region_name='ap-southeast-2')  # ←東京ならこれ
+# 必要情報
+region = "ap-southeast-2"
+role = "arn:aws:iam::216989098479:role/service-role/AmazonSageMaker-ExecutionRole-20250630T164486"
+bucket = "tennis-sagemaker"
+
+boto_session = boto3.session.Session(region_name=region)
 sagemaker_session = Session(boto_session=boto_session)
 
-
-role = "arn:aws:iam::216989098479:user/masa86fc3s"  # 自分のIAMロールARNにする
-bucket = "tennis-sagemaker"
-script_path_in_s3 = "s3://tennis-sagemaker/tennis-pipe-line/pipeline.py"
-
-from sagemaker import image_uris
-
+# Dockerイメージ (scikit-learn)
 image_uri = image_uris.retrieve(
-    framework='scikit-learn',
-    region='ap-southeast-2',
+    framework='sklearn',
+    region=region,
     version='1.0-1',
-    py_version='py3',
-    instance_type="ml.t3.medium",
+    py_version='py3'
 )
 print(image_uri)
 
+# ScriptProcessor 定義
 script_processor = ScriptProcessor(
-    image_uri=image_uri,  # ここでimage_uris.retrieveの結果を使う
+    image_uri=image_uri,
     command=["python3"],
     instance_type="ml.t3.medium",
     instance_count=1,
@@ -33,18 +29,25 @@ script_processor = ScriptProcessor(
     sagemaker_session=sagemaker_session,
 )
 
+# ジョブ実行
 script_processor.run(
-    code=script_path_in_s3,
+    code="tennis-pipe-line/sagemaker-pipeline.py",  # ローカル相対パス
     inputs=[
         ProcessingInput(
             source=f"s3://{bucket}/tennis-pipe-line/",
-            destination="/opt/ml/processing/input",
-        )
+            destination="/opt/ml/processing/input/tennis-pipe-line",
+        ),
+        ProcessingInput(
+            source=f"s3://{bucket}/requirements.txt",
+            destination="/opt/ml/processing/input/",
+        ),
     ],
     outputs=[
         ProcessingOutput(
-            source="/opt/ml/processing/output",
+            source="/opt/ml/processing/output/",
             destination=f"s3://{bucket}/output/",
-        )
+        ),
     ],
 )
+
+
