@@ -6,6 +6,8 @@ from sagemaker.processing import ScriptProcessor
 from sagemaker.sklearn.estimator import SKLearn
 from sagemaker.workflow.parameters import ParameterString
 from sagemaker.processing import ProcessingOutput
+from sagemaker.sklearn.processing import SKLearnProcessor
+from sagemaker.image_uris import retrieve
 
 # --- リージョン指定とセッション初期化 ---
 region = "ap-southeast-2"
@@ -21,7 +23,12 @@ model_output_path = f"s3://{bucket_param.default_value}/models/"
 
 # --- 1. 前処理ステップ ---
 preprocess_processor = ScriptProcessor(
-    image_uri="763104351884.dkr.ecr.ap-southeast-2.amazonaws.com/python-training:3.9",
+    image_uri=retrieve(
+        framework="sklearn",
+        region=region,
+        version="0.23-1",
+        instance_type="ml.t3.medium",
+    ),
     command=["python3"],
     instance_count=1,
     instance_type="ml.t3.medium",
@@ -45,15 +52,15 @@ preprocess_step = ProcessingStep(
             destination=f"s3://{bucket_param.default_value}/data/"
         ),
     ],
-    code="tennis-pipeline/src/preprocess.py",
+    code="tennis-pipe-line/src/preprocess.py",
 )
 
 # --- 2. 学習ステップ ---
 sklearn_estimator = SKLearn(
-    entry_point="tennis-pipeline/src/train_model.py",
+    entry_point="tennis-pipe-line/src/train_model.py",
     role=role,
     instance_count=1,
-    instance_type="ml.t2.medium",  # 無料枠
+    instance_type="ml.m5.large",  # ← 修正ポイント！！
     framework_version="0.23-1",
     sagemaker_session=session,
     base_job_name="tennis-lgbm-train",
@@ -63,7 +70,12 @@ sklearn_estimator = SKLearn(
 training_step = TrainingStep(
     name="TrainLightGBMModel",
     estimator=sklearn_estimator,
-    inputs={},
+    inputs={
+        "train": sagemaker.inputs.TrainingInput(
+            s3_data=preprocess_step.properties.ProcessingOutputConfig.Outputs["preprocessed_train"].S3Output.S3Uri,
+            content_type="text/csv",  # 実際のデータ形式に合わせて。例えばcsv、parquet、など
+        )
+    },
 )
 
 # --- 3. パイプライン定義 ---

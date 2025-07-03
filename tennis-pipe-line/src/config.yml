@@ -1,3 +1,19 @@
+features:
+  columns:
+    - FSW.1
+    - WNR.1
+    - NPW.1
+    - UFE.1
+    - ST1.1
+    - FSW.2
+    - NPW.2
+    - UFE.2
+    - SSW.2
+    - WNR.2
+    - long_rally_success_1
+    - aggressiveness_1
+
+target: "Result"
 # config.yaml
 model_params:
   objective: binary
@@ -14,11 +30,11 @@ optuna_params:
   lambda_l1:
     low: 1e-8
     high: 10.0
-    log: true
+    log: True
   lambda_l2:
     low: 1e-8
     high: 10.0
-    log: true
+    log: True
   num_leaves:
     low: 4
     high: 64

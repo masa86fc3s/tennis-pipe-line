@@ -1,9 +1,15 @@
+import subprocess
+import sys
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", "PyYAML"])
+
 import pandas as pd
 import boto3
 import io
 import yaml
 import os
 from sklearn.preprocessing import LabelEncoder
+
 
 
 class ConfigLoader:  # （YAML読み込みクラス）

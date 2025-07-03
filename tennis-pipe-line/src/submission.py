@@ -7,16 +7,19 @@ import yaml
 
 
 class ModelPredictor:
-    def __init__(self, yaml_path: str):
-        # YAML読み込み
-        with open(os.path.abspath(yaml_path), "r") as f:
-            config = yaml.safe_load(f)
+    def __init__(self, s3_config_path: str, features_config_path: str):
+        # S3関連のYAML読み込み
+        with open(os.path.abspath(s3_config_path), "r") as f:
+            s3_config = yaml.safe_load(f)
+        # 特徴量YAML読み込み
+        with open(os.path.abspath(features_config_path), "r") as f:
+            features_config = yaml.safe_load(f)
 
-        self.bucket_name = config["s3"]["bucket_name"]
-        self.test_key = config["s3"]["test_key"]
-        self.model_key = config["s3"]["model_key"]
-        self.region = config["s3"]["region"]
-        self.features = config["features"]["columns"]
+        self.bucket_name = s3_config["s3"]["bucket_name"]
+        self.test_key = s3_config["s3"]["test_key"]
+        self.model_key = s3_config["s3"]["model_key"]
+        self.region = s3_config["s3"]["region"]
+        self.features = features_config["features"]["columns"]
 
         self.s3 = boto3.client("s3", region_name=self.region)
         self.model = None
@@ -66,23 +69,21 @@ class ModelPredictor:
             print("self.submission が None なので、保存できませんでした")
 
         # S3保存（必要な場合）
-        if upload_to_s3:
-            if self.submission is not None:
-                csv_buffer = io.StringIO()
-                self.submission.to_csv(csv_buffer, sep="\t", index=False)
-                self.s3.put_object(
-                    Bucket=self.bucket_name, Key=s3_key, Body=csv_buffer.getvalue()
-                )
-                print(
-                    f"submission.csv を S3 に保存しました: s3://{self.bucket_name}/{s3_key}"
-                )
-            else:
-                print("submissionがNoneなので、S3に保存できません")
+        if upload_to_s3 and self.submission is not None:
+            csv_buffer = io.StringIO()
+            self.submission.to_csv(csv_buffer, sep="\t", index=False)
+            self.s3.put_object(
+                Bucket=self.bucket_name, Key=s3_key, Body=csv_buffer.getvalue()
+            )
+            print(f"submission.csv を S3 に保存しました: s3://{self.bucket_name}/{s3_key}")
 
 
 if __name__ == "__main__":
-    yaml_path = os.path.join(os.path.dirname(__file__), "../yml/s3_data.yml")
-    predictor = ModelPredictor(yaml_path)
+    base_dir = os.path.dirname(__file__)
+    s3_yaml_path = os.path.join(base_dir, "../yml/s3_data.yml")
+    features_yaml_path = os.path.join(base_dir, "features.yml")
+
+    predictor = ModelPredictor(s3_yaml_path, features_yaml_path)
     predictor.load_model_from_s3()
     predictor.load_test_data_from_s3()
     predictor.predict()
