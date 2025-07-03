@@ -8,6 +8,7 @@ from sagemaker.workflow.parameters import ParameterString
 from sagemaker.processing import ProcessingOutput
 from sagemaker.sklearn.processing import SKLearnProcessor
 from sagemaker.image_uris import retrieve
+from sagemaker.inputs import TrainingInput
 
 # --- リージョン指定とセッション初期化 ---
 region = "ap-southeast-2"
@@ -20,6 +21,14 @@ role = "arn:aws:iam::216989098479:role/service-role/AmazonSageMaker-ExecutionRol
 # --- パイプラインパラメータ ---
 bucket_param = ParameterString(name="InputBucket", default_value="tennis-pipe-line")
 model_output_path = f"s3://{bucket_param.default_value}/models/"
+from sagemaker.processing import ProcessingInput
+
+preprocess_inputs = [
+    ProcessingInput(  # ← ★ s3_data.yml を使うための input
+        source="./tennis-pipe-line/yml",  # ローカルの `yml/` ディレクトリ（s3_data.yml が入っている）
+        destination="/opt/ml/processing/input/tennis-pipe-line/yml",
+    )
+]
 
 # --- 1. 前処理ステップ ---
 preprocess_processor = ScriptProcessor(
@@ -40,6 +49,7 @@ preprocess_processor = ScriptProcessor(
 preprocess_step = ProcessingStep(
     name="PreprocessData",
     processor=preprocess_processor,
+    inputs=preprocess_inputs,  # ← ★ ここを追加
     outputs=[
         ProcessingOutput(
             output_name="preprocessed_train",
@@ -71,11 +81,15 @@ training_step = TrainingStep(
     name="TrainLightGBMModel",
     estimator=sklearn_estimator,
     inputs={
-        "train": sagemaker.inputs.TrainingInput(
-            s3_data=preprocess_step.properties.ProcessingOutputConfig.Outputs["preprocessed_train"].S3Output.S3Uri,
-            content_type="text/csv",  # 実際のデータ形式に合わせて。例えばcsv、parquet、など
-        )
-    },
+    "train": TrainingInput(
+        s3_data=preprocess_step.properties.ProcessingOutputConfig.Outputs["preprocessed_train"].S3Output.S3Uri,
+        content_type="text/tab-separated-values"
+    ),
+    "config": TrainingInput(
+        s3_data="s3://tennis-sagemaker/tennis-pipe-line/yml",
+         content_type="application/x-yaml"
+    )
+},
 )
 
 # --- 3. パイプライン定義 ---

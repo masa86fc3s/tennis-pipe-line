@@ -223,12 +223,13 @@ def main(args):
 
     pipeline = LightGBMPipeline(
         train_data_path=train_data_path,
-        s3_config_path="../yml/s3_data.yml",
-        config_path="config.yml",
-        features_path="features.yml",
+        s3_config_path="/opt/ml/input/data/config/s3_data.yml",  # 👈 修正ポイント
+        config_path="/opt/ml/input/data/config/config.yml",      # 👈 これも同様
+        features_path="/opt/ml/input/data/config/features.yml",  # 👈 これも同様
         model_output_dir=args.model_dir,
         use_s3=use_s3,
     )
+
 
     print("Optunaでハイパーパラメータ最適化中...")
     best_params, _ = pipeline.optimize_params(n_trials=30)
