@@ -10,19 +10,3 @@ s3:
   model_key: 'model/lgb_model.pkl'
   region: "ap-southeast-2"
 
-features:
-  columns:
-    - FSW.1
-    - WNR.1
-    - NPW.1
-    - UFE.1
-    - ST1.1
-    - FSW.2
-    - NPW.2
-    - UFE.2
-    - SSW.2
-    - WNR.2
-    - long_rally_success_1
-    - aggressiveness_1
-
-target: "Result"

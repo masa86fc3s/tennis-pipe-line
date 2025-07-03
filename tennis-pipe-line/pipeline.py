@@ -37,10 +37,11 @@ if __name__ == "__main__":
 
     # ステップ3: 提出ファイル作成
     run_script("src/submission.py")
-
+""""
     # ステップ4: Signateに提出
     competition_id = 118  # ← あなたのコンペIDに合わせて設定
     submission_file_path = os.path.join(BASE_DIR, "output", "submission.csv")
     submit_to_signate(competition_id, submission_file_path, comment="今日のモデル結果")
 
     print("========== モデルパイプライン完了 ==========")
+    """
