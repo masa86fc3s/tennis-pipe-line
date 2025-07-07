@@ -2,10 +2,9 @@ import boto3
 import sagemaker
 from sagemaker.workflow.pipeline import Pipeline
 from sagemaker.workflow.steps import ProcessingStep, TrainingStep
-from sagemaker.processing import ScriptProcessor
-from sagemaker.sklearn.estimator import SKLearn
+from sagemaker.processing import ScriptProcessor, ProcessingInput, ProcessingOutput
+from sagemaker.estimator import Estimator
 from sagemaker.workflow.parameters import ParameterString
-from sagemaker.processing import ProcessingOutput
 from sagemaker.sklearn.processing import SKLearnProcessor
 from sagemaker.image_uris import retrieve
 from sagemaker.inputs import TrainingInput
@@ -66,32 +65,43 @@ preprocess_step = ProcessingStep(
 )
 
 # --- 2. 学習ステップ ---
-sklearn_estimator = SKLearn(
-    entry_point="tennis-pipe-line/src/train_model.py",
+# ★汎用Python3.8コンテナを指定
+image_uri = sagemaker.image_uris.retrieve(
+    framework="pytorch",  # 軽い汎用コンテナとしてPyTorchを利用
+    region=region,
+    version="1.12.0",     # Python3.8が動くバージョン
+    py_version="py38",
+    instance_type="ml.m5.large",
+    image_scope="training",
+)
+
+estimator = Estimator(
+    entry_point="train_model.py",
+    source_dir="tennis-pipe-line/src",
     role=role,
     instance_count=1,
-    instance_type="ml.m5.large",  # ← 修正ポイント！！
-    framework_version="0.23-1",
+    instance_type="ml.m5.large",
+    image_uri=image_uri,
     sagemaker_session=session,
     base_job_name="tennis-lgbm-train",
     output_path=model_output_path,
+    dependencies=["requirements.txt"],  # ★requirements.txtを指定
 )
 
 training_step = TrainingStep(
     name="TrainLightGBMModel",
-    estimator=sklearn_estimator,
+    estimator=estimator,
     inputs={
-    "train": TrainingInput(
-        s3_data=preprocess_step.properties.ProcessingOutputConfig.Outputs["preprocessed_train"].S3Output.S3Uri,
-        content_type="text/tab-separated-values"
-    ),
-    "config": TrainingInput(
-        s3_data="s3://tennis-sagemaker/tennis-pipe-line/yml",
-         content_type="application/x-yaml"
-    )
-},
+        "train": TrainingInput(
+            s3_data=preprocess_step.properties.ProcessingOutputConfig.Outputs["preprocessed_train"].S3Output.S3Uri,
+            content_type="text/tab-separated-values"
+        ),
+        "config": TrainingInput(
+            s3_data="s3://tennis-sagemaker/tennis-pipe-line/yml",
+            content_type="application/x-yaml"
+        )
+    },
 )
-
 # --- 3. パイプライン定義 ---
 pipeline = Pipeline(
     name="TennisModelPipeline",
