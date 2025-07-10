@@ -53,12 +53,12 @@ preprocess_step = ProcessingStep(
         ProcessingOutput(
             output_name="preprocessed_train",
             source="/opt/ml/processing/output/train_preprocessed.tsv",
-            destination=f"s3://{bucket_param.default_value}/data/"
+            destination=f"s3://{bucket_param.default_value}/data/",
         ),
         ProcessingOutput(
             output_name="preprocessed_test",
             source="/opt/ml/processing/output/test_preprocessed.tsv",
-            destination=f"s3://{bucket_param.default_value}/data/"
+            destination=f"s3://{bucket_param.default_value}/data/",
         ),
     ],
     code="tennis-pipe-line/src/preprocess.py",
@@ -66,14 +66,7 @@ preprocess_step = ProcessingStep(
 
 # --- 2. 学習ステップ ---
 # ★汎用Python3.8コンテナを指定
-image_uri = sagemaker.image_uris.retrieve(
-    framework="pytorch",  # 軽い汎用コンテナとしてPyTorchを利用
-    region=region,
-    version="1.12.0",     # Python3.8が動くバージョン
-    py_version="py38",
-    instance_type="ml.m5.large",
-    image_scope="training",
-)
+image_uri = "216989098479.dkr.ecr.ap-southeast-2.amazonaws.com/tennis-pipeline:latest"
 
 estimator = Estimator(
     entry_point="train_model.py",
@@ -93,20 +86,58 @@ training_step = TrainingStep(
     estimator=estimator,
     inputs={
         "train": TrainingInput(
-            s3_data=preprocess_step.properties.ProcessingOutputConfig.Outputs["preprocessed_train"].S3Output.S3Uri,
-            content_type="text/tab-separated-values"
+            s3_data=preprocess_step.properties.ProcessingOutputConfig.Outputs[
+                "preprocessed_train"
+            ].S3Output.S3Uri,
+            content_type="text/tab-separated-values",
         ),
         "config": TrainingInput(
             s3_data="s3://tennis-sagemaker/tennis-pipe-line/yml",
-            content_type="application/x-yaml"
-        )
+            content_type="application/x-yaml",
+        ),
     },
 )
-# --- 3. パイプライン定義 ---
+# --- 3. 推論ステップ (ProcessingStepに変更) ---
+predict_processor = ScriptProcessor(
+    image_uri=image_uri,  # 学習時と同じコンテナ
+    command=["python3"],
+    instance_count=1,
+    instance_type="ml.t3.medium",  # ✅ 推論だけ軽量化,
+    base_job_name="tennis-submission",
+    role=role,
+    sagemaker_session=session,
+)
+
+predict_step = ProcessingStep(
+    name="RunSubmission",
+    processor=predict_processor,
+    depends_on=[training_step],  # ★ 学習が終わってから実行する
+    code="tennis-pipe-line/src/submission.py",
+    inputs=[
+        ProcessingInput(
+            source="./tennis-pipe-line/yml",  # s3_data.yml, features.yml を含む
+            destination="/opt/ml/processing/input/yml",
+        )
+    ],
+    outputs=[
+        ProcessingOutput(
+            output_name="submission_csv",
+            source="/opt/ml/processing/output/submission.csv",
+            destination=f"s3://{bucket_param.default_value}/tennis-pipe-line/output/",
+        )
+    ],
+)
+
+
+# --- パイプライン定義（3ステップに拡張） ---
 pipeline = Pipeline(
     name="TennisModelPipeline",
     parameters=[bucket_param],
-    steps=[preprocess_step, training_step],
+    steps=[
+        preprocess_step,  # 前処理
+        training_step,  # 学習
+        predict_step,  # ← ★ここが追加
+    ],
     sagemaker_session=session,
 )
 

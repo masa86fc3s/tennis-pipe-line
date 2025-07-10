@@ -75,16 +75,22 @@ class ModelPredictor:
             self.s3.put_object(
                 Bucket=self.bucket_name, Key=s3_key, Body=csv_buffer.getvalue()
             )
-            print(f"submission.csv を S3 に保存しました: s3://{self.bucket_name}/{s3_key}")
+            print(
+                f"submission.csv を S3 に保存しました: s3://{self.bucket_name}/{s3_key}"
+            )
 
 
 if __name__ == "__main__":
-    base_dir = os.path.dirname(__file__)
-    s3_yaml_path = os.path.join(base_dir, "../yml/s3_data.yml")
+    # SageMaker TrainingStep の inputs で指定したチャネル名を参照
+    base_dir = "/opt/ml/processing/input/yml"
+    s3_yaml_path = os.path.join(base_dir, "s3_data.yml")
     features_yaml_path = os.path.join(base_dir, "features.yml")
+
 
     predictor = ModelPredictor(s3_yaml_path, features_yaml_path)
     predictor.load_model_from_s3()
     predictor.load_test_data_from_s3()
     predictor.predict()
-    predictor.save_submission(local_path="submission.csv", upload_to_s3=False)
+    predictor.save_submission(
+        local_path="/opt/ml/output/submission.csv", upload_to_s3=False
+    )

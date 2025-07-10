@@ -20,6 +20,7 @@ def cast_optuna_params(optuna_params: dict) -> dict:
     """
     Optunaのパラメータ辞書内の文字列を適切な型に変換する。
     """
+
     def str_to_bool(s):
         if isinstance(s, bool):
             return s
@@ -54,7 +55,7 @@ class LightGBMPipeline:
         use_s3: bool = False,
     ):
         base_dir = os.path.dirname(os.path.abspath(__file__))
-        
+
         # 引数の use_s3 をインスタンス変数に保存
         self.use_s3 = use_s3
 
@@ -120,13 +121,27 @@ class LightGBMPipeline:
 
         def objective(trial):
             params = base_params.copy()
-            params["lambda_l1"] = trial.suggest_float("lambda_l1", **optuna_cfg["lambda_l1"])
-            params["lambda_l2"] = trial.suggest_float("lambda_l2", **optuna_cfg["lambda_l2"])
-            params["num_leaves"] = trial.suggest_int("num_leaves", **optuna_cfg["num_leaves"])
-            params["feature_fraction"] = trial.suggest_float("feature_fraction", **optuna_cfg["feature_fraction"])
-            params["bagging_fraction"] = trial.suggest_float("bagging_fraction", **optuna_cfg["bagging_fraction"])
-            params["bagging_freq"] = trial.suggest_int("bagging_freq", **optuna_cfg["bagging_freq"])
-            params["min_child_samples"] = trial.suggest_int("min_child_samples", **optuna_cfg["min_child_samples"])
+            params["lambda_l1"] = trial.suggest_float(
+                "lambda_l1", **optuna_cfg["lambda_l1"]
+            )
+            params["lambda_l2"] = trial.suggest_float(
+                "lambda_l2", **optuna_cfg["lambda_l2"]
+            )
+            params["num_leaves"] = trial.suggest_int(
+                "num_leaves", **optuna_cfg["num_leaves"]
+            )
+            params["feature_fraction"] = trial.suggest_float(
+                "feature_fraction", **optuna_cfg["feature_fraction"]
+            )
+            params["bagging_fraction"] = trial.suggest_float(
+                "bagging_fraction", **optuna_cfg["bagging_fraction"]
+            )
+            params["bagging_freq"] = trial.suggest_int(
+                "bagging_freq", **optuna_cfg["bagging_freq"]
+            )
+            params["min_child_samples"] = trial.suggest_int(
+                "min_child_samples", **optuna_cfg["min_child_samples"]
+            )
 
             scores = []
             val2_scores = []
@@ -147,7 +162,9 @@ class LightGBMPipeline:
 
             if self.X_va2 is not None and self.y_va2 is not None:
                 y_pred_val2 = np.array(model.predict(self.X_va2))
-                val2_scores.append(accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int)))
+                val2_scores.append(
+                    accuracy_score(self.y_va2, (y_pred_val2 > 0.5).astype(int))
+                )
 
             score_cv = float(np.mean(scores))
             score_val2 = float(np.mean(val2_scores)) if val2_scores else 0.0
@@ -199,22 +216,27 @@ class LightGBMPipeline:
 
             bucket = s3_config["s3"]["bucket_name"]
             region = s3_config["s3"]["region"]
-            s3_key = s3_config["s3"].get("model_key", "model/lgb_model.pkl")  # もし設定なければここに固定
+            s3_key = s3_config["s3"].get(
+                "model_key", "model/lgb_model.pkl"
+            )  # もし設定なければここに固定
 
             s3 = boto3.client("s3", region_name=region)
             s3.upload_file(model_path, bucket, s3_key)
             print(f"S3にモデルをアップロードしました: s3://{bucket}/{s3_key}")
 
 
-
 def main(args):
     if is_sagemaker():
-        train_data_path = os.path.join(os.environ["SM_CHANNEL_TRAIN"], "train_preprocessed.tsv")
+        train_data_path = os.path.join(
+            os.environ["SM_CHANNEL_TRAIN"], "train_preprocessed.tsv"
+        )
         use_s3 = False
     else:
         # 引数が一切指定されていなければ S3を使うのをデフォルトにする
         if args.train_data is None and not args.use_s3:
-            print("引数指定なしなので、ローカル実行でもS3から学習データを読み込みます。")
+            print(
+                "引数指定なしなので、ローカル実行でもS3から学習データを読み込みます。"
+            )
             use_s3 = True
             train_data_path = None
         else:
@@ -224,12 +246,11 @@ def main(args):
     pipeline = LightGBMPipeline(
         train_data_path=train_data_path,
         s3_config_path="/opt/ml/input/data/config/s3_data.yml",  # 👈 修正ポイント
-        config_path="/opt/ml/input/data/config/config.yml",      # 👈 これも同様
+        config_path="/opt/ml/input/data/config/config.yml",  # 👈 これも同様
         features_path="/opt/ml/input/data/config/features.yml",  # 👈 これも同様
         model_output_dir=args.model_dir,
         use_s3=use_s3,
     )
-
 
     print("Optunaでハイパーパラメータ最適化中...")
     best_params, _ = pipeline.optimize_params(n_trials=30)
@@ -242,10 +263,22 @@ def main(args):
 
 if __name__ == "__main__":
     import sys
+
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train-data", type=str, help="ローカルの学習データファイルパス")
-    parser.add_argument("--model-dir", type=str, default=os.environ.get("SM_MODEL_DIR", "./model"), help="モデル出力ディレクトリ")
-    parser.add_argument("--use-s3", action="store_true", help="ローカルでもS3から学習データを取得する場合に指定")
+    parser.add_argument(
+        "--train-data", type=str, help="ローカルの学習データファイルパス"
+    )
+    parser.add_argument(
+        "--model-dir",
+        type=str,
+        default=os.environ.get("SM_MODEL_DIR", "./model"),
+        help="モデル出力ディレクトリ",
+    )
+    parser.add_argument(
+        "--use-s3",
+        action="store_true",
+        help="ローカルでもS3から学習データを取得する場合に指定",
+    )
     args = parser.parse_args()
 
     main(args)

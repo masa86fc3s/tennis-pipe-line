@@ -11,15 +11,28 @@ else:
     sys.path.append(os.path.join(BASE_DIR, "src"))
 
 from submit_to_signate import submit_to_signate
+
 # 必要ライブラリ自動インストール
 try:
     import yaml
     import lightgbm
 except ImportError:
-    subprocess.run([sys.executable, "-m", "pip", "install", 'pandas','numpy','boto3','matplotlib','lightgbm','optuna'],
-            check=True
-            )
-    
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "pandas",
+            "numpy",
+            "boto3",
+            "matplotlib",
+            "lightgbm",
+            "optuna",
+        ],
+        check=True,
+    )
+
 
 # 各ディレクトリのパス設定
 train_key = os.path.join(BASE_DIR, "data")
@@ -31,6 +44,7 @@ model_key = os.path.join(BASE_DIR, "models")
 for path in [train_key, test_key, model_output_key, model_key]:
     os.makedirs(path, exist_ok=True)
 
+
 def run_script(script_relative_path: str):
     script_path = os.path.join(BASE_DIR, script_relative_path)
     print(f"\n===== 実行中: {script_path} =====")
@@ -38,6 +52,7 @@ def run_script(script_relative_path: str):
     print(result.stdout)
     if result.stderr:
         print(f"[ERROR]:\n{result.stderr}")
+
 
 if __name__ == "__main__":
     print("========== モデルパイプライン開始 ==========")

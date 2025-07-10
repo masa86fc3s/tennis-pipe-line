@@ -10,9 +10,11 @@ import yaml
 import os
 from sklearn.preprocessing import LabelEncoder
 
+
 def load_config():
     with open("/opt/ml/processing/input/tennis-pipe-line/yml/s3_data.yml", "r") as f:
         return yaml.safe_load(f)
+
 
 class ConfigLoader:  # （YAML読み込みクラス）
     @staticmethod
