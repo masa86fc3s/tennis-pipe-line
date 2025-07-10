@@ -1,9 +1,19 @@
+import subprocess
+import sys
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", "PyYAML"])
+
 import pandas as pd
 import boto3
 import io
 import yaml
 import os
 from sklearn.preprocessing import LabelEncoder
+
+
+def load_config():
+    with open("/opt/ml/processing/input/tennis-pipe-line/yml/s3_data.yml", "r") as f:
+        return yaml.safe_load(f)
 
 
 class ConfigLoader:  # （YAML読み込みクラス）
@@ -86,7 +96,7 @@ class DataPreprocessor:  # （前処理・特徴量生成など）
 
 def main():  # メイン処理（main()関数）
     # 設定読み込み
-    yaml_path = os.path.join(os.path.dirname(__file__), "../yml/s3_data.yml")
+    yaml_path = "/opt/ml/processing/input/tennis-pipe-line/yml/s3_data.yml"
     config = ConfigLoader.load_config(yaml_path)
 
     bucket = config["s3"]["bucket_name"]
